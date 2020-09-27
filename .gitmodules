@@ -1,0 +1,8 @@
+[submodule "WML"]
+	path = WML
+	url = https://github.com/wml-frc/WML.git
+	branch = master
+[submodule "CJ-Vision"]
+	path = CJ-Vision
+	url = https://github.com/wml-frc/CJ-Vision.git
+	branch = 2.0

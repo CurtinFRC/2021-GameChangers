@@ -28,3 +28,4 @@ pluginManagement {
 
 
 rootProject.name = '2021-GameChangers'
+include '4788'
