@@ -1,0 +1,102 @@
+// Included by all robot projects (:4788, :TestBot)
+
+apply plugin: 'cpp'
+apply plugin: 'google-test-test-suite'
+apply plugin: 'edu.wpi.first.GradleRIO'
+
+// Define targets as roborio
+deploy {
+  targets {
+    roboRIO("roborio") {
+      team = frc.getTeamNumber()
+    }
+  }
+
+  artifacts {
+    frcNativeArtifact('frcCpp') {
+      targets << "roborio"
+      component = 'frcUserProgram'
+      debug = frc.getDebugOrDefault(false)
+    }
+
+    fileTreeArtifact('frcStaticFileDeploy') {
+      files = fileTree(dir: 'src/main/deploy')
+
+      targets << "roborio"
+      directory = '/home/lvuser/deploy'
+    }
+  }
+}
+
+// WML Defines
+def includeSrcInIncludeRoot = true
+def includeDesktopSupport = false
+def includeWMLRevSupport = true
+
+dependencies {
+  simulation wpi.deps.sim.gui(wpi.platforms.desktop, true)
+}
+
+model {
+  component {
+    frcUserProgram(NativeExecutableSpec) {
+      targetPlatform wpi.platforms.roborio
+      if (includeDesktopSupport) {
+        targetPlatform wpi.platforms.desktop
+      }
+
+      sources.cpp {
+        source {
+          srcDir 'src/main/cpp'
+          // srcDir 'WayFinder/cpp'
+          include '**/*.cpp', '**/*.ccc'
+
+          srcDir rootProject.file('wml/src/main.cpp')
+          if (includeWMLRevSupport) {
+            srcDir rootProject.file('wml/src/rev/cpp')
+          }
+        }
+
+        exportedHeaders {
+          srcDir 'src/main/include'
+          srcDir 'WayFinder/include'
+
+          srcDir rootProject.file('wml/src/main/include')
+          if (includeWMLRevSupport) {
+            srcDir rootProject.file('wml/src/rev/include')
+          }
+
+          if (includeSrcInIncludeRoot) {
+            srcDir 'src/main/cpp'
+            // srcDir 'WayFinder/cpp'
+
+            srcDir rootProject.file('wml/src/main/cpp')
+            if (includeWMLRevSupport) {
+              srcDir rootProject.file('wml/src/rev/cpp')
+            }
+          }
+        }
+
+        wpi.deps.wpilib(it)
+        wpi.deps.vendor.cpp(it)
+      }
+    }
+
+    testSuites {
+      frcUserProgram(GoogleTestTestSuiteSpec) {
+        testing $.components.frcUserProgram
+
+        sources.cpp {
+          sourc {
+            srcDir 'src/test/cpp'
+            include '**/*.cpp'
+          }
+        }
+
+        wpi.deps.wpilib(it)
+        wpi.deps.googleTest(it)
+        wpi.deps.vendor.cpp(it)
+      }
+    }
+  }
+}
