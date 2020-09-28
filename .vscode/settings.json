@@ -2,5 +2,6 @@
   "java.configuration.updateBuildConfiguration": "automatic",
   "files.associations": {
     "iostream": "cpp"
-  }
+  },
+  "cmake.configureOnOpen": true
 }
