@@ -8,7 +8,7 @@ apply plugin: 'edu.wpi.first.GradleRIO'
 deploy {
 	targets {
 		roboRIO("roborio") {
-			team = 4788
+			team = frc.getTeamNumber()
 		}
 	}
 	artifacts {
@@ -33,10 +33,10 @@ deploy {
 // to the compiler. Some eclipse project imports depend on this behavior.
 // We recommend leaving this disabled if possible. Note for eclipse project
 // imports this is enabled by default. For new projects, its disabled
-def includeSrcInIncludeRoot = false
+def includeSrcInIncludeRoot = true
 
 // Set this to true to enable desktop support.
-def includeDesktopSupport = true
+def includeDesktopSupport = false
 
 // Support Rev products with WML
 def includeWMLRevSupport = true

@@ -1,21 +1,19 @@
-#pragma once
-
 #include "RobotMap.h"
 
 class Robot : public frc::TimedRobot {
-  public:
-    void RobotInit() override;
-    void RobotPeriodic() override;
+ public:
+	void RobotInit() override;
+	void RobotPeriodic() override;
 
-    void DisabledInit() override;
-		void DisabledPeriodic() override;
+	void DisabledInit() override;
+	void DisabledPeriodic() override;
 
-    void AutonomousInit() override;
-    void AutonomousPeriodic() override;
+	void AutonomousInit() override;
+	void AutonomousPeriodic() override;
 
-    void TeleopInit() override;
-    void TeleopPeriodic() override;
+	void TeleopInit() override;
+	void TeleopPeriodic() override;
 
-    void TestInit() override;
-    void TestPeriodic() override;
+	void TestInit() override;
+	void TestPeriodic() override;
 };
