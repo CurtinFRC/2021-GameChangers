@@ -56,11 +56,30 @@
 // WML SIM
 #include "Usage.h"
 
-// Local Files
+// WayFinder Auto
+#include "WayFinder.h"
 
+// Local Files
+/** To be added */
 
 struct RobotMap {
 	struct DriveSystem {
-		// Drive system
-	};
+		// Drive motors {port, encoderTicks}
+		wml::TalonSrx FL{0, 2048}, FR{1, 2048}, BL{2}, BR{3};
+
+		// Motor Grouping
+		wml::actuators::MotorVoltageController leftMotors = wml::actuators::MotorVoltageController::Group(FL, BL);
+		wml::actuators::MotorVoltageController rightMotors = wml::actuators::MotorVoltageController::Group(FR, BR);
+
+		// Gearboxes
+		wml::Gearbox LGearbox{&leftMotors, &FL};
+		wml::Gearbox RGearbox{&rightMotors, &FR};
+
+		wml::sensors::NavX navx{};
+		wml::sensors::NavXGyro gyro{navx.Angular(wml::sensors::AngularAxis::YAW)};
+
+		wml::DrivetrainConfig drivetrainConfig{LGearbox, RGearbox, &gyro, 0.56, 0.60, 0.0762, 50};
+		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
+		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
+	}; DriveSystem driveSystem;
 };
