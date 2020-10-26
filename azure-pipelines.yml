@@ -124,10 +124,10 @@ jobs:
   - template: azure-init.yml
   - task: Gradle@2
     inputs:
-      workingDirectory: './CJ-Vision/'
+      workingDirectory: 'CJ-Vision/'
       gradleWrapperFile: 'gradlew'
       gradleOptions: '-Xmx3072m'
       publishJUnitResults: false
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'clean build'
-      options: '-Pno-roborio'
+      # options: '-Pno-roborio'
