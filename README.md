@@ -4,7 +4,7 @@ Our Robot Code for 2021 using multi-project gradle with WML, CJ-Vision &amp; Way
 ## Installing Code
 1. Download latest WPILib from releases [https://github.com/wpilibsuite/allwpilib/releases]
 
-2. run `git clone --recurse-submodules --remote-submodules` when cloning (clones code with submodules)
+2. run `git clone ${link} --recursive` when cloning (clones code with submodules)
 
 3. Build Code `./gradlew build` Successful if installed correctly
 
