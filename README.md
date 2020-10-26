@@ -1,6 +1,9 @@
 # 2021-Current
 Our Robot Code for 2021 using multi-project gradle with WML, CJ-Vision &amp; Wayfinder Libraries
 
+#### Current build status:
+[![Build Status](https://dev.azure.com/ConnorBuchel0890/CurtinFRC/_apis/build/status/CurtinFRC.2021-GameChangers?branchName=refs%2Fpull%2F4%2Fmerge)](https://dev.azure.com/ConnorBuchel0890/CurtinFRC/_build/latest?definitionId=15&branchName=refs%2Fpull%2F4%2Fmerge)
+
 ## Installing Code
 #### 1. Download latest WPILib from releases [https://github.com/wpilibsuite/allwpilib/releases]
   - This isn't technically needed to build/deploy to the robot. But does provide useful tools to use.
