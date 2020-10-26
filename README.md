@@ -12,3 +12,13 @@ Our Robot Code for 2021 using multi-project gradle with WML, CJ-Vision &amp; Way
 - Code for robot goes in `4788/src/main`
 
 - Code for coprocessor goes in `Coproc/src/main`
+
+
+## Documentation
+
+#### @TODO (Put your docs/info on what your code does. e.g)
+
+- Drivebase
+```
+Uses XboxControllers on USB ports 0 and 1. Control Left and Right power via tankdrive with a maxspeed of 80% etc.... 
+```
