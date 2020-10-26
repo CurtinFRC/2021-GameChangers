@@ -3,13 +3,13 @@ Our Robot Code for 2021 using multi-project gradle with WML, CJ-Vision &amp; Way
 
 ## Installing Code
 1. Download latest WPILib from releases [https://github.com/wpilibsuite/allwpilib/releases]
-- This isn't technically needed to build/deploy the robot. But does provide useful tools to use with the robot
+- This isn't technically needed to build/deploy to the robot. But does provide useful tools to use.
 
 2. run `git clone ${link} --recursive` when cloning (clones code with submodules)
-- on windows use `gradlew build`. 
-- For linux and macOS you might need to run `sudo chmod +x gradlew` to be able to use the command
 
 3. Build Code `./gradlew build` Successful if installed correctly
+- On windows use `gradlew build`. 
+- For linux and macOS you might need to run `sudo chmod +x gradlew` to be able to use the command
 
 ## Developing
 - Code for robot goes in `4788/src/main`
