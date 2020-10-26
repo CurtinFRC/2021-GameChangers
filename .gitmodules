@@ -5,4 +5,8 @@
 [submodule "CJ-Vision"]
 	path = CJ-Vision
 	url = https://github.com/wml-frc/CJ-Vision.git
-	branch = 2.0
+	branch = master
+[submodule "4788/WayFinder"]
+	path = 4788/WayFinder
+	url = https://github.com/A-Loose-Screw/WayFinder.git
+	branch = WayFinder2
