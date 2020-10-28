@@ -6,7 +6,7 @@ Our Robot Code for 2021 using multi-project gradle with WML, CJ-Vision &amp; Way
 
 ## Installing Code
 #### 1. Download latest WPILib from releases [https://github.com/wpilibsuite/allwpilib/releases]
-  - This isn't technically needed to build/deploy to the robot. But does provide useful tools to use.
+  - Downlad based on your operating system. https://docs.wpilib.org/en/stable/docs/getting-started/getting-started-frc-control-system/wpilib-setup.html
 
 #### 2. run `git clone ${link} --recursive` when cloning (clones code with submodules)
 
