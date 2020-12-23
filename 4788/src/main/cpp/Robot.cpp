@@ -16,9 +16,6 @@ double deadzone = 0.1;
 
 // Robot Logic
 void Robot::RobotInit() {
-	dt = frc::Timer::GetFPGATimestamp() - lastTimeStamp;
-	lastTimeStamp = frc::Timer::GetFPGATimestamp();
-
 	//init controllers 
 	xbox = new frc::XboxController(0);
 
