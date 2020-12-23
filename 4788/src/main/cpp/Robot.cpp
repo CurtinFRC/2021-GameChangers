@@ -5,7 +5,7 @@ using namespace wml;
 
 using hand = frc::XboxController::JoystickHand;
 
-double currentTimeStamp;
+double currentTime;
 double lastTimeStamp;
 double dt; //stands for delta time 
 
@@ -16,7 +16,6 @@ double deadzone = 0.1;
 
 // Robot Logic
 void Robot::RobotInit() {
-	
 	dt = frc::Timer::GetFPGATimestamp() - lastTimeStamp;
 	lastTimeStamp = frc::Timer::GetFPGATimestamp();
 
@@ -44,6 +43,8 @@ void Robot::AutonomousPeriodic() {}
 // Manual Robot Logic
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
+	currentTime = Timer::GetFPGATimestamp();
+	dt = currentTime - lastTimeStamp;
 
 	//motor examples
 	sparkSpeed = xbox->GetY(hand::kLeftHand);
@@ -70,6 +71,7 @@ void Robot::TeleopPeriodic() {
 	_solenoid.Update(dt);
 
 	if (_solenoid.IsDone()) _solenoid.Stop();
+	lastTimeStamp = currentTime;
 }
 
 // Test Logic

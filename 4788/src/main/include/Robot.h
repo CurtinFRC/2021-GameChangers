@@ -61,3 +61,17 @@ class Robot : public frc::TimedRobot {
 		wml::actuators::Compressor _compressor{};
 		wml::actuators::DoubleSolenoid _solenoid{0, 1, 0.2};
 };
+
+
+// double currentTime = 0;
+// double dt = 0;
+// double lastTimeStamp = 0;
+// int main() {
+//   currentTime = internalTimer(); // Use whatever you processor has. for unix systems it's chronoseconds (search it up)
+//   dt = currentTime - lastTimeStamp;
+
+//   /*
+//     do all your code and functions.
+//   */
+//   lastTimeStamp = currentTime; // end of program recalculate last time stamp.
+// }
