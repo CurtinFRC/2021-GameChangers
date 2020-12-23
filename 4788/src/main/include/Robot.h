@@ -52,12 +52,12 @@ class Robot : public frc::TimedRobot {
 	//controllers
 	frc::XboxController *xbox;
 
-	private:
-		//motors
-		frc::Spark *_sparkMotor;
-		wml::TalonSrx *_talonMotor;
+ private:
+	//motors
+	frc::Spark *_sparkMotor;
+	wml::TalonSrx *_talonMotor;
 
-		//pnematics stuff
-		wml::actuators::Compressor _compressor{};
-		wml::actuators::DoubleSolenoid _solenoid{0, 1, 0.2};
+	//pnematics stuff
+	wml::actuators::Compressor _compressor{};
+	wml::actuators::DoubleSolenoid _solenoid{0, 1, 0.2};
 };
