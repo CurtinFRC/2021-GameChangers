@@ -32,7 +32,7 @@
 
 #include "Toggle.h"
 
-class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
+class Robot : public frc::TimedRobot {
  public:
 	void RobotInit() override;
 	void RobotPeriodic() override;
@@ -52,12 +52,12 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	//controllers
 	frc::XboxController *xbox;
 
-	//motors
-	frc::Spark *SparkMotor[1];
-	wml::TalonSrx *TalonMotor;
+	private:
+		//motors
+		frc::Spark *_sparkMotor;
+		wml::TalonSrx *_talonMotor;
 
-	//pnematics stuff
-	wml::actuators::Compressor compressor{};
-	wml::actuators::DoubleSolenoid solenoid{0, 1, 0.2};
-	wml::sensors::PressureSensor pressureSensor{0};
+		//pnematics stuff
+		wml::actuators::Compressor _compressor{};
+		wml::actuators::DoubleSolenoid _solenoid{0, 1, 0.2};
 };

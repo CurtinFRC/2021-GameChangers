@@ -10,8 +10,9 @@ double lastTimeStamp;
 double dt; //stands for delta time 
 
 //add other variables here
-double SparkSpeed;
-double TalonSpeed;
+double sparkSpeed;
+double talonSpeed;
+double deadzone = 0.1;
 
 // Robot Logic
 void Robot::RobotInit() {
@@ -23,27 +24,17 @@ void Robot::RobotInit() {
 	xbox = new frc::XboxController(0);
 
 	//Motor examples 
-	SparkMotor[0] = new frc::Spark(0);
-	TalonMotor = new wml::TalonSrx(1);
+	_sparkMotor = new frc::Spark(0);
+	_talonMotor = new wml::TalonSrx(1);
 
-	SparkMotor[0]->SetInverted(true);
-	TalonMotor->SetInverted(false);
-
-	//registers the pressure sensor as a sensor to be logged to Network Tables
-	NTProvider::Register(&pressureSensor); 
-
+	_sparkMotor->SetInverted(true);
+	_talonMotor->SetInverted(false);
 }
 
-void Robot::RobotPeriodic() {
-	if (pressureSensor.GetScaled() < 80) {
-		compressor.SetTarget(wml::actuators::BinaryActuatorState::kForward); // turn the compressor on 
-	}
-}
+void Robot::RobotPeriodic() {}
 
 // Dissabled Robot Logic
-void Robot::DisabledInit() {
-	InterruptAll(true);
-}
+void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 
 // Auto Robot Logic
@@ -55,27 +46,30 @@ void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
 
 	//motor examples
-	SparkSpeed = xbox->GetY(hand::kLeftHand);
-	SparkMotor[0]->Set(SparkSpeed);
+	sparkSpeed = xbox->GetY(hand::kLeftHand);
+	_sparkMotor->Set(sparkSpeed);
 
-	TalonSpeed = xbox->GetTriggerAxis(hand::kRightHand);
-	if (TalonSpeed >= 0.1) { //acounts for the deadzone
-		TalonMotor->Set(TalonSpeed);
+
+	talonSpeed = xbox->GetTriggerAxis(hand::kRightHand);
+	if (talonSpeed >= deadzone) { //acounts for the deadzone
+		_talonMotor->Set(talonSpeed);
 	} else {
-		TalonMotor->Set(0);
+		_talonMotor->Set(0);
 	}
+
+	// ^ the equivilant using a conditional statement 
+	//talonSpeed = xbox->GetTriggerAxis(hand::kRightHand) > deadzone ? xbox->GetTriggerAxis(hand::kRightHand) : 0; _talonMotor->Set(talonSpeed);
 
 	if(xbox->GetXButton()) {
-		solenoid.SetTarget(wml::actuators::BinaryActuatorState::kForward);
+		_solenoid.SetTarget(wml::actuators::BinaryActuatorState::kForward);
 	} else {
-		solenoid.SetTarget(wml::actuators::BinaryActuatorState::kReverse);
+		_solenoid.SetTarget(wml::actuators::BinaryActuatorState::kReverse);
 	}
 
-	compressor.Update(dt);
-	solenoid.Update(dt);
+	_compressor.Update(dt);
+	_solenoid.Update(dt);
 
-	if (solenoid.IsDone()) solenoid.Stop();
-	NTProvider::Update();
+	if (_solenoid.IsDone()) _solenoid.Stop();
 }
 
 // Test Logic
