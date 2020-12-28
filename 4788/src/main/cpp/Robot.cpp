@@ -68,7 +68,7 @@ void Robot::TeleopPeriodic() {
 	_solenoid.Update(dt);
 
 	if (_solenoid.IsDone()) _solenoid.Stop();
-		lastTimeStamp = currentTime;
+	lastTimeStamp = currentTime;
 }
 
 // Test Logic
