@@ -12,7 +12,7 @@ double dt; //stands for delta time
 //add other variables here
 double sparkSpeed;
 double talonSpeed;
-double deadzone = 0.1;
+const double deadzone = 0.1;
 
 // Robot Logic
 void Robot::RobotInit() {
@@ -68,7 +68,7 @@ void Robot::TeleopPeriodic() {
 	_solenoid.Update(dt);
 
 	if (_solenoid.IsDone()) _solenoid.Stop();
-	lastTimeStamp = currentTime;
+		lastTimeStamp = currentTime;
 }
 
 // Test Logic
