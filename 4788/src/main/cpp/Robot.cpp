@@ -12,7 +12,7 @@ double dt; //stands for delta time
 //add other variables here
 double sparkSpeed;
 double talonSpeed;
-const double deadzone = 0.1;
+double constexpr deadzone = 0.1;
 
 // Robot Logic
 void Robot::RobotInit() {
