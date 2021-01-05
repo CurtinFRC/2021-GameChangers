@@ -7,14 +7,16 @@ double currentTimeStamp;
 double lastTimeStamp;
 double dt;
 
-// Robot Logiccd
+// Robot Logic
 void Robot::RobotInit() {
+
 	// Init the controllers
 	ControlMap::InitsmartControllerGroup(robotMap.contGroup);
 
 	// Create wml drivetrain
 	drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
 
+	
 	
 	// Zero Encoders
 	robotMap.driveSystem.drivetrain.GetConfig().leftDrive.encoder->ZeroEncoder();
