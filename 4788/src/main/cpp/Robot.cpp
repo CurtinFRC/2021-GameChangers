@@ -12,6 +12,8 @@ double dt; //stands for delta time
 //add other variables here
 double sparkSpeed;
 double talonSpeed;
+double SpeedLeft;
+double SpeedRight;
 double constexpr deadzone = 0.1;
 
 // Robot Logic
@@ -20,11 +22,17 @@ void Robot::RobotInit() {
 	xbox = new frc::XboxController(0);
 
 	//Motor examples 
-	_sparkMotor = new frc::Spark(0);
-	_talonMotor = new wml::TalonSrx(1);
+	//_sparkMotor = new frc::Spark(0);
+	_talonMotorLeft = new wml::TalonSrx(1);
+	_victorMotorLeft = new wml::VictorSpx(8);
+	_talonMotorRight = new wml::TalonSrx(2);
+	_victorMotorRight = new wml::VictorSpx(9);
 
-	_sparkMotor->SetInverted(true);
-	_talonMotor->SetInverted(false);
+	// _sparkMotor->SetInverted(true);
+	_talonMotorRight->SetInverted(false);
+	_victorMotorRight->SetInverted(false);
+	_talonMotorLeft->SetInverted(true);
+	_victorMotorLeft->SetInverted(true);
 }
 
 void Robot::RobotPeriodic() {}
@@ -40,20 +48,32 @@ void Robot::AutonomousPeriodic() {}
 // Manual Robot Logic
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
+
+	std::cout << "Test" << std::endl;
 	currentTime = Timer::GetFPGATimestamp();
 	dt = currentTime - lastTimeStamp;
-
+	
 	//motor examples
-	sparkSpeed = xbox->GetY(hand::kLeftHand);
-	_sparkMotor->Set(sparkSpeed);
+	SpeedLeft = xbox->GetY(hand::kLeftHand);
+	SpeedRight = xbox->GetY(hand::kRightHand);
+
+	_talonMotorLeft->Set(SpeedLeft);
+	_victorMotorLeft->Set(SpeedLeft);
+
+	_talonMotorRight->Set(SpeedRight);
+	_victorMotorRight->Set(SpeedRight);
 
 
-	talonSpeed = xbox->GetTriggerAxis(hand::kRightHand);
-	if (talonSpeed >= deadzone) { //acounts for the deadzone
-		_talonMotor->Set(talonSpeed);
-	} else {
-		_talonMotor->Set(0);
-	}
+	//sparkSpeed = xbox->GetY(hand::kLeftHand);
+	//_sparkMotor->Set(sparkSpeed);
+
+
+	//talonSpeed = xbox->GetTriggerAxis(hand::kRightHand);
+	//if (talonSpeed >= deadzone) { //acounts for the deadzone
+	//	_talonMotor->Set(talonSpeed);
+	//} else {
+	//	_talonMotor->Set(0);
+	//}
 
 	// ^ the equivilant using a conditional statement 
 	//talonSpeed = xbox->GetTriggerAxis(hand::kRightHand) > deadzone ? xbox->GetTriggerAxis(hand::kRightHand) : 0; _talonMotor->Set(talonSpeed);
