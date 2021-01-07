@@ -32,6 +32,8 @@
 
 #include "Toggle.h"
 
+using Meter = double;
+
 class Robot : public frc::TimedRobot {
  public:
 	void RobotInit() override;
@@ -49,15 +51,16 @@ class Robot : public frc::TimedRobot {
 	void TestInit() override;
 	void TestPeriodic() override;
 
-	//controllers
-	frc::XboxController *xbox;
+	void motors(const double right_power, const double left_power);
+	void longitudinal(const Meter& distance);
 
+	frc::XboxController* controller;
  private:
-	//motors
-	frc::Spark *_sparkMotor;
-	wml::TalonSrx *_talonMotor;
+	const Meter wheel_circumference = 0.4787787204;
 
-	//pneumatics stuff
-	wml::actuators::Compressor _compressor{};
-	wml::actuators::DoubleSolenoid _solenoid{0, 1, 0.2};
+	wml::VictorSpx* victors;
+	wml::TalonSrx* talons;
+
+	double right_power;
+	double left_power;
 };
