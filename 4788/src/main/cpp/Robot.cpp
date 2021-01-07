@@ -25,29 +25,6 @@ void Robot::RobotInit() {
 	_victor[0].SetInverted(true);
 	_talon[1].SetInverted(false);
 	_victor[1].SetInverted(false);
-
-	// Init the controllers
-	ControlMap::InitsmartControllerGroup(robotMap.contGroup);
-
-	// Create wml drivetrain
-	drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
-
-	
-	// Zero Encoders
-	robotMap.driveSystem.drivetrain.GetConfig().leftDrive.encoder->ZeroEncoder();
-	robotMap.driveSystem.drivetrain.GetConfig().rightDrive.encoder->ZeroEncoder();
-
-	// Strategy controllers (Set default strategy for drivetrain to be Manual)
-	drivetrain->SetDefault(std::make_shared<DrivetrainManual>("Drivetrain Manual", *drivetrain, robotMap.contGroup));
-	drivetrain->StartLoop(100);
-
-	// Inverts one side of our drivetrain
-	drivetrain->GetConfig().rightDrive.transmission->SetInverted(true);
-	drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
-
-	// Register our systems to be called via strategy
-	StrategyController::Register(drivetrain);
-	NTProvider::Register(drivetrain);
 }
 
 void Robot::RobotPeriodic() {}
