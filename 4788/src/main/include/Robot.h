@@ -18,8 +18,13 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	void TestInit() override;
 	void TestPeriodic() override;
 
+	frc::XboxController* controller;
+
  private:
 	// Istances
 	RobotMap robotMap;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
+
+	wml::VictorSpx *_victor;
+	wml::TalonSrx *_talon;
 };
