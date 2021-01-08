@@ -15,6 +15,19 @@ void Robot::RobotInit() {
 }
 
 void Robot::RobotPeriodic() {
+double constexpr deadzone = 0.1;
+double SpeedIntake;
+
+// Robot Logic
+void Robot::RobotInit() {
+	//init controllers 
+	driver = new frc::XboxController(0);
+	coDriver = new frc::XboxController(1);
+
+	//Motors
+	_victorIntake = new wml::VictorSpx(4);
+
+	_victorIntake->SetInverted(true);
 }
 
 void Robot::DisabledInit() {
@@ -51,6 +64,15 @@ void Robot::TeleopPeriodic() {
 }
 
 void Robot::TestInit() {
+	// Intake System
+	SpeedIntake = coDriver->GetTriggerAxis(hand::kRightHand);
+	if (SpeedIntake >= deadzone) {
+		_victorIntake->Set(SpeedIntake);
+	} else {
+		_victorIntake->Set(0);
+	}
+
+	lastTimeStamp = currentTime;
 }
 
 void Robot::TestPeriodic() {
