@@ -55,15 +55,15 @@ class Robot : public frc::TimedRobot {
  private:
 	//motors
 	frc::Spark *_sparkMotor;
-	wml::TalonSrx *_talonMotor;
+
+	wml::TalonSrx *_leftTalon;
+	wml::TalonSrx *_rightTalon;
+
+	wml::VictorSpx *_leftVictor;
+	wml::VictorSpx *_rightVictor;
 
 	//pneumatics stuff
 	wml::actuators::Compressor _compressor{};
 	wml::actuators::DoubleSolenoid _solenoid{0, 1, 0.2};
+
 };
-
-
-
-if (VaribaleOne == 1) {
-
-}
