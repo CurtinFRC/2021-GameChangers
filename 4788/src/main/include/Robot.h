@@ -26,6 +26,7 @@
 #include "sensors/LimitSwitch.h"
 #include "sensors/NavX.h"
 #include "sensors/PressureSensor.h"
+#include "Drivetrain.h"
 
 #include <cameraserver/CameraServer.h>
 #include <frc/DriverStation.h> 
@@ -62,4 +63,13 @@ class Robot : public frc::TimedRobot {
 	double _leftPower;
 	//motors
 	wml::VictorSpx *_victorIntake;
+};
+	frc::XboxController* controller;
+
+ private:
+	// Istances
+	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
+
+	wml::VictorSpx *_victor;
+	wml::TalonSrx *_talon;
 };
