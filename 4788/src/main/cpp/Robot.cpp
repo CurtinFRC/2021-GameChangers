@@ -38,9 +38,7 @@ void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
 
 // Manual Robot Logic
-void Robot::TeleopInit() {
-	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
-}
+void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
 	currentTimeStamp = Timer::GetFPGATimestamp();
 	dt = currentTimeStamp - lastTimeStamp;
@@ -63,9 +61,6 @@ void Robot::TeleopPeriodic() {
 
 	_talon[1].Set(motorSpeed[1]);
 	_victor[1].Set(motorSpeed[1]);
-
-	StrategyController::Update(dt);
-	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
 }

@@ -26,13 +26,14 @@
 #include "sensors/LimitSwitch.h"
 #include "sensors/NavX.h"
 #include "sensors/PressureSensor.h"
+#include "Drivetrain.h"
 
 #include <cameraserver/CameraServer.h>
 #include <frc/DriverStation.h> 
 
 #include "Toggle.h"
 
-class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
+class Robot : public frc::TimedRobot, protected wml::NTProvider {
  public:
 	void RobotInit() override;
 	void RobotPeriodic() override;
@@ -53,7 +54,6 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 
  private:
 	// Istances
-	RobotMap robotMap;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 
 	wml::VictorSpx *_victor;
