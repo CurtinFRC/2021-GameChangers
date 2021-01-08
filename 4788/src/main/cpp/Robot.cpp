@@ -33,6 +33,9 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+	_leftPower = driver->GetY(Hand::kLeftHand);
+	_rightPower = driver->GetY(Hand::kRightHand);
+
 	if (std::abs(_leftPower) >= deadzone) {
 		_leftPower = driver->GetY(Hand::kLeftHand);
 	} else {
