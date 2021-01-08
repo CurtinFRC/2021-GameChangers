@@ -8,23 +8,17 @@ using hand  = frc::XboxController::JoystickHand;
 double currentTimeStamp;
 double lastTimeStamp;
 double dt;
-
-double motorSpeed[2] {0,0};
+double tTaken = 0;
+double tNeeded = 0;
+bool isSpinning = false;
+double maxSpeed = 0.8;
+double motorSpeed = 0;
 double constexpr deadzone = 0.1;
 
 // Robot Logiccd
 void Robot::RobotInit() {
-
 	controller = new frc::XboxController(0);
-
-	_victor = new wml::VictorSpx[2] {wml::VictorSpx(8) , wml::VictorSpx(9)};
-
-	_talon = new wml::TalonSrx[2] {wml::TalonSrx(1) , wml::TalonSrx(2)};
-
-	_talon[0].SetInverted(true);
-	_victor[0].SetInverted(true);
-	_talon[1].SetInverted(false);
-	_victor[1].SetInverted(false);
+	_victor = new wml::VictorSpx(8);
 }
 
 void Robot::RobotPeriodic() {}
@@ -42,26 +36,31 @@ void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
 	currentTimeStamp = Timer::GetFPGATimestamp();
 	dt = currentTimeStamp - lastTimeStamp;
-
-
-	motorSpeed[0] = controller->GetY(hand::kLeftHand);
-	if (abs(motorSpeed[0]) <= deadzone) {
-		motorSpeed[0] = 0;
+	tTaken += dt;
+	motorSpeed = pow(controller->GetTriggerAxis(hand::kLeftHand),3);
+	motorSpeed *= maxSpeed;
+	if (motorSpeed <= deadzone) {
+		motorSpeed = 0;
 	}
 
-	motorSpeed[1] = controller->GetY(hand::kRightHand);
-	if (abs(motorSpeed[1]) <= deadzone) {
-		motorSpeed[1] = 0;
+	if (controller->GetYButton()) {
+		motorSpeed = -0.4;
 	}
 
-	// Motor sets 
+	if (controller->GetXButtonPressed()) {
+		tNeeded = tTaken + 2;
+		isSpinning = true;
+	}
 	
-	_talon[0].Set(motorSpeed[0]);
-	_victor[0].Set(motorSpeed[0]);
-
-	_talon[1].Set(motorSpeed[1]);
-	_victor[1].Set(motorSpeed[1]);
-
+	if (isSpinning) {
+		if (tTaken >= tNeeded) {
+			isSpinning = false;
+			motorSpeed = 0;
+		} else {
+			motorSpeed = 0.8;
+		}
+	}
+	_victor->Set(motorSpeed);
 	lastTimeStamp = currentTimeStamp;
 }
 
