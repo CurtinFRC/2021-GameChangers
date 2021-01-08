@@ -44,7 +44,7 @@ void Robot::TeleopPeriodic() {
 	}
 
 	if (controller->GetYButton()) {
-		motorSpeed = -0.4;
+		motorSpeed = -0.2;
 	}
 
 	if (controller->GetXButtonPressed()) {
