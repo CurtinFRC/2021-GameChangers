@@ -1,0 +1,4 @@
+See file:///Users/LanducciM/Desktop/code/FRC-CODE/2021-GameChangers/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling Robot.cpp successful.
+
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///Users/LanducciM/Desktop/code/FRC-CODE/2021-GameChangers/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
