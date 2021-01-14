@@ -1,4 +1,124 @@
-See file:///Users/LanducciM/Desktop/code/FRC-CODE/2021-GameChangers/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+See file:///C:/Users/61412/Documents/2021-GameChangers/2021-GameChangers/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling Main.cpp successful.
+
 compiling Robot.cpp successful.
 
-Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///Users/LanducciM/Desktop/code/FRC-CODE/2021-GameChangers/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
+compiling path.cpp successful.
+
+compiling robotControl.cpp successful.
+
+compiling BinaryEncoderMotor.cpp successful.
+
+compiling WayFinder.cpp successful.
+
+compiling BinaryLimitMotor.cpp successful.
+
+compiling Compressor.cpp successful.
+
+compiling BinaryServo.cpp successful.
+
+compiling Controllers.cpp successful.
+
+compiling PIDController.cpp successful.
+
+compiling Inputs.cpp successful.
+
+compiling DoubleSolenoid.cpp successful.
+
+compiling SmartController.cpp successful.
+
+compiling PneumaticIntake.cpp successful.
+
+compiling WheeledIntake.cpp successful.
+
+compiling MotorFilters.cpp successful.
+
+compiling Files.cpp successful.
+
+compiling MotionProfiling.cpp successful.
+
+compiling VoltageController.cpp successful.
+
+compiling DeployableDevice.cpp successful.
+
+compiling RobotStartup.cpp successful.
+
+compiling Drivetrain.cpp successful.
+
+compiling Encoder.cpp successful.
+
+compiling Elevator.cpp successful.
+
+compiling EncoderSwitch.cpp successful.
+
+compiling LoopSystem.cpp successful.
+
+compiling UpdateGroup.cpp successful.
+
+compiling MPStrategy.cpp successful.
+
+compiling LimitSwitch.cpp successful.
+
+compiling Toggle.cpp successful.
+
+compiling PressureSensor.cpp successful.
+
+compiling NTProvider.cpp successful.
+
+compiling NavX.cpp successful.
+
+compiling NavX.robot.cpp successful.
+
+compiling StrategyController.cpp successful.
+
+compiling Filter.cpp successful.
+
+compiling StrategyBuilder.cpp successful.
+
+compiling StrategySystem.cpp successful.
+
+compiling WMLCtre.cpp successful.
+
+compiling WMLCtre.robot.cpp successful.
+
+compiling WMLRev.cpp failed.
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\cpp\WMLRev.cpp: In constructor 'wml::Talon_FX::Talon_FX(wml::actuators::Port, wml::Talon_FX::MotorType, rev::CANEncoder::EncoderType, int)':
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\cpp\WMLRev.cpp:75:241: error: 'rev::Talon_FX' has not been declared
+ Talon_FX::Talon_FX(actuators::Port port, MotorType motorType, rev::CANEncoder::EncoderType encoderType, int encoderTicksPerRotation) : actuators::MotorVoltageController(this),  Encoder::Encoder(encoderTicksPerRotation), _handle(port, (rev::Talon_FX::MotorType)motorType, _port(port) {
+                                                                                                                                                                                                                                                 ^~~~~~~~
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\cpp\WMLRev.cpp:75:282: error: no match for call to '(wml::actuators::Port) (wml::actuators::Port&)'
+ Talon_FX::Talon_FX(actuators::Port port, MotorType motorType, rev::CANEncoder::EncoderType encoderType, int encoderTicksPerRotation) : actuators::MotorVoltageController(this),  Encoder::Encoder(encoderTicksPerRotation), _handle(port, (rev::Talon_FX::MotorType)motorType, _port(port) {
+                                                                                                                                                                                                                                                                                          ^
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\cpp\WMLRev.cpp:132:1: error: no matching function for call to 'rev::CANSparkMax::CANSparkMax()'
+ }
+ ^
+In file included from C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\include/WMLRev.h:4:0,
+                 from C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\cpp\WMLRev.cpp:1:
+C:\Users\61412\.gradle\caches\transforms-2\files-2.1\0e3059180f99dde520f5e7939951cc08\SparkMax-cpp-1.5.1-headers/rev/CANSparkMax.h:92:14: note: candidate: rev::CANSparkMax::CANSparkMax(int, rev::CANSparkMaxLowLevel::MotorType)
+     explicit CANSparkMax(int deviceID, MotorType type);
+              ^~~~~~~~~~~
+C:\Users\61412\.gradle\caches\transforms-2\files-2.1\0e3059180f99dde520f5e7939951cc08\SparkMax-cpp-1.5.1-headers/rev/CANSparkMax.h:92:14: note:   candidate expects 2 arguments, 0 provided
+C:\Users\61412\.gradle\caches\transforms-2\files-2.1\0e3059180f99dde520f5e7939951cc08\SparkMax-cpp-1.5.1-headers/rev/CANSparkMax.h:46:7: note: candidate: rev::CANSparkMax::CANSparkMax(const rev::CANSparkMax&)
+ class CANSparkMax : public CANSparkMaxLowLevel {
+       ^~~~~~~~~~~
+C:\Users\61412\.gradle\caches\transforms-2\files-2.1\0e3059180f99dde520f5e7939951cc08\SparkMax-cpp-1.5.1-headers/rev/CANSparkMax.h:46:7: note:   candidate expects 1 argument, 0 provided
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\cpp\WMLRev.cpp:132:1: error: no matching function for call to 'wml::actuators::Port::Port()'
+ }
+ ^
+In file included from C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\include/WMLRev.h:11:0,
+                 from C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\cpp\WMLRev.cpp:1:
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\main\include/actuators/Port.h:11:7: note: candidate: wml::actuators::Port::Port(int)
+       Port(int n) { _CAN = n; };
+       ^~~~
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\main\include/actuators/Port.h:11:7: note:   candidate expects 1 argument, 0 provided
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\main\include/actuators/Port.h:5:12: note: candidate: constexpr wml::actuators::Port::Port(const wml::actuators::Port&)
+     struct Port {
+            ^~~~
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\main\include/actuators/Port.h:5:12: note:   candidate expects 1 argument, 0 provided
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\main\include/actuators/Port.h:5:12: note: candidate: constexpr wml::actuators::Port::Port(wml::actuators::Port&&)
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\main\include/actuators/Port.h:5:12: note:   candidate expects 1 argument, 0 provided
+C:\Users\61412\Documents\2021-GameChangers\2021-GameChangers\WML\src\rev\cpp\WMLRev.cpp:132:1: error: expected '{' at end of input
+ }
+ ^
+
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/61412/Documents/2021-GameChangers/2021-GameChangers/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.

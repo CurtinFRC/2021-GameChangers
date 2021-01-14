@@ -50,26 +50,22 @@ class Robot : public frc::TimedRobot {
 	void TestInit() override;
 	void TestPeriodic() override;
 
-	void motors(const double right_power, const double left_power);
-	//controllers
+	// controllers
 	frc::XboxController *driver;
 	frc::XboxController *coDriver;
 
  private:
-	wml::VictorSpx* _victors;
-	wml::TalonSrx* _talons;
+	//drivebase 
+	wml::VictorSpx *_leftMotor1;
+	wml::VictorSpx *_leftMotor2;
+	wml::VictorSpx *_leftMotor3;
 
-	double _rightPower;
-	double _leftPower;
-	//motors
+	wml::VictorSpx *_rightMotor1;
+	wml::VictorSpx *_rightMotor2;
+	wml::VictorSpx *_rightMotor3;
+
+	//intake 
 	wml::VictorSpx *_victorIntake;
-};
-	frc::XboxController* controller;
-
- private:
-	// Istances
-	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
-
-	wml::VictorSpx *_victor;
-	wml::TalonSrx *_talon;
+	//hammer time 
+	wml::TalonSrx *_hammerMotor;
 };
