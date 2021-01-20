@@ -92,4 +92,21 @@ struct RobotMap {
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
+	
+	//Intake
+	struct Intake {
+		wml::actuators::DoubleSolenoid intakeDown {ControlMap::PCModule, ControlMap::IntakeDownPort1, ControlMap::IntakeDownPort2, ControlMap::PannelActuationTime};
+		wml::TalonSrx intakeMotor{ ControlMap::IntakeMotorPort, 2048 };
+	}; Intake intake;
+
+	//Magazine
+	struct Magazine {
+    frc::AnalogInput StartMagLimit{ ControlMap::StartMagLimitPort };
+    frc::AnalogInput Position1Limit{ ControlMap::Position1LimitPort };
+    frc::AnalogInput Position5Limit{ ControlMap::Position5LimitPort };
+
+		wml::TalonSrx magMotor{ ControlMap::MagLoaderMotorPort, 2048 };
+		wml::TalonSrx magMotorLeft{ ControlMap::MagLoaderFunnelMotorPortLeft, 2048 };
+		wml::TalonSrx magMotorRight{ ControlMap::MagLoaderFunnelMotorPortRight, 2048 };
+	}; Magazine magazine;
 };
