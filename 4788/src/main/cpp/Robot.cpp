@@ -31,6 +31,8 @@ void Robot::RobotInit() {
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);
+
+	_turret = new Turret(robotMap.turret.turretRot, robotMap.turret.turretVert, robotMap.turret.turretWheel);
 }
 
 void Robot::RobotPeriodic() {

@@ -39,6 +39,11 @@ const double ControlMap::TrackDepth = 0.60;
 const double ControlMap::WheelRadius = 0.0762; // In meters
 const double ControlMap::Mass = 50; // KG's
 
+// Turret
+const int ControlMap::TurretRotPort = 99;
+const int ControlMap::TurretVertPort = 99;
+const int ControlMap::TurretFlyPort = 99;
+
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };

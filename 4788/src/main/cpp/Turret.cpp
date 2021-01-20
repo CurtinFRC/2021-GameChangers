@@ -1,19 +1,20 @@
-#include "Turret.h"
 #include <iostream>
+
+#include "Turret.h"
 
 using namespace frc;
 using namespace wml;
 
-Turret::Turret(Gearbox &Rotation, Gearbox &VerticalAxis,  Gearbox &FlyWheel,  sensors::BinarySensor &LeftLimit,  sensors::BinarySensor &AngleDownLimit):
-_RotationalAxis(Rotation), _VerticalAxis(VerticalAxis),  _FlyWheel(FlyWheel),  _LeftLimit(LeftLimit),  _AngleDownLimit(AngleDownLimit) {}
+Turret::Turret(Gearbox &Rotation, Gearbox &VerticalAxis,  Gearbox &FlyWheel):
+_RotationalAxis(Rotation), _VerticalAxis(VerticalAxis),  _FlyWheel(FlyWheel) {}
 
 void Turret::ShooterInit() {
-  double _kP = 0;
-  double _kI = 0;
-  double _kD = 0;
-  double _previousError = 0;
-  double _sum = 0;
-  double _goal = 0;
+  _kP = 0;
+  _kI = 0;
+  _kD = 0;
+  _previousError = 0;
+  _sum = 0;
+  _goal = 0;
 }
 
 void Turret::Shooter(double dt, double input) {
@@ -24,5 +25,6 @@ void Turret::Shooter(double dt, double input) {
   double output = _kP * error + _kI * _sum + _kD * derror;
 
   _previousError = error;
-  
+
+  _FlyWheel.transmission->SetVoltage(output);
 }

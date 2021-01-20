@@ -4,7 +4,7 @@
 
 class Turret {
 	public:
-		Turret(wml::Gearbox &RotationalAxis, wml::Gearbox &VerticalAxis, wml::Gearbox &FlyWheel, wml::sensors::BinarySensor &LeftLimit, wml::sensors::BinarySensor &AngleDownLimit);
+		Turret(wml::Gearbox &RotationalAxis, wml::Gearbox &VerticalAxis, wml::Gearbox &FlyWheel);
 
 		void Shooter(double dt, double input);
 		void ShooterInit();
@@ -14,8 +14,8 @@ class Turret {
 		wml::Gearbox &_VerticalAxis;
 		wml::Gearbox &_FlyWheel;
 
-		wml::sensors::BinarySensor &_LeftLimit;
-		wml::sensors::BinarySensor &_AngleDownLimit;
+		//wml::sensors::BinarySensor &_LeftLimit;
+		//wml::sensors::BinarySensor &_AngleDownLimit;
 
 		double _kP = 0;
 		double _kI = 0;

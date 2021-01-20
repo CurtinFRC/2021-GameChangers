@@ -36,7 +36,7 @@ struct ControlMap {
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
 	// Turret
-	static const int RotPort, VertPort, FlyPort;
+	static const int TurretRotPort, TurretVertPort, TurretFlyPort;
 
 
 	// ------------------ Controls ------------------

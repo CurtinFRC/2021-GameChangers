@@ -94,7 +94,20 @@ struct RobotMap {
 	}; DriveSystem driveSystem;
 
 	struct Turret {
-		wml::TalonSrx RA{ControlMap::RotPort, 2048}, VA{ControlMap::VertPort, 2048}, FW{ControlMap::FlyPort, 2048};
+		// Rotational Axis
+		wml::TalonSrx rot{ControlMap::TurretRotPort, 2048};
+		wml::actuators::MotorVoltageController rotMotors = wml::actuators::MotorVoltageController::Group(rot);
+		wml::Gearbox turretRot{ &rotMotors, &rot, 0 };
+
+		// Vertical Axis
+		wml::TalonSrx vert{ControlMap::TurretVertPort, 2048};
+		wml::actuators::MotorVoltageController vertMotors = wml::actuators::MotorVoltageController::Group(vert);
+		wml::Gearbox turretVert{ &vertMotors, &vert, 0 };
+
+		// Fly Wheel Axis
+		wml::TalonSrx flyWheel{ControlMap::TurretFlyPort, 2048};
+		wml::actuators::MotorVoltageController flyWheelMotors = wml::actuators::MotorVoltageController::Group(flyWheel);
+		wml::Gearbox turretWheel{ &flyWheelMotors, &flyWheel, 0 };
 
 	}; Turret turret;
 };
