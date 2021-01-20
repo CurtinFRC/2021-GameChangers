@@ -92,4 +92,9 @@ struct RobotMap {
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
+
+	struct Turret {
+		wml::TalonSrx RA{ControlMap::RotPort, 2048}, VA{ControlMap::VertPort, 2048}, FW{ControlMap::FlyPort, 2048};
+
+	}; Turret turret;
 };

@@ -35,6 +35,9 @@ struct ControlMap {
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
+	// Turret
+	static const int RotPort, VertPort, FlyPort;
+
 
 	// ------------------ Controls ------------------
 	
