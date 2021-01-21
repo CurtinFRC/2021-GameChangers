@@ -98,5 +98,8 @@ struct RobotMap {
 		wml::TalonSrx magMotor1{ ControlMap::MagMotorPort1, 2048 };
 		wml::TalonSrx magMotor2{ ControlMap::MagMotorPort2, 2048 };
 		wml::TalonSrx magMotor3{ ControlMap::MagMotorPort3, 2048 };
+
+		wml::actuators::MotorVoltageController magMotors = wml::actuators::MotorVoltageController::Group(magMotor1, magMotor2, magMotor3);
+		wml::Gearbox magGearbox{ &magMotors, &magMotor1 };
 	}; Magazine magazine;
 };
