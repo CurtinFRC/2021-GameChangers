@@ -92,4 +92,8 @@ struct RobotMap {
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
+
+	struct Climber {
+		wml::TalonSrx climberMotor{ControlMap::ClimberPort, ControlMap::ClimberEncoderTicks};
+	}; Climber climber;
 };

@@ -28,6 +28,9 @@ void Robot::RobotInit() {
 	drivetrain->GetConfig().rightDrive.transmission->SetInverted(true);
 	drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
 
+	// Climber
+	climber = new Climber(robotMap.contGroup, robotMap.climber.climberMotor);
+
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);

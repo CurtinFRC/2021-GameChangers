@@ -35,9 +35,17 @@ struct ControlMap {
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
+	// Climber System
+	static const int ClimberPort;
+	static const int ClimberEncoderTicks;
+	static const double MaxClimbSpeed;
+
 
 	// ------------------ Controls ------------------
 	
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
+
+	// Climber
+	//static const wml::controllers::tButton ClimberUp, CliberDown;
 };

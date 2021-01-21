@@ -39,6 +39,10 @@ const double ControlMap::TrackDepth = 0.60;
 const double ControlMap::WheelRadius = 0.0762; // In meters
 const double ControlMap::Mass = 50; // KG's
 
+// Climber System
+const int ControlMap::ClimberPort = 69;
+const int ControlMap::ClimberEncoderTicks = 2048;
+
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
