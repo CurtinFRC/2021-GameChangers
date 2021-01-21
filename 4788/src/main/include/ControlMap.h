@@ -36,18 +36,10 @@ struct ControlMap {
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
 	//Magazine 
-  static const int MagLoaderMotorPort;
-  static const int MagLoaderFunnelMotorPortLeft;
-  static const int MagLoaderFunnelMotorPortRight;
-  static const int StartMagLimitPort, Position1LimitPort, Position5LimitPort;
-	static const double MagazineBallThreshStart;
-  static const double MagazineBallThreshFinal;
-  static const double MagazineBallThreshIndex;
+  static const int MagMotorPort1;
+  static const int MagMotorPort2;
+  static const int MagMotorPort3;
 
-	//Intake
-  static const int IntakeMotorPort;
-  static const int IntakeDownPort1, IntakeDownPort2;
-  static const double PannelActuationTime;
 
 	// ------------------ Controls ------------------
 	
@@ -55,11 +47,6 @@ struct ControlMap {
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
 
 	// Magazine
-	//static const wml::controllers::
+	static const wml::controllers::tAxis Outake;
 
-	//Intake
-	// static const wml::controllers::tAxis Intakes;
-	// static const wml::controllers::tAxis Outake;
-	static const wml::controllers::tButton DownIntake;
-	static const wml::controllers::tAxis IntakeIn;
 };

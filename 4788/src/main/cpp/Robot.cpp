@@ -9,7 +9,7 @@ double dt;
 
 // Robot Logiccd
 void Robot::RobotInit() {
-    intake = new Intake(robotMap->contGroup, robotMap->intake.intakeDown, robotMap->intake.intakeMotor);
+    // magazine = new Magazine(robotMap->contGroup, robotMap->magazine.Outake, robotMap->magazine.MagMotor1);
 }
 
 void Robot::RobotPeriodic() {
@@ -26,12 +26,10 @@ void Robot::AutonomousPeriodic() {}
 // Manual Robot Logic
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
-    currentTimeStamp = frc::Timer::GetFPGATimestamp();
-    dt = currentTimeStamp - lastTimeStamp;
+  currentTimeStamp = frc::Timer::GetFPGATimestamp();
+  dt = currentTimeStamp - lastTimeStamp;
 
-    intake->TeleopOnUpdate(dt);
-
-    lastTimeStamp = currentTimeStamp;
+  lastTimeStamp = currentTimeStamp;
 }
 
 // Test Logic4

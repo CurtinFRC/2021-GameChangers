@@ -1,6 +1,6 @@
 #pragma once
 #include "RobotMap.h"
-#include "Intake.h"
+#include "Magazine.h"
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
  public:
@@ -22,6 +22,6 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
  private:
 	// Istances
 	RobotMap *robotMap;
-	Intake *intake;
+	Magazine *magazine;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 };

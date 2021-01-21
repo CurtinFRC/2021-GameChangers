@@ -8,32 +8,20 @@ using namespace wml::controllers;
 // }
 
 void Magazine::AutoMag() {
-  
-  //Auto Control
-  if (_position1.GetAverageValue() >= ControlMap::MagazineBallThreshFinal) {
-    MagazinePower = 0;
-    MagazinePowerFunnelRight = 1; 
-    MagazinePowerFunnelLeft = 0.5;
-  } else if (_position1.GetAverageValue() <= ControlMap::MagazineBallThreshFinal) {
-    MagazinePower = 0.7;
-    MagazinePowerFunnelRight = 0; 
-    MagazinePowerFunnelLeft = 0;
-    if (_position5.GetAverageValue() <= ControlMap::MagazineBallThreshIndex) {
-      if (_position1.GetAverageValue() >= ControlMap::MagazineBallThreshFinal) {
-        MagazinePower = 0;
-        MagazinePowerFunnelRight = 1; 
-        MagazinePowerFunnelLeft = 0.5;
-      }
-    }
-  } else {
-    MagazinePower = 0;
-    MagazinePowerFunnelRight = 1; 
-    MagazinePowerFunnelLeft = 0.5;
-  }
+  //Auto
+
 }
 
 void Magazine::TeleopOnUpdate(double dt) {
-  _magMotor.Set(MagazinePower);
-  _magMotorLeft.Set(MagazinePowerFunnelLeft);
-  _magMotorRight.Set(MagazinePowerFunnelRight);
+  if (_contGroup.Get(ControlMap::Outake) >= ControlMap::TriggerDeadzone) {
+    MagazinePowerOutake = _contGroup.Get(ControlMap::Outake);
+  } else {
+    MagazinePowerOutake = 0;
+  }
+
+  MagazinePower = 1;
+
+  _magMotor1.Set(MagazinePower);
+  _magMotor2.Set(MagazinePowerOutake);
+  _magMotor3.Set(MagazinePowerOutake);
 }
