@@ -38,6 +38,7 @@ struct ControlMap {
 	// Climber System
 	static const int ClimberPort;
 	static const int ClimberEncoderTicks;
+	static const double ClimberSpeed; 
 
 
 	// ------------------ Controls ------------------
