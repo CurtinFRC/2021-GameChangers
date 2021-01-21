@@ -44,5 +44,10 @@ const int ControlMap::ClimberPort = 69;
 const int ControlMap::ClimberEncoderTicks = 2048;
 
 // ------------------ Values ------------------
+// Drive train
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
+
+// Climber
+const tButton ControlMap::ClimberUp{ Driver, XboxController::kY };
+const tButton ControlMap::ClimberDown{ Driver, XboxController::kA };

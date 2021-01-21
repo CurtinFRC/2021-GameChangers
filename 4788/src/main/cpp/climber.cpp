@@ -12,4 +12,11 @@ Climber::Climber(SmartControllerGroup &contGroup,
 }
 
 void Climber::TeleopOnUpdate(double dt) {
+	if(_contGroup.Get(ControlMap::ClimberUp, Controller::ONFALL)) {
+		_ClimberMotor.set(0.7);
+	} else if (_contGroup.Get(ControlMap::ClimberDown, Controller::ONFALL)) {
+		_ClimberMotor.set(-0.7);
+	} else {
+		_ClimberMotor.set(0);
+	}
 }
