@@ -21,7 +21,7 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 
  private:
 	// Istances
-	RobotMap *robotMap;
+	RobotMap robotMap;
 	Magazine *magazine;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 };

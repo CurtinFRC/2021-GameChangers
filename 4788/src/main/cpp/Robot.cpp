@@ -9,7 +9,8 @@ double dt;
 
 // Robot Logiccd
 void Robot::RobotInit() {
-    // magazine = new Magazine(robotMap->contGroup, robotMap->magazine.Outake, robotMap->magazine.MagMotor1);
+    // magazine = new Magazine(robotMap->contGroup, robotMap->magazine.magMotor1, robotMap->magazine.magMotor2,robotMap->magazine.magMotor3);
+    magazine = new Magazine(robotMap.contGroup, robotMap.magazine.magGearbox);
 }
 
 void Robot::RobotPeriodic() {
@@ -28,6 +29,8 @@ void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
   currentTimeStamp = frc::Timer::GetFPGATimestamp();
   dt = currentTimeStamp - lastTimeStamp;
+
+  magazine->TeleopOnUpdate(dt);
 
   lastTimeStamp = currentTimeStamp;
 }
