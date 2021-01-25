@@ -7,6 +7,10 @@ using namespace wml::controllers;
 Climber::Climber(TalonSrx &ClimberMotor) : _climberMotor(ClimberMotor) {
 }
 
+int Climber::climberEncoderValue() {
+	return(_climberMotor.GetEncoderTicks());
+}
+
 void Climber::setClimber(const ClimberState st, double power) {
 	_climberState = st;
 	_power = power;
@@ -31,6 +35,8 @@ void Climber::updateClimber (double dt) {
 void Climber::update (double dt) {
 	updateClimber(dt);
 }
+
+
 
 
 /*

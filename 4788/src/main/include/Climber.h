@@ -20,6 +20,8 @@ class Climber : public wml::StrategySystem{
 
 		// Update (master loop for Climber)
 		void update (double dt);
+
+		int climberEncoderValue();
 		/*
 		// Setup Functions
 		void TeleopOnUpdate (double dt);

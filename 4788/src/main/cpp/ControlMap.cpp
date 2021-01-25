@@ -43,6 +43,7 @@ const double ControlMap::Mass = 50; // KG's
 const int ControlMap::ClimberPort = 69;
 const int ControlMap::ClimberEncoderTicks = 2048;
 const double ControlMap::ClimberSpeed = 0.7;
+const int ControlMap::ClimberJamTolerance = 10;
 
 // ------------------ Values ------------------
 // Drive train
