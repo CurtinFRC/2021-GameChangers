@@ -17,7 +17,19 @@ void Climber::setClimber(const ClimberState st, double power) {
 }
 
 void Climber::updateClimber (double dt) {
+	double speed = 0;
 
+	switch (_climberState) {
+		case ClimberState::NORMAL:
+			speed = _power;
+			break;
+		
+		case ClimberState::JAMMED:
+			speed = 0;
+			break;
+	}
+
+	_ClimberMotor.Set(speed);
 }
 
 void Climber::update (double dt) {

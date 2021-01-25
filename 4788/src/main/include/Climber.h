@@ -2,8 +2,6 @@
 #include "RobotMap.h"
 
 enum class ClimberState {
-	ATTOP,
-	ATBOTTOM,
 	NORMAL,
 	JAMMED
 }
