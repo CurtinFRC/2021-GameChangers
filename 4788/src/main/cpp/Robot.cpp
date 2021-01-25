@@ -29,10 +29,13 @@ void Robot::RobotInit() {
 	drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
 
 	// Climber
-	climber = new Climber(robotMap.contGroup, robotMap.climber.climberMotor);
+	climber = new Climber(robotMap.climber.climberMotor);
+
+	climber->SetDefault(std::make_shared<ClimberManualStrategy>("Climber Manual", *climber, robotMap.contGroup));
 
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
+	StrategyController::Register(climber);
 	NTProvider::Register(drivetrain);
 }
 
@@ -41,6 +44,7 @@ void Robot::RobotPeriodic() {
 	dt = currentTimeStamp - lastTimeStamp;
 
 	StrategyController::Update(dt);
+	climber->update(dt);
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -57,6 +61,7 @@ void Robot::AutonomousPeriodic() {}
 // Manual Robot Logic
 void Robot::TeleopInit() {
 	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
+	Schedule(climber->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 

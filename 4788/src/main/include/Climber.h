@@ -1,15 +1,16 @@
 #pragma once
+#include "strategy/StrategySystem.h"
 #include "RobotMap.h"
 
 enum class ClimberState {
 	NORMAL,
 	JAMMED
-}
+};
 
-class Climber {
+class Climber : public wml::StrategySystem{
   public :
 	// Constructor
-    Climber(wml::controllers::SmartControllerGroup &contGroup, wml::TalonSrx &ClimberMotor);
+    Climber(wml::TalonSrx &ClimberMotor);
 
 		//Set climber state and power
 		void setClimber(const ClimberState, double power = 0);
@@ -27,8 +28,7 @@ class Climber {
 		 */
 
   private :
-		wml::controllers::SmartControllerGroup &_contGroup;
-		wml::TalonSrx &_ClimberMotor;
+		wml::TalonSrx &_climberMotor;
 		ClimberState _climberState{ ClimberState::NORMAL };
 
 		double _power;

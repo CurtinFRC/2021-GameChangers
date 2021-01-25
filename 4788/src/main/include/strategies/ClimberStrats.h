@@ -9,7 +9,7 @@ class ClimberManualStrategy : public wml::Strategy {
 
 		void OnUpdate(double dt) override;
 	private:
-		Climber _climber;
+		Climber &_climber;
 		Controllers &_contGroup;
 
 };

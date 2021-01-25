@@ -1,6 +1,9 @@
 #pragma once
 #include "RobotMap.h"
-#include "Climber.h"
+
+// Subsystems
+#include "strategies/ClimberStrats.h"
+
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
  public:

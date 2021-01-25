@@ -4,11 +4,7 @@
 using namespace wml;
 using namespace wml::controllers;
 
-Climber::Climber(SmartControllerGroup &contGroup,
-								TalonSrx &ClimberMotor) :
-
-								_contGroup(contGroup),
-								_ClimberMotor(ClimberMotor) {
+Climber::Climber(TalonSrx &ClimberMotor) : _climberMotor(ClimberMotor) {
 }
 
 void Climber::setClimber(const ClimberState st, double power) {
@@ -29,7 +25,7 @@ void Climber::updateClimber (double dt) {
 			break;
 	}
 
-	_ClimberMotor.Set(speed);
+	_climberMotor.Set(speed);
 }
 
 void Climber::update (double dt) {
