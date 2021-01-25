@@ -11,6 +11,21 @@ Climber::Climber(SmartControllerGroup &contGroup,
 								_ClimberMotor(ClimberMotor) {
 }
 
+void Climber::setClimber(const ClimberState st, double power) {
+	_climberState = st;
+	_power = power;
+}
+
+void Climber::updateClimber (double dt) {
+
+}
+
+void Climber::update (double dt) {
+	updateClimber(dt);
+}
+
+
+/*
 void Climber::TeleopOnUpdate(double dt) {
 
 	// If button is pressed pull on the string to raise climber
@@ -26,3 +41,4 @@ void Climber::TeleopOnUpdate(double dt) {
 		_ClimberMotor.Set(0);
 	}
 }
+*/
