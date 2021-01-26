@@ -12,10 +12,9 @@ double dt;
 double rightPower = 0;
 double leftPower = 0;
 
-double motorSpeed;
-double speedIntake;
+double motorSpeed = 0;
+double speedIntake = 0;
 
-bool isSpinning = false;
 double constexpr deadzone = 0.05;
 //srx
 void Robot::RobotInit() {
@@ -30,7 +29,7 @@ void Robot::RobotInit() {
 	_rightMotor1 = new wml::VictorSpx(6);
 	_rightMotor2 = new wml::VictorSpx(7);
 	_rightMotor3 = new wml::VictorSpx(8);
-	// _victors = new wml::VictorSpx[6] {wml::VictorSpx(3), wml::VictorSpx(4), wml::VictorSpx(5), wml::VictorSpx(6), wml::VictorSpx(7), wml::VictorSpx(8)};
+
 	// //intake 
 	_victorIntake = new wml::VictorSpx(1);
 	// //hammer time 
@@ -64,18 +63,20 @@ void Robot::TeleopPeriodic() {
 	dt = currentTimeStamp - lastTimeStamp;
 
 	//its hammer time 
+	//go forwards with the left trigger 
 	motorSpeed = coDriver->GetTriggerAxis(hand::kLeftHand);
 	if (motorSpeed >= deadzone) {
-		_hammerMotor->Set(0.4);
+		_hammerMotor->Set(0.8);
 	} else {
 		_hammerMotor->Set(0);
 	}
 
+	//go backwards with the y button 
 	if (coDriver->GetYButton()) {
 		_hammerMotor->Set(-0.5);
 	}
 
-	//drive base 
+	//drive base, tank drive
 	if (fabs(driver->GetY(hand::kRightHand)) >= deadzone) {
 		leftPower = driver->GetY(hand::kRightHand);
 	} else {
@@ -88,15 +89,15 @@ void Robot::TeleopPeriodic() {
 		rightPower = 0;
 	}
 
-	//intake 
+	//intake, right trigger
 	speedIntake = coDriver->GetTriggerAxis(hand::kRightHand);
 	if (speedIntake >= deadzone) {
-		_victorIntake->Set(0.4);
+		_victorIntake->Set(1);
 	} else {
 		_victorIntake->Set(0);
 	}
 
-	//driveBase 
+	//drivebase 
 	_leftMotor1->Set(leftPower);
 	_leftMotor2->Set(leftPower);
 	_leftMotor3->Set(leftPower);
