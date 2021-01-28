@@ -36,10 +36,9 @@ struct ControlMap {
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
 	//Magazine 
-  static const int MagMotorPort1;
-  static const int MagMotorPort2;
-  static const int MagMotorPort3;
-  static const double MagEncoderSafeZone;
+    static const int MagMotorPort1;
+  	static const int MagMotorPort2;
+  	static const double MagEncoderSafeZone;
 
 
 	// ------------------ Controls ------------------

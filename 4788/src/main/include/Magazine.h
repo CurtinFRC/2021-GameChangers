@@ -1,23 +1,29 @@
 #pragma once
-
 #include <iostream> 
 #include "RobotMap.h"
+#include "strategy/StrategySystem.h"
 
-class Magazine {
+enum class MagazineState {
+  ON,
+  OFF,
+};
+
+class Magazine : public wml::StrategySystem {
  public:
-  Magazine(wml::controllers::SmartControllerGroup &contGroup, wml::Gearbox &magGearbox);
+  Magazine(wml::Gearbox &magGearbox);
+  void setMagazine(const MagazineState st, double power = 0);
+  void updateMagazine(double dt);
+  void update(double dt);
 
-  void TeleopOnUpdate(double dt);
-  void Limiter();
+  int magazineEncoderValue();
 
  private:
-  wml::controllers::SmartControllerGroup &_contGroup;
   wml::Gearbox &_magGearbox;
   // wml::Gearbox &_magRotationalAxis; 
+  
+  MagazineState _magazineState{ MagazineState::OFF };
 
-  double _magazinePower; // The washing machine piece
-  double _magTicks; // If WM gets jammed
-  double _magPreviouseTicks;
+  double _magPower; // The washing machine piece
   bool _toggleEnabled = false;
   bool _toggleMagOn = false;
 

@@ -29,7 +29,6 @@ const int ControlMap::BLport = 13;
 // Magazine
 const int ControlMap::MagMotorPort1 = 99;
 const int ControlMap::MagMotorPort2 = 99;
-const int ControlMap::MagMotorPort3 = 99;
 const double ControlMap::MagEncoderSafeZone = 5;
 
 // Right Drive

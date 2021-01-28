@@ -63,6 +63,7 @@
 // Local Files
 #include "ControlMap.h"
 #include "strategies/DriveSystem.h"
+#include "strategies/MagazineStrategies.h"
 /** To be added */
 
 struct RobotMap {
@@ -94,12 +95,11 @@ struct RobotMap {
 	}; DriveSystem driveSystem;
 
 	//Washing Machine Magazine
-	struct Magazine {
+	struct MagazineSystem {
 		wml::TalonSrx magMotor1{ ControlMap::MagMotorPort1, 2048 };
 		wml::TalonSrx magMotor2{ ControlMap::MagMotorPort2, 2048 };
-		wml::TalonSrx magMotor3{ ControlMap::MagMotorPort3, 2048 };
-    wml::actuators::MotorVoltageController magMotors = wml::actuators::MotorVoltageController::Group(magMotor1, magMotor2, magMotor3);
+    	wml::actuators::MotorVoltageController magMotors = wml::actuators::MotorVoltageController::Group(magMotor1, magMotor2);
 
-		wml::Gearbox magGearbox{ &magMotors, &magMotor1, 0 };
-	}; Magazine magazine;
+		wml::Gearbox magGearbox{ &magMotors, &magMotor1};
+	}; MagazineSystem magazineSystem;
 };
