@@ -31,7 +31,7 @@ const int ControlMap::FRport = 3;
 const int ControlMap::BRport = 4;
 
 // Drivetrain speed
-const double ControlMap::MaxDrivetrainSpeed = 0.8;
+const double ControlMap::MaxDrivetrainSpeed = 0.6;
 
 // Robot Values
 const double ControlMap::TrackWidth = 0.56;
