@@ -5,72 +5,109 @@ using namespace wml;
 
 using hand = frc::XboxController::JoystickHand;
 
-double currentTime;
+double currentTimeStamp;
 double lastTimeStamp;
-double dt; //stands for delta time 
+double dt;
 
-//add other variables here
-double sparkSpeed;
-double talonSpeed;
-double constexpr deadzone = 0.1;
+double rightPower = 0;
+double leftPower = 0;
 
-// Robot Logic
+double motorSpeed = 0;
+double speedIntake = 0;
+
+double constexpr deadzone = 0.05;
+//srx
 void Robot::RobotInit() {
-	//init controllers 
-	xbox = new frc::XboxController(0);
+	driver = new frc::XboxController(0);
+	coDriver = new frc::XboxController(1);
 
-	//Motor examples 
-	_sparkMotor = new frc::Spark(0);
-	_talonMotor = new wml::TalonSrx(1);
+	// //drivebase 
+	_leftMotor1 = new wml::VictorSpx(3);
+	_leftMotor2 = new wml::VictorSpx(4);
+	_leftMotor3 = new wml::VictorSpx(5);
 
-	_sparkMotor->SetInverted(true);
-	_talonMotor->SetInverted(false);
+	_rightMotor1 = new wml::VictorSpx(6);
+	_rightMotor2 = new wml::VictorSpx(7);
+	_rightMotor3 = new wml::VictorSpx(8);
+
+	// //intake 
+	_victorIntake = new wml::VictorSpx(1);
+	// //hammer time 
+	_hammerMotor = new wml::TalonSrx(2);
+
+	_victorIntake->SetInverted(true);
+	_hammerMotor->SetInverted(false);
+
+	_leftMotor1->SetInverted(true);
+	_leftMotor2->SetInverted(true);
+	_leftMotor3->SetInverted(true);
+
+	_rightMotor1->SetInverted(false);
+	_rightMotor2->SetInverted(false);
+	_rightMotor3->SetInverted(false);
 }
 
 void Robot::RobotPeriodic() {}
 
-// Dissabled Robot Logic
+
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 
-// Auto Robot Logic
 void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
 
 // Manual Robot Logic
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
-	currentTime = Timer::GetFPGATimestamp();
-	dt = currentTime - lastTimeStamp;
+	currentTimeStamp = Timer::GetFPGATimestamp();
+	dt = currentTimeStamp - lastTimeStamp;
 
-	//motor examples
-	sparkSpeed = xbox->GetY(hand::kLeftHand);
-	_sparkMotor->Set(sparkSpeed);
-
-
-	talonSpeed = xbox->GetTriggerAxis(hand::kRightHand);
-	if (talonSpeed >= deadzone) { //acounts for the deadzone
-		_talonMotor->Set(talonSpeed);
+	//its hammer time 
+	//go forwards with the left trigger 
+	motorSpeed = coDriver->GetTriggerAxis(hand::kLeftHand);
+	if (motorSpeed >= deadzone) {
+		_hammerMotor->Set(0.8);
 	} else {
-		_talonMotor->Set(0);
+		_hammerMotor->Set(0);
 	}
 
-	// ^ the equivilant using a conditional statement 
-	//talonSpeed = xbox->GetTriggerAxis(hand::kRightHand) > deadzone ? xbox->GetTriggerAxis(hand::kRightHand) : 0; _talonMotor->Set(talonSpeed);
-
-	if(xbox->GetXButton()) {
-		_solenoid.SetTarget(wml::actuators::BinaryActuatorState::kForward);
-	} else {
-		_solenoid.SetTarget(wml::actuators::BinaryActuatorState::kReverse);
+	//go backwards with the y button 
+	if (coDriver->GetYButton()) {
+		_hammerMotor->Set(-0.5);
 	}
 
-	_compressor.Update(dt);
-	_solenoid.Update(dt);
+	//drive base, tank drive
+	if (fabs(driver->GetY(hand::kRightHand)) >= deadzone) {
+		leftPower = driver->GetY(hand::kRightHand);
+	} else {
+		leftPower = 0;
+	}
 
-	if (_solenoid.IsDone()) _solenoid.Stop();
-	lastTimeStamp = currentTime;
+	if (fabs(driver->GetY(hand::kLeftHand)) >= deadzone ) {
+		rightPower = driver->GetY(hand::kLeftHand);
+	} else {
+		rightPower = 0;
+	}
+
+	//intake, right trigger
+	speedIntake = coDriver->GetTriggerAxis(hand::kRightHand);
+	if (speedIntake >= deadzone) {
+		_victorIntake->Set(1);
+	} else {
+		_victorIntake->Set(0);
+	}
+
+	//drivebase 
+	_leftMotor1->Set(leftPower);
+	_leftMotor2->Set(leftPower);
+	_leftMotor3->Set(leftPower);
+	
+	_rightMotor1->Set(rightPower);
+	_rightMotor2->Set(rightPower);
+	_rightMotor3->Set(rightPower);
+
+	lastTimeStamp = currentTimeStamp;
 }
 
-// Test Logic
 void Robot::TestInit() {}
 void Robot::TestPeriodic() {}

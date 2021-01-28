@@ -1,0 +1,6 @@
+See file:///C:/Users/61412/Documents/2021-GameChangers/2021-GameChangers/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling Robot.cpp successful.
+
+compiling Main.cpp successful.
+
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/61412/Documents/2021-GameChangers/2021-GameChangers/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
