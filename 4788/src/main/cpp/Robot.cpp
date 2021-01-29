@@ -9,9 +9,10 @@ double dt;
 
 // Robot Logiccd
 void Robot::RobotInit() {
+  ControlMap::InitsmartControllerGroup(robotMap.contGroup);
+
   // magazine = new Magazine(robotMap->contGroup, robotMap->magazine.magMotor1, robotMap->magazine.magMotor2,robotMap->magazine.magMotor3);
   magazine = new Magazine(robotMap.magazineSystem.magGearbox);
-
   magazine->SetDefault(std::make_shared<MagazineManualStrategy>("Magazine Manual", *magazine, robotMap.contGroup));
 
 	StrategyController::Register(magazine);
@@ -41,10 +42,8 @@ void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
   Schedule(magazine->GetDefaultStrategy(), true);
 }
-void Robot::TeleopPeriodic() {
+void Robot::TeleopPeriodic() {}
 
-}
-
-// Test Logic4
+// Test Logic
 void Robot::TestInit() {}
 void Robot::TestPeriodic() {}

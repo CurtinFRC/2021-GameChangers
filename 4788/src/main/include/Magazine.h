@@ -11,7 +11,7 @@ enum class MagazineState {
 class Magazine : public wml::StrategySystem {
  public:
   Magazine(wml::Gearbox &magGearbox);
-  void setMagazine(const MagazineState st, double power = 0);
+  void setMagazine(const MagazineState st, double magPower = 0);
   void updateMagazine(double dt);
   void update(double dt);
 
@@ -27,5 +27,5 @@ class Magazine : public wml::StrategySystem {
   bool _toggleEnabled = false;
   bool _toggleMagOn = false;
 
-  frc::Timer _timer;
+  // frc::Timer _timer;
 };

@@ -1,7 +1,11 @@
+#pragma once
+
 #include "Magazine.h" 
 #include "strategy/Strategy.h"
 
 using Controllers = wml::controllers::SmartControllerGroup;
+
+class Magazine;
 
 class MagazineManualStrategy : public wml::Strategy {
  public:

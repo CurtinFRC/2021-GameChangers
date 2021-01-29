@@ -31,6 +31,8 @@ void Magazine::updateMagazine(double dt) {
 
   _magGearbox.transmission->SetVoltage(voltage);
 }
+
+
 void Magazine::update(double dt) {
   updateMagazine(dt);
 }

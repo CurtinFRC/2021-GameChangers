@@ -1,6 +1,7 @@
 #pragma once
 #include "RobotMap.h"
 #include "Magazine.h"
+#include "strategies/MagazineStrategies.h"
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
  public:
