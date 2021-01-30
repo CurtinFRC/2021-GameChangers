@@ -42,7 +42,7 @@ const double ControlMap::Mass = 50; // KG's
 // Climber System
 const int ControlMap::ClimberPort = 69;
 const int ControlMap::ClimberEncoderTicks = 2048;
-const double ControlMap::ClimberSpeed = 0.7;
+const double ControlMap::ClimberSpeed = 0.3;
 const int ControlMap::ClimberJamTolerance = 10;
 
 // ------------------ Values ------------------
