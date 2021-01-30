@@ -40,7 +40,7 @@ const double ControlMap::WheelRadius = 0.0762; // In meters
 const double ControlMap::Mass = 50; // KG's
 
 // Climber System
-const int ControlMap::ClimberPort = 69;
+const int ControlMap::ClimberPort = 99;
 const int ControlMap::ClimberEncoderTicks = 2048;
 const double ControlMap::ClimberSpeed = 0.3;
 const int ControlMap::ClimberJamTolerance = 10;

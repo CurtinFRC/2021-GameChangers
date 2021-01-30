@@ -4,8 +4,7 @@
 using namespace wml;
 using namespace wml::controllers;
 
-Climber::Climber(TalonSrx &ClimberMotor) : _climberMotor(ClimberMotor) {
-}
+Climber::Climber(TalonSrx &ClimberMotor) : _climberMotor(ClimberMotor) {}
 
 int Climber::climberEncoderValue() {
 	return(_climberMotor.GetEncoderTicks());
