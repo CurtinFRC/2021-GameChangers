@@ -1,11 +1,8 @@
 #pragma once
 
-#include "Magazine.h" 
-#include "strategy/Strategy.h"
+#include "Magazine.h"
 
 using Controllers = wml::controllers::SmartControllerGroup;
-
-class Magazine;
 
 class MagazineManualStrategy : public wml::Strategy {
  public:
@@ -15,6 +12,6 @@ class MagazineManualStrategy : public wml::Strategy {
  private:
   Magazine &_magazine;
 	Controllers &_contGroup;
-  int _magPreviouseTicks;
-  int _magTicks;
+  // int _magPreviouseTicks;
+  // int _magTicks;
 };

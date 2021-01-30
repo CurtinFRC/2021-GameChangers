@@ -62,9 +62,6 @@
 
 // Local Files
 #include "ControlMap.h"
-#include "strategies/DriveSystem.h"
-#include "strategies/MagazineStrategies.h"
-/** To be added */
 
 struct RobotMap {
 
@@ -86,10 +83,11 @@ struct RobotMap {
 		wml::Gearbox LGearbox{&leftMotors, &FL};
 		wml::Gearbox RGearbox{&rightMotors, &FR};
 
-		wml::sensors::NavX navx{};
-		wml::sensors::NavXGyro gyro{navx.Angular(wml::sensors::AngularAxis::YAW)};
+		// wml::sensors::NavX navx{};
+		// wml::sensors::NavXGyro gyro{navx.Angular(wml::sensors::AngularAxis::YAW)};
 
-		wml::DrivetrainConfig drivetrainConfig{LGearbox, RGearbox, &gyro, ControlMap::TrackWidth, ControlMap::TrackDepth, ControlMap::WheelRadius, ControlMap::Mass};
+		wml::DrivetrainConfig drivetrainConfig{ LGearbox, RGearbox };
+		// wml::DrivetrainConfig drivetrainConfig{LGearbox, RGearbox, &gyro, ControlMap::TrackWidth, ControlMap::TrackDepth, ControlMap::WheelRadius, ControlMap::Mass};
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
@@ -97,9 +95,11 @@ struct RobotMap {
 	//Washing Machine Magazine
 	struct MagazineSystem {
 		wml::TalonSrx magMotor1{ ControlMap::MagMotorPort1, 2048 };
-		wml::TalonSrx magMotor2{ ControlMap::MagMotorPort2, 2048 };
-    	wml::actuators::MotorVoltageController magMotors = wml::actuators::MotorVoltageController::Group(magMotor1, magMotor2);
+		wml::VictorSpx magMotor2{ ControlMap::MagMotorPort2 };
 
-		wml::Gearbox magGearbox{ &magMotors, &magMotor1};
+		// wml::sensors::DigitalEncoder magEncoder{ 0, 1, 2048 };
+    wml::actuators::MotorVoltageController magMotors = wml::actuators::MotorVoltageController::Group(magMotor1, magMotor2);
+
+		wml::Gearbox magGearbox{ &magMotors, &magMotor1 };
 	}; MagazineSystem magazineSystem;
 };

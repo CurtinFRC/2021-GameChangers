@@ -5,10 +5,9 @@ using namespace wml::controllers;
 
 Magazine::Magazine(Gearbox &magGearbox) : _magGearbox(magGearbox) {}
 
-int Magazine::magazineEncoderValue() {
-	// return(_magMotor1.GetEncoderTicks());
-  return 0;
-}
+// int Magazine::magazineEncoderValue() {
+// 	return(_magGearbox.encoder->GetEncoderTicks());
+// }
 
 void Magazine::setMagazine(const MagazineState st, double magPower) {
   _magazineState = st;
@@ -19,7 +18,6 @@ void Magazine::updateMagazine(double dt) {
   double voltage = 0;
 
   switch(_magazineState) {
-
 		case MagazineState::OFF: // Stowed Control
 			voltage = 0;
 			break;

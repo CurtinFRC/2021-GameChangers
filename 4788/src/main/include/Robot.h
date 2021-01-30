@@ -1,7 +1,10 @@
 #pragma once
-#include "RobotMap.h"
-#include "Magazine.h"
+
+/**
+ * Local files (strategies/)
+ */ 
 #include "strategies/MagazineStrategies.h"
+#include "strategies/DriveSystem.h"
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
  public:
@@ -24,5 +27,5 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	// Istances
 	RobotMap robotMap;
 	Magazine *magazine;
-	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
+	// wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 };

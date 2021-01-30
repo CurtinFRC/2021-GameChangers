@@ -1,11 +1,9 @@
 #pragma once
-#include <iostream> 
 #include "RobotMap.h"
-#include "strategy/StrategySystem.h"
 
-enum class MagazineState {
+enum MagazineState {
   ON,
-  OFF,
+  OFF
 };
 
 class Magazine : public wml::StrategySystem {
@@ -15,17 +13,17 @@ class Magazine : public wml::StrategySystem {
   void updateMagazine(double dt);
   void update(double dt);
 
-  int magazineEncoderValue();
+  // int magazineEncoderValue();
 
  private:
   wml::Gearbox &_magGearbox;
-  // wml::Gearbox &_magRotationalAxis; 
+  //wml::Gearbox &_magRotationalAxis; 
   
   MagazineState _magazineState{ MagazineState::OFF };
 
   double _magPower; // The washing machine piece
-  bool _toggleEnabled = false;
-  bool _toggleMagOn = false;
+  // bool _toggleEnabled = false;
+  // bool _toggleMagOn = false;
 
-  // frc::Timer _timer;
+  frc::Timer _timer;
 };

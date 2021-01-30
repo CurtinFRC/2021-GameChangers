@@ -11,11 +11,32 @@ double dt;
 void Robot::RobotInit() {
   ControlMap::InitsmartControllerGroup(robotMap.contGroup);
 
-  // magazine = new Magazine(robotMap->contGroup, robotMap->magazine.magMotor1, robotMap->magazine.magMotor2,robotMap->magazine.magMotor3);
+  // Magazine
   magazine = new Magazine(robotMap.magazineSystem.magGearbox);
   magazine->SetDefault(std::make_shared<MagazineManualStrategy>("Magazine Manual", *magazine, robotMap.contGroup));
 
+
+  // Drivebase Stuff
+
+	//Create wml drivetrain
+	// drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
+
+	//Zero Encoders
+	// robotMap.driveSystem.drivetrain.GetConfig().leftDrive.encoder->ZeroEncoder();
+	// robotMap.driveSystem.drivetrain.GetConfig().rightDrive.encoder->ZeroEncoder();
+
+	//Strategy controllers (Set default strategy for drivetrain to be Manual)
+	// drivetrain->SetDefault(std::make_shared<DrivetrainManual>("Drivetrain Manual", *drivetrain, robotMap.contGroup));
+	// drivetrain->StartLoop(100);
+
+	//Inverts one side of our drivetrain
+	// drivetrain->GetConfig().rightDrive.transmission->SetInverted(true);
+	// drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
+
+	//Register our systems to be called via strategy
+	// StrategyController::Register(drivetrain);
 	StrategyController::Register(magazine);
+	// NTProvider::Register(drivetrain);
 }
 
 void Robot::RobotPeriodic() {
@@ -24,8 +45,7 @@ void Robot::RobotPeriodic() {
 
   StrategyController::Update(dt);
   magazine->update(dt);
-	// magazine->SetDefault(std::make_shared<MagazineManualStrategy>("Magazine Manual", *magazine, robotMap.contGroup));
-  NTProvider::Update();
+  // NTProvider::Update();
 
   lastTimeStamp = currentTimeStamp;
 }

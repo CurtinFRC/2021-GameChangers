@@ -23,17 +23,17 @@ const double ControlMap::TriggerDeadzone = 0.15;
 const int ControlMap::PCModule = 1;
 
 // Left Drive
-const int ControlMap::FLport = 12;
-const int ControlMap::BLport = 13;
+const int ControlMap::FLport = 2;
+const int ControlMap::BLport = 99; // not using 
 
 // Magazine
-const int ControlMap::MagMotorPort1 = 99;
-const int ControlMap::MagMotorPort2 = 99;
+const int ControlMap::MagMotorPort1 = 1;
+const int ControlMap::MagMotorPort2 = 8;
 const double ControlMap::MagEncoderSafeZone = 5;
 
 // Right Drive
-const int ControlMap::FRport = 10;
-const int ControlMap::BRport = 11;
+const int ControlMap::FRport = 6;
+const int ControlMap::BRport = 99; // not using
 
 // Drivetrain speed
 const double ControlMap::MaxDrivetrainSpeed = 0.8;

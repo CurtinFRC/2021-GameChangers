@@ -20,8 +20,8 @@ struct ControlMap {
 	static const int Xbox1Port, Xbox2Port;
 
 	// USB port numbers
-	static const int Driver = 1;
-	static const int CoDriver = 2;
+	static const int Driver = 0;
+	static const int CoDriver = 1;
 
 	// Deadzones
 	static const double XboxDeadzone;
