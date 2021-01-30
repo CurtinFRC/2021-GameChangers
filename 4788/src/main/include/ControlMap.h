@@ -35,9 +35,15 @@ struct ControlMap {
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
+	static const int IntakePort;
+	static const double IntakeSpeed;
+
 
 	// ------------------ Controls ------------------
 	
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
+
+	//intake 
+	static const wml::controllers::tButton Intake, Outake;
 };

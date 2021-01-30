@@ -33,6 +33,10 @@ void Robot::RobotInit() {
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);
+
+	intake = new Intake(robotMap.intakeSystem.intakeGearbox, robotMap.intakeSystem.intakeDown);
+	intake->SetDefault(std::make_shared<IntakeManualStrategy>("Intake Manual", *intake, robotMap.contGroup));
+	StrategyController::Register(intake);
 }
 
 void Robot::RobotPeriodic() {
@@ -40,6 +44,7 @@ void Robot::RobotPeriodic() {
 	dt = currentTimeStamp - lastTimeStamp;
 
 	StrategyController::Update(dt);
+	intake->update(dt);
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -56,6 +61,7 @@ void Robot::AutonomousPeriodic() {}
 // Manual Robot Logic
 void Robot::TeleopInit() {
 	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
+	Schedule(intake->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 
