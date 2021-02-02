@@ -19,24 +19,24 @@ void Robot::RobotInit() {
   // Drivebase Stuff
 
 	//Create wml drivetrain
-	// drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
+	drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
 
 	//Zero Encoders
-	// robotMap.driveSystem.drivetrain.GetConfig().leftDrive.encoder->ZeroEncoder();
-	// robotMap.driveSystem.drivetrain.GetConfig().rightDrive.encoder->ZeroEncoder();
+	robotMap.driveSystem.drivetrain.GetConfig().leftDrive.encoder->ZeroEncoder();
+	robotMap.driveSystem.drivetrain.GetConfig().rightDrive.encoder->ZeroEncoder();
 
 	//Strategy controllers (Set default strategy for drivetrain to be Manual)
-	// drivetrain->SetDefault(std::make_shared<DrivetrainManual>("Drivetrain Manual", *drivetrain, robotMap.contGroup));
-	// drivetrain->StartLoop(100);
+	drivetrain->SetDefault(std::make_shared<DrivetrainManual>("Drivetrain Manual", *drivetrain, robotMap.contGroup));
+	drivetrain->StartLoop(100);
 
 	//Inverts one side of our drivetrain
-	// drivetrain->GetConfig().rightDrive.transmission->SetInverted(true);
-	// drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
+	drivetrain->GetConfig().rightDrive.transmission->SetInverted(true);
+	drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
 
 	//Register our systems to be called via strategy
-	// StrategyController::Register(drivetrain);
+	StrategyController::Register(drivetrain);
 	StrategyController::Register(magazine);
-	// NTProvider::Register(drivetrain);
+	NTProvider::Register(drivetrain);
 }
 
 void Robot::RobotPeriodic() {

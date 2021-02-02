@@ -9,9 +9,10 @@ Magazine::Magazine(Gearbox &magGearbox) : _magGearbox(magGearbox) {}
 // 	return(_magGearbox.encoder->GetEncoderTicks());
 // }
 
-void Magazine::setMagazine(const MagazineState st, double magPower) {
+void Magazine::setMagazine(const MagazineState st, double magMotorPower1, double magMotorPower2) {
   _magazineState = st;
-  _magPower = magPower;
+  _magMotorPower1 = magMotorPower1;
+  _magMotorPower2 = magMotorPower2;
 }
 
 void Magazine::updateMagazine(double dt) {
@@ -23,7 +24,8 @@ void Magazine::updateMagazine(double dt) {
 			break;
 
 		case MagazineState::ON: // Deployed Control
-			voltage = 12 * _magPower; // private class _power modified by strategies/MagazineStrategies
+			voltage = 12 * _magMotorPower1; // private class _power modified by strategies/MagazineStrategies
+			voltage = 12 * _magMotorPower2;
 			break;
   }
 
