@@ -35,8 +35,19 @@ struct ControlMap {
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
-	static const int IntakePort;
+	//intake
+	static const int IntakePort, intakeSolenoidPort1, intakeSolenoidPort2;
 	static const double IntakeSpeed;
+
+
+	//mag
+	static const int MagPort, FirePort;
+
+	//shooter
+	static const int ShooterPort;
+
+	//climber 
+	static const int WinchPort, ClimberSolenoidPort1, ClimberSolenoidPort2;
 
 
 	// ------------------ Controls ------------------
@@ -45,5 +56,11 @@ struct ControlMap {
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
 
 	//intake 
-	static const wml::controllers::tButton Intake, Outake;
+	static const wml::controllers::tButton Intake, Outake, Down;
+
+	//mag
+
+	//shooter
+
+	//climber 
 };

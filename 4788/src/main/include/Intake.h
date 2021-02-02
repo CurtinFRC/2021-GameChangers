@@ -7,9 +7,12 @@
 /**
  * Declared states the intake can be in
  */
-enum class IntakeState {
-	STOWED, // Up, motor off
-	DEPLOYED, // Down, motor on (variable speed)
+enum class IntakeStates {
+	ASTOWED, // Up, motor off
+	ADEPLOYED, // Down, motor on (variable speed)
+	MSPINFORWARD,
+	MSPINBACKWARDS,
+	MSTOP,
 };
 
 /**
@@ -18,33 +21,21 @@ enum class IntakeState {
 class Intake : public wml::StrategySystem {
  public:
 
-	/**
-	 * Constructor to pass in gearbox andsolenoid to Intake class
-	 */
-	Intake(wml::Gearbox &intakeGearbox, wml::actuators::DoubleSolenoid &intakeSolenoid);
+	Intake(wml::VictorSpx &intakeMotor, wml::actuators::DoubleSolenoid &intakeSolenoid);
 
-	/**
-	 * Set intake state and power, (this then modifies the intakeUpdate() state)
-	 */
-	void setIntake(const IntakeState st, double power = 0);
+	void setIntake(const IntakeStates st, double power = 0);
 
-	/**
-	 * Looping update for intake
-	 */	
 	void updateIntake(double dt);
 
-	/**
-	 * Update (master looping update for Intake)
-	 */
 	void update(double dt);
 
  private:
 	// Class controllable gearboxes
-	wml::Gearbox &_intakeGearbox;
+	wml::VictorSpx &_intakeMotor;
 	wml::actuators::DoubleSolenoid &_intakeSolenoid;
 
 	// States
-	IntakeState _intakeState{ IntakeState::STOWED }; // Default state is stowed. (Robot switches on and goes to this state)
+	IntakeStates _intakeState{ IntakeStates::MSTOP };
 
 	// intake motor power
 	double _power;

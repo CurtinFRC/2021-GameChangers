@@ -42,11 +42,37 @@ const double ControlMap::Mass = 50; // KG's
 //intake 
 const int ControlMap::IntakePort = 99;
 const double ControlMap::IntakeSpeed = 0.5; //speed of the intake, both in and out
+const int ControlMap::intakeSolenoidPort1 = 99;
+const int ControlMap::intakeSolenoidPort2 = 99;
+
+
+//mag 
+const int ControlMap::MagPort = 99;
+const int ControlMap::FirePort = 99; //thats striaght fire bro 
+
+//shooter 
+const int ControlMap::ShooterPort = 99;
+
+//climber
+const int ControlMap::WinchPort = 99;
+const int ControlMap::ClimberSolenoidPort1 = 99;
+const int ControlMap::ClimberSolenoidPort2 = 99;
+
+
 
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 
 //intake
-const tButton ControlMap::Intake{ CoDriver, XboxController::kX };
-const tButton ControlMap::Outake{ CoDriver, XboxController::kB };
+const tButton ControlMap::Intake{ CoDriver, XboxController::kBumperLeft };
+const tButton ControlMap::Outake{ CoDriver, XboxController::kBumperRight };
+const tButton ControlMap::Down{ CoDriver, XboxController::kX };
+
+
+//mag 
+
+//shooter 
+
+//climber 
+
