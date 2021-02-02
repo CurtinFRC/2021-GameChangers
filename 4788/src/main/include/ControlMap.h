@@ -36,11 +36,15 @@ struct ControlMap {
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
 	// Turret
-	static const int TurretRotPort, TurretVertPort, TurretFlyPort;
+	static const int TurretRotPort, TurretVertPort, TurretFlyPort, RotLimitPort, VertLimitPort;
+	static const bool RotLimitInvert, VertLimitInvert;
 
 
 	// ------------------ Controls ------------------
 	
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
+
+	// Turret
+	static const wml::controllers::tAxis VertStick, RotStick, ShootTrig;
 };

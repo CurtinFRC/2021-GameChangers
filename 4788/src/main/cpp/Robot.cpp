@@ -32,7 +32,10 @@ void Robot::RobotInit() {
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);
 
-	_turret = new Turret(robotMap.turret.turretRot, robotMap.turret.turretVert, robotMap.turret.turretWheel);
+	//turret
+	turret = new Turret(robotMap.turretSystem.turretRot, robotMap.turretSystem.turretVert, robotMap.turretSystem.turretWheel, robotMap.turretSystem.RotLimit, robotMap.turretSystem.VertLimit);
+	turret->SetDefault(std::make_shared<TurretManualStrategy>("Turret Manual", *turret, robotMap.contGroup));
+		StrategyController::Register(turret);
 }
 
 void Robot::RobotPeriodic() {
@@ -40,6 +43,11 @@ void Robot::RobotPeriodic() {
 	dt = currentTimeStamp - lastTimeStamp;
 
 	StrategyController::Update(dt);
+
+	// Turret
+	turret->
+	TurretManualStrategy::OnUpdate(dt);
+	
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -55,6 +63,7 @@ void Robot::AutonomousPeriodic() {}
 
 // Manual Robot Logic
 void Robot::TeleopInit() {
+	//turret reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
 }
 void Robot::TeleopPeriodic() {}

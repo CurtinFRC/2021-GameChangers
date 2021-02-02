@@ -93,7 +93,11 @@ struct RobotMap {
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
 
-	struct Turret {
+	struct TurretSystem {
+		// Limit Switches
+    wml::sensors::LimitSwitch RotLimit{ ControlMap::RotLimitPort, ControlMap::RotLimitInvert };
+    wml::sensors::LimitSwitch VertLimit{ ControlMap::VertLimitPort, ControlMap::VertLimitInvert };
+
 		// Rotational Axis
 		wml::TalonSrx rot{ControlMap::TurretRotPort, 2048};
 		wml::actuators::MotorVoltageController rotMotors = wml::actuators::MotorVoltageController::Group(rot);
@@ -109,5 +113,5 @@ struct RobotMap {
 		wml::actuators::MotorVoltageController flyWheelMotors = wml::actuators::MotorVoltageController::Group(flyWheel);
 		wml::Gearbox turretWheel{ &flyWheelMotors, &flyWheel, 0 };
 
-	}; Turret turret;
+	}; TurretSystem turretSystem;
 };
