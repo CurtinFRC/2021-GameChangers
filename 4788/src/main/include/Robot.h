@@ -2,6 +2,7 @@
 #include "RobotMap.h"
 
 #include "Turret.h"
+#include "strategies\TurretStrategies.h"
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
  public:

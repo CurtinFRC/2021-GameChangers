@@ -43,10 +43,6 @@ void Robot::RobotPeriodic() {
 	dt = currentTimeStamp - lastTimeStamp;
 
 	StrategyController::Update(dt);
-
-	// Turret
-	turret->
-	TurretManualStrategy::OnUpdate(dt);
 	
 	NTProvider::Update();
 
@@ -63,8 +59,8 @@ void Robot::AutonomousPeriodic() {}
 
 // Manual Robot Logic
 void Robot::TeleopInit() {
-	//turret reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
+	Schedule(turret->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 

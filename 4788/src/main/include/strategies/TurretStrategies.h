@@ -1,8 +1,9 @@
 #include "Turret.h"
+#include "strategy\StrategySystem.h"
 
 using Controllers = wml::controllers::SmartControllerGroup;
 
-class TurretManualStrategy : public wml::Strategy {
+class TurretManualStrategy : public wml::Strategy  {
  public:
 	TurretManualStrategy(std::string name, Turret &turret, Controllers &contGroup);
 	void OnStart() override;

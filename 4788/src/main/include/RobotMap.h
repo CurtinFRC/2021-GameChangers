@@ -95,8 +95,8 @@ struct RobotMap {
 
 	struct TurretSystem {
 		// Limit Switches
-    wml::sensors::LimitSwitch RotLimit{ ControlMap::RotLimitPort, ControlMap::RotLimitInvert };
-    wml::sensors::LimitSwitch VertLimit{ ControlMap::VertLimitPort, ControlMap::VertLimitInvert };
+    	wml::sensors::LimitSwitch RotLimit{ ControlMap::RotLimitPort, ControlMap::RotLimitInvert };
+    	wml::sensors::LimitSwitch VertLimit{ ControlMap::VertLimitPort, ControlMap::VertLimitInvert };
 
 		// Rotational Axis
 		wml::TalonSrx rot{ControlMap::TurretRotPort, 2048};
