@@ -3,6 +3,8 @@
 #include <iostream>
 #include "RobotMap.h"
 #include "strategy/StrategySystem.h"
+#include <array>
+#define ARRAYSIZE 4
 
 enum class TurretState {
 	ZERO,
@@ -20,10 +22,10 @@ enum class SubState {
 
 class Turret : public wml::StrategySystem {
 	public:
+	// Turret
 		Turret(wml::Gearbox &RotationalAxis, wml::Gearbox &VerticalAxis, wml::Gearbox &FlyWheel, 
 		wml::sensors::BinarySensor &RotLimit, wml::sensors::BinarySensor &VertLimit);
-
-		void init();
+	// Functions - Public
 		void onStatePeriodic(double dt);
 		void verticalPeriodic(double dt);
 		void rotationPeriodic(double dt);
@@ -35,48 +37,46 @@ class Turret : public wml::StrategySystem {
 		bool isReady();
 
 	private:
-		wml::Gearbox &_rotationalAxis;
-		wml::Gearbox &_verticalAxis;
-		wml::Gearbox &_flyWheel;
-
-		wml::sensors::BinarySensor &_rotLimit;
-		wml::sensors::BinarySensor &_vertLimit;
-
-		double _previousErrorS = 0;
-		double _previousErrorR = 0;
-		double _previousErrorV = 0;
-		double _sumS = 0;
-		double _sumR = 0;
-		double _sumV = 0;
-
-		double _flyWheelGoal = 0;
-		double _rotationGoal = 0;
-		double _verticalGoal = 0;
-		
-		SubState _rotationState{ SubState::ZEROING };
-		SubState _verticalState{ SubState::ZEROING };
-		SubState _flyWheelState{ SubState::ZEROING };	
-
+	// Misc
 		double _gearRatio = 196;
-
-		TurretState _state{ TurretState::ZERO };
-
-		int _arraySize = 4;
-
-		//double _movingAveV[4]{0,0,0,0};
-		//double _movingAveR[4]{0,0,0,0};
-		//double _movingAveS[4]{0,0,0,0};
+	// Vertical
+		double _sumV = 0;
 		double _aveV = 0;
-		double _aveR = 0;
-		double _aveS = 0;
-
 		double _inputV = 0;
+		std::array<double, ARRAYSIZE> _movingAveV{};
+		double _toleranceV = 0;
+		double _verticalGoal = 0;
+		double _previousErrorV = 0;
+		wml::Gearbox &_verticalAxis;
+		wml::sensors::BinarySensor &_vertLimit;
+	// Rotation
+		double _sumR = 0;
+		double _aveR = 0;
 		double _inputR = 0;
-		double _inputS = 0;
-
+		std::array<double, ARRAYSIZE> _movingAveR{};
+		double _toleranceR = 0;
+		double _rotationGoal = 0;
+		double _previousErrorR = 0;
+		wml::Gearbox &_rotationalAxis;
+		wml::sensors::BinarySensor &_rotLimit;
+	// Flywheel
+		double _sumF = 0;
+		double _aveF = 0;
+		double _inputF = 0;
+		std::array<double, ARRAYSIZE> _movingAveF{};
+		double _toleranceF = 0;
+		double _flyWheelGoal = 0;
+		double _previousErrorF = 0;
+		wml::Gearbox &_flyWheel;
+	// States
+		TurretState _state{ TurretState::ZERO };
+		SubState _verticalState{ SubState::ZEROING };
+		SubState _rotationState{ SubState::ZEROING };
+		SubState _flyWheelState{ SubState::ZEROING };	
+	// Functions - Private
 		double pid(double input, double goal, double min, double max, double kP, double kI, double kD, double& sum, double& previousError, double dt);
 		double mathClamp(const double min, const double max, const double input);
 		bool allIdle();
 		bool isPidReady();
-		void movingAve(double &aveArray[], double &ave, double current);
+		void movingAve(std::array<double, ARRAYSIZE> &aveArray, double &ave, double current);
 };
