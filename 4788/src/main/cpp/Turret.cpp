@@ -6,32 +6,10 @@ using namespace frc;
 using namespace wml;
 
 Turret::Turret(Gearbox &Rotation, Gearbox &VerticalAxis,  Gearbox &FlyWheel, sensors::BinarySensor &RotLimit, sensors::BinarySensor &VertLimit) :
-_gearRatio{196}, 
-_sumV{0}, 
-_aveV{0}, 
-_inputV{0}, 
-_movingAveV{}, 
-_toleranceV{2}, 
-_verticalGoal{0}, 
-_previousErrorV{0}, 
 _verticalAxis{VerticalAxis}, 
 _vertLimit{VertLimit}, 
-_sumR{0}, 
-_aveR{0}, 
-_inputR{0}, 
-_movingAveR{}, 
-_toleranceR{0.1}, 
-_rotationGoal{0}, 
-_previousErrorR{0}, 
 _rotationalAxis{Rotation}, 
 _rotLimit{RotLimit}, 
-_sumF{0}, 
-_aveF{0}, 
-_inputF{0}, 
-_movingAveF{}, 
-_toleranceF{0.1}, 
-_flyWheelGoal{0}, 
-_previousErrorF{0}, 
 _flyWheel{FlyWheel}, 
 _state{TurretState::ZERO}, 
 _verticalState{ SubState::ZEROING }, 
@@ -45,7 +23,7 @@ void Turret::onStatePeriodic(double dt) {
 			_verticalState = SubState::IDLE;
 			_flyWheelState = SubState::IDLE;
 			break;
-		case TurretState::SHOOT:
+		case TurretState::ARMING:
 			if(isReady()) {
 				_state = TurretState::READY;
 			}
@@ -134,24 +112,24 @@ void Turret::flywheelPeriodic(double dt) {
 void Turret::flywheel(double goal) {
 	goal = mathClamp(-1,1,goal);
 	_flyWheelGoal = goal;
-	_state = TurretState::SHOOT;
+	_state = TurretState::ARMING;
 }
 
 void Turret::rotate(double goal) {
 	goal = mathClamp(0,360,goal);
 	goal /= 360;
 	_rotationGoal = goal;
-	_state = TurretState::SHOOT;
+	_state = TurretState::ARMING;
 }
 
 void Turret::vertical(double goal) {
 	goal = mathClamp(0,1,goal);
 	_verticalGoal = goal;
-	_state = TurretState::SHOOT;
+	_state = TurretState::ARMING;
 }
 
 void Turret::setShooting() {
-	_state = TurretState::SHOOT;
+	_state = TurretState::ARMING;
 }
 
 bool Turret::isReady() {

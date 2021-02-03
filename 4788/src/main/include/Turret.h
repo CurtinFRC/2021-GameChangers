@@ -9,7 +9,7 @@
 enum class TurretState {
 	ZERO,
 	ZEROING,
-	SHOOT,
+	ARMING,
 	READY,
 	IDLE
 };
@@ -38,35 +38,35 @@ class Turret : public wml::StrategySystem {
 
 	private:
 	// Misc
-		double _gearRatio = 196;
+		double _gearRatio{ 196 };
 	// Vertical
-		double _sumV = 0;
-		double _aveV = 0;
-		double _inputV = 0;
+		double _sumV{ 0 };
+		double _aveV{ 0 };
+		double _inputV{ 0 };
 		std::array<double, ARRAYSIZE> _movingAveV{};
-		double _toleranceV = 0;
-		double _verticalGoal = 0;
-		double _previousErrorV = 0;
+		double _toleranceV{ 2 };
+		double _verticalGoal{ 0 };
+		double _previousErrorV{ 0 };
 		wml::Gearbox &_verticalAxis;
 		wml::sensors::BinarySensor &_vertLimit;
 	// Rotation
-		double _sumR = 0;
-		double _aveR = 0;
-		double _inputR = 0;
+		double _sumR{ 0 };
+		double _aveR{ 0 };
+		double _inputR{ 0 };
 		std::array<double, ARRAYSIZE> _movingAveR{};
-		double _toleranceR = 0;
-		double _rotationGoal = 0;
-		double _previousErrorR = 0;
+		double _toleranceR{ 0.1 };
+		double _rotationGoal{ 0 };
+		double _previousErrorR{ 0 };
 		wml::Gearbox &_rotationalAxis;
 		wml::sensors::BinarySensor &_rotLimit;
 	// Flywheel
-		double _sumF = 0;
-		double _aveF = 0;
-		double _inputF = 0;
+		double _sumF{ 0 };
+		double _aveF{ 0 };
+		double _inputF{ 0 };
 		std::array<double, ARRAYSIZE> _movingAveF{};
-		double _toleranceF = 0;
-		double _flyWheelGoal = 0;
-		double _previousErrorF = 0;
+		double _toleranceF{ 0.1 };
+		double _flyWheelGoal{0};
+		double _previousErrorF{0};
 		wml::Gearbox &_flyWheel;
 	// States
 		TurretState _state{ TurretState::ZERO };
