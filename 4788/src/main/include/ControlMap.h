@@ -42,12 +42,14 @@ struct ControlMap {
 
 	//mag
 	static const int MagPort, FirePort;
+	static const double MagBackSpeed;
 
 	//shooter
 	static const int ShooterPort;
 
 	//climber 
-	static const int WinchPort, ClimberSolenoidPort1, ClimberSolenoidPort2;
+	static const int WinchPort, ClimberSolenoidPort1, ClimberSolenoidPort2, ClimberPort;
+	static const double WinchDownPower, ClimberUpSpeed, climberAdjustSpeed;
 
 
 	// ------------------ Controls ------------------
@@ -59,8 +61,15 @@ struct ControlMap {
 	static const wml::controllers::tButton Intake, Outake, Down;
 
 	//mag
+	static const wml::controllers::tPOV MagBackwards;
+	static const wml::controllers::tAxis MagForwards;
 
 	//shooter
 
 	//climber 
+	static const wml::controllers::tButton ClimberTop, ClimberUp, ClimberDown;
+	static const wml::controllers::tPOV ClimberBottom, WinchDown;
+	static const wml::controllers::tAxis WinchUp;
+
+	
 };

@@ -11,7 +11,7 @@ enum class ShooterState {
 
 class Shooter : public wml::StrategySystem {
  public:
-  Shooter(wml::TalonSrx &shooterMotor, wml::VictorSpx &fireMotor);
+  Shooter(wml::TalonSrx &shooterMotor, wml::VictorSpx &fireMotor, );
 
   void updateShooter(double dt);
 

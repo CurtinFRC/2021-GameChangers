@@ -39,10 +39,10 @@ void Robot::RobotInit() {
 	NTProvider::Register(drivetrain);
 
 	intake = new Intake(robotMap.intakeSystem.intakeMotor, robotMap.intakeSystem.intakeDown);
-	intake->SetDefault(std::make_shared<IntakeStill>("Intake Manual", *intake, robotMap.contGroup));
+	intake->SetDefault(std::make_shared<IntakeActuation>("Intake Manual", *intake, robotMap.contGroup));
 	StrategyController::Register(intake);
 
-	mag = new Mag(robotMap.magSystem.magMotor, robotMap.magSystem.fireMotor);
+	mag = new Mag(robotMap.magSystem.magMotor, robotMap.contGroup);
 	mag->SetDefault(std::make_shared<MagStrategy>("Mag teleop strategy", *mag, robotMap.contGroup));
 	StrategyController::Register(mag);
 
@@ -50,7 +50,7 @@ void Robot::RobotInit() {
 	shooter->SetDefault(std::make_shared<ShooterStrategy>("shooter manual strategy", *shooter, robotMap.contGroup));
 	StrategyController::Register(shooter);
 
-	climber = new Climber(robotMap.climberSystem.winch, robotMap.climberSystem.climberSolenoid);
+	climber = new Climber(robotMap.climberSystem.winch, robotMap.climberSystem.climberMotor, robotMap.climberSystem.climberSolenoid);
 	climber->SetDefault(std::make_shared<ClimberStrategy>("climber manual strategy", *climber, robotMap.contGroup));
 	StrategyController::Register(climber); 
 
@@ -86,9 +86,7 @@ void Robot::TeleopInit() {
 	Schedule(shooter->GetDefaultStrategy(), true);
 	Schedule(climber->GetDefaultStrategy(), true);
 }
-void Robot::TeleopPeriodic() {
-	std::cout << "using camera code" << std::endl;
-}
+void Robot::TeleopPeriodic() {}
 
 // Test Logic
 void Robot::TestInit() {}

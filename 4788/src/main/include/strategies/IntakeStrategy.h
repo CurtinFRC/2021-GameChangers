@@ -3,25 +3,14 @@
 
 using Controllers = wml::controllers::SmartControllerGroup;
 
-// class IntakeActuation : public wml::Strategy {
-//  public:
+class IntakeActuation : public wml::Strategy {
+ public:
 
-// 	IntakeActuation(std::string name, Intake &intake, Controllers &contGroup);
+	IntakeActuation(std::string name, Intake &intake, Controllers &contGroup);
 
 	
-// 	void OnUpdate(double dt) override;
-
-//  private:
-// 	Intake &_intake;
-// 	Controllers &_contGroup;
-// };
-
-
-class IntakeStill : public wml::Strategy {
- public:
-	IntakeStill(std::string name, Intake &intake, Controllers &contGroup);
-
 	void OnUpdate(double dt) override;
+
  private:
 	Intake &_intake;
 	Controllers &_contGroup;

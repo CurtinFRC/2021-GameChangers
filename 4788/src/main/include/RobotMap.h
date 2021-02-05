@@ -106,7 +106,6 @@ struct RobotMap {
 
 	struct MagSystem {
 		wml::TalonSrx magMotor{ControlMap::MagPort, 2048};
-		wml::VictorSpx fireMotor{ ControlMap::FirePort};
 
 	}; MagSystem magSystem;
 
@@ -118,6 +117,7 @@ struct RobotMap {
 
 	struct ClimberSystem {
 		wml::VictorSpx winch{ ControlMap::WinchPort};
+		wml::TalonSrx climberMotor{ControlMap::ClimberPort};
 		wml::actuators::DoubleSolenoid climberSolenoid{ControlMap::PCModule, ControlMap::ClimberSolenoidPort1, ControlMap::ClimberSolenoidPort2, 0.1};
 
 	}; ClimberSystem climberSystem;
