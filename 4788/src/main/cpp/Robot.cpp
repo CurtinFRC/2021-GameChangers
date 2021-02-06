@@ -46,7 +46,7 @@ void Robot::RobotInit() {
 	mag->SetDefault(std::make_shared<MagStrategy>("Mag teleop strategy", *mag, robotMap.contGroup));
 	StrategyController::Register(mag);
 
-	shooter = new Shooter(robotMap.shooterSystem.shooterMotor, robotMap.shooterSystem.fireMotor);
+	shooter = new Shooter(robotMap.shooterSystem.fireMotor, robotMap.shooterSystem.hoodMotor, robotMap.shooterSystem.shooterMotor, robotMap.shooterSystem.turretMotor);
 	shooter->SetDefault(std::make_shared<ShooterStrategy>("shooter manual strategy", *shooter, robotMap.contGroup));
 	StrategyController::Register(shooter);
 

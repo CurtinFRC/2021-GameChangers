@@ -1,6 +1,6 @@
 #include "Shooter.h" 
 
-Shooter::Shooter(wml::TalonSrx &shooterMotor, wml::VictorSpx &fireMotor) : _shooterMotor(shooterMotor), _fireMotor(fireMotor) {}
+Shooter::Shooter(wml::VictorSpx &fireMotor, wml::TalonSrx &hoodMotor, wml::TalonSrx &shooterMotor, wml::TalonSrx &turretMotor) : _fireMotor(fireMotor), _hoodMotor(hoodMotor), _shooterMotor(shooterMotor), _turretMotor(turretMotor) {}
 
 void Shooter::updateShooter(double dt) {
 

@@ -112,6 +112,8 @@ struct RobotMap {
 	struct ShooterSystem {
 		wml::TalonSrx shooterMotor { ControlMap::ShooterPort, 2048};
 		wml::VictorSpx fireMotor{ ControlMap::FirePort};
+		wml::TalonSrx turretMotor{ 99, 2048};
+		wml::TalonSrx hoodMotor{ 99, 2048};
 
 	}; ShooterSystem shooterSystem;
 
