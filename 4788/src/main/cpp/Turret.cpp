@@ -11,7 +11,6 @@ _vertLimit{VertLimit},
 _rotationalAxis{Rotation}, 
 _rotLimit{RotLimit}, 
 _flyWheel{FlyWheel}, 
-_state{TurretState::ZERO}, 
 _verticalState{ SubState::ZEROING }, 
 _rotationState{ SubState::ZEROING }, 
 _flyWheelState{ SubState::ZEROING } {}

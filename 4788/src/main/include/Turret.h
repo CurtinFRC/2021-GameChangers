@@ -20,7 +20,7 @@ enum class SubState {
 	IDLE
 };
 
-class Turret : public wml::StrategySystem {
+class Turret : public wml::StrategySystem : wml::StateDevice<TurretState> {
 	public:
 	// Turret
 		Turret(wml::Gearbox &RotationalAxis, wml::Gearbox &VerticalAxis, wml::Gearbox &FlyWheel, 
@@ -69,7 +69,6 @@ class Turret : public wml::StrategySystem {
 		double _previousErrorF{0};
 		wml::Gearbox &_flyWheel;
 	// States
-		TurretState _state{ TurretState::ZERO };
 		SubState _verticalState{ SubState::ZEROING };
 		SubState _rotationState{ SubState::ZEROING };
 		SubState _flyWheelState{ SubState::ZEROING };	
