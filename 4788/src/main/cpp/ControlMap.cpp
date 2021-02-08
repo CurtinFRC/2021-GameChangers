@@ -42,10 +42,11 @@ const double ControlMap::Mass = 50; // KG's
 // Climber System
 const int ControlMap::ClimberPort = 99;
 const int ControlMap::ClimberEncoderTicks = 2048;
-const double ControlMap::ClimberSpeed = 0.3;
+const double ControlMap::ClimberSpeed = 0.5;
+const double ControlMap::ClimberAdjustSpeed = 0.2;
 const int ControlMap::ClimberJamTolerance = 10;
 
-// ------------------ Values ------------------
+// ------------------ Controls ------------------
 // Drive train
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
@@ -53,3 +54,6 @@ const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 // Climber
 const tButton ControlMap::ClimberUp{ Driver, XboxController::kY };
 const tButton ControlMap::ClimberDown{ Driver, XboxController::kA };
+const tButton ControlMap::ClimberActivate{ CoDriver, XboxController::kB };
+const tButton ControlMap::ClimberDeactivate{ CoDriver, XboxController::kBottom };
+const tAxis ControlMap::ClimberAdjust{ CoDriver, XboxController::kLeftYAxis };

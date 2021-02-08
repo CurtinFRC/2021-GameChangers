@@ -10,6 +10,7 @@ int Climber::climberEncoderValue() {
 	return(_climberMotor.GetEncoderTicks());
 }
 
+
 void Climber::setClimber(const ClimberState st, double power) {
 	_climberState = st;
 	_power = power;
@@ -19,10 +20,15 @@ void Climber::updateClimber (double dt) {
 	double speed = 0;
 
 	switch (_climberState) {
-		case ClimberState::NORMAL:
+		case ClimberState::ENABLED:
 			speed = _power;
 			break;
-		
+		case ClimberState::DISABLED:
+			speed = 0;
+			break;
+		case ClimberState::EXTENDING:
+			speed = 0.5;
+			break;
 		case ClimberState::JAMMED:
 			speed = 0;
 			break;
@@ -34,8 +40,6 @@ void Climber::updateClimber (double dt) {
 void Climber::update (double dt) {
 	updateClimber(dt);
 }
-
-
 
 
 /*

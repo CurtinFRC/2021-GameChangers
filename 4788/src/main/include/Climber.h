@@ -3,7 +3,9 @@
 #include "RobotMap.h"
 
 enum class ClimberState {
-	NORMAL,
+	ENABLED,
+	EXTENDING,
+	DISABLED,
 	JAMMED
 };
 
@@ -22,6 +24,8 @@ class Climber : public wml::StrategySystem{
 		void update (double dt);
 
 		int climberEncoderValue();
+
+		
 		/*
 		// Setup Functions
 		void TeleopOnUpdate (double dt);
@@ -31,7 +35,7 @@ class Climber : public wml::StrategySystem{
 
   private :
 		wml::TalonSrx &_climberMotor;
-		ClimberState _climberState{ ClimberState::NORMAL };
+		ClimberState _climberState{ ClimberState::DISABLED };
 
 		double _power;
 };

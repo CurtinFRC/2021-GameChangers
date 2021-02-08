@@ -39,6 +39,7 @@ struct ControlMap {
 	static const int ClimberPort;
 	static const int ClimberEncoderTicks;
 	static const double ClimberSpeed;
+	static const double ClimberAdjustSpeed;
 	static const int ClimberJamTolerance;
 
 
@@ -48,5 +49,7 @@ struct ControlMap {
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
 
 	// Climber
+	static const wml::controllers::tButton ClimberActivate, ClimberDeactivate;
+	static const wml::controllers::tAxis ClimberAdjust;
 	static const wml::controllers::tButton ClimberUp, ClimberDown;
 };

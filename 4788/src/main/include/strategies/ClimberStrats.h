@@ -13,5 +13,6 @@ class ClimberManualStrategy : public wml::Strategy {
 		Controllers &_contGroup;
 		int _currentTicks;
 		int _previousTicks;
+		ClimberState _climberStateStrat{ ClimberState::DISABLED };
 
 };
