@@ -45,6 +45,7 @@
 #include "control/PIDController.h"
 #include "MotionProfiling.h"
 #include "Toggle.h"
+#include "devices/StateDevice.h"
 
 #include "devices/StateDevice.h"
 #include "strategy/StrategyController.h"
@@ -101,7 +102,7 @@ struct RobotMap {
 		// Rotational Axis
 		wml::TalonSrx rot{ControlMap::TurretRotPort, 2048};
 		wml::actuators::MotorVoltageController rotMotors = wml::actuators::MotorVoltageController::Group(rot);
-		wml::Gearbox turretRot{ &rotMotors, &rot, 0 };
+		wml::Gearbox turretRot{ &rotMotors, &rot, 196 };
 
 		// Vertical Axis
 		wml::TalonSrx vert{ControlMap::TurretVertPort, 2048};

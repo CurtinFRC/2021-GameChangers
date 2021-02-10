@@ -2,10 +2,13 @@
 
 #include "Turret.h"
 
+#include "Usage.h"
+
 using namespace frc;
 using namespace wml;
 
 Turret::Turret(Gearbox &Rotation, Gearbox &VerticalAxis,  Gearbox &FlyWheel, sensors::BinarySensor &RotLimit, sensors::BinarySensor &VertLimit) :
+StateDevice("<Turret>"),
 _verticalAxis{VerticalAxis}, 
 _vertLimit{VertLimit}, 
 _rotationalAxis{Rotation}, 
@@ -13,10 +16,10 @@ _rotLimit{RotLimit},
 _flyWheel{FlyWheel}, 
 _verticalState{ SubState::ZEROING }, 
 _rotationState{ SubState::ZEROING }, 
-_flyWheelState{ SubState::ZEROING } {}
+_flyWheelState{ SubState::ZEROING }{}
 
-void Turret::onStatePeriodic(double dt) {
-	switch(_state) {
+void Turret::OnStatePeriodic(TurretState state, double dt) {
+	switch(GetState()) {
 		case TurretState::IDLE:
 			_rotationState = SubState::IDLE;
 			_verticalState = SubState::IDLE;
@@ -24,7 +27,7 @@ void Turret::onStatePeriodic(double dt) {
 			break;
 		case TurretState::ARMING:
 			if(isReady()) {
-				_state = TurretState::READY;
+				SetState(TurretState::READY);
 			}
 		case TurretState::READY:
 			_rotationState = SubState::PID;
@@ -37,9 +40,9 @@ void Turret::onStatePeriodic(double dt) {
 			_flyWheelState = SubState::ZEROING;
 		case TurretState::ZEROING:
 			if (allIdle()) {
-				_state = TurretState::IDLE;
+				SetState(TurretState::IDLE);
 			} else {
-				_state = TurretState::ZEROING;
+				SetState(TurretState::ZEROING);
 			}
 			break;
 	}
@@ -64,7 +67,7 @@ void Turret::verticalPeriodic(double dt) {
 			break;
 		case SubState::PID:
 			_inputV = _verticalAxis.encoder->GetEncoderRotations();
-			double output = pid(_inputV, _verticalGoal, -12, 12, 0, 0, 0, _sumV, _previousErrorV, dt);
+			double output = PIDcont::Calc(_inputV, _verticalGoal, ControlMap::VoltageMin, ControlMap::VoltageMax, ControlMap::VerticalAxisP, ControlMap::VerticalAxisI, ControlMap::VerticalAxisD, _sumV, _previousErrorV, dt);
 			_verticalAxis.transmission->SetVoltage(output);
 			break;
 	}
@@ -86,7 +89,7 @@ void Turret::rotationPeriodic(double dt) {
 			break;
 		case SubState::PID:
 			_inputR = _rotationalAxis.encoder->GetEncoderRotations();
-			double output = pid(_inputR, _rotationGoal*_gearRatio, -12, 12, 0, 0, 0, _sumR, _previousErrorR, dt);
+			double output = PIDcont::Calc(_inputR, _rotationGoal, ControlMap::VoltageMin, ControlMap::VoltageMax, ControlMap::RotationalAxisP, ControlMap::RotationalAxisI, ControlMap::RotationalAxisD, _sumR, _previousErrorR, dt);
 			_rotationalAxis.transmission->SetVoltage(output);
 			break;
 	}
@@ -102,58 +105,57 @@ void Turret::flywheelPeriodic(double dt) {
 			break;
 		case SubState::PID:
 			_inputF = _flyWheel.encoder->GetEncoderAngularVelocity();
-			double output = pid(_inputF, _flyWheelGoal, -12, 12, 0, 0, 0, _sumF, _previousErrorF, dt);
+			double output = PIDcont::Calc(_inputF, _flyWheelGoal, ControlMap::VoltageMin, ControlMap::VoltageMax, ControlMap::FlywheelP, ControlMap::FlywheelI, ControlMap::FlywheelD, _sumF, _previousErrorF, dt);
 			_flyWheel.transmission->SetVoltage(output);
 			break;
 	}
 }
 
 void Turret::flywheel(double goal) {
-	goal = mathClamp(-1,1,goal);
+	goal = mathClamp(ControlMap::FlywheelMin, ControlMap::FlywheelMax, goal);
 	_flyWheelGoal = goal;
-	_state = TurretState::ARMING;
+	SetState(TurretState::ARMING);
 }
 
 void Turret::rotate(double goal) {
-	goal = mathClamp(0,360,goal);
-	goal /= 360;
+	goal = mathClamp(ControlMap::RotationalAxisMin, ControlMap::RotationalAxisMax, goal);
+	goal /= ControlMap::RotationalAxisDeg;
 	_rotationGoal = goal;
-	_state = TurretState::ARMING;
+	SetState(TurretState::ARMING);
 }
 
 void Turret::vertical(double goal) {
-	goal = mathClamp(0,1,goal);
+	goal = mathClamp(ControlMap::VerticalAxisMin, ControlMap::VerticalAxisMin, goal);
 	_verticalGoal = goal;
-	_state = TurretState::ARMING;
+	SetState(TurretState::ARMING);
 }
 
 void Turret::setShooting() {
-	_state = TurretState::ARMING;
+	SetState(TurretState::ARMING);
 }
 
 bool Turret::isReady() {
-	if(_state == TurretState::READY) {
-		return true;
-	} else {
-		return false;
-	}
+	return GetState() == TurretState::READY;
 }
-double Turret::pid(double input, double goal, double min, double max, double kP, double kI, double kD, double &sum, double &previousError, double dt) {
-  double error = goal - input;
-  double derror = (error - previousError) / dt;
-  sum = sum + error * dt;
 
-  double output = kP * error + kI * sum + kD * derror;
+std::string Turret::GetStateString() {
+	switch (GetState()) {
+		case TurretState::ZERO:
+		return "Zero";
 
-  previousError = error;
+		case TurretState::ZEROING:
+		return "Zeroing";
 
-  if(output < min) {
-    output = min;
-  } else if(output > max) {
-    output = max;
-  }
-
-  return output;
+		case TurretState::ARMING:
+		return "Arming";
+    
+		case TurretState::READY:
+		return "Ready";
+    
+		case TurretState::IDLE:
+		return "Idle";
+	}
+  return "<state error>";
 }
 
 double Turret::mathClamp(const double min, const double max, const double input) {
@@ -167,58 +169,12 @@ double Turret::mathClamp(const double min, const double max, const double input)
 }
 
 bool Turret::allIdle() {
-	if(_verticalState == SubState::IDLE && _rotationState == SubState::IDLE && _flyWheelState == SubState::IDLE) {
-		return true;
-	}
-	return false;
+	return (_verticalState == SubState::IDLE && _rotationState == SubState::IDLE && _flyWheelState == SubState::IDLE);
 }
 
 bool Turret::isPidReady() {
-	movingAve(_movingAveV, _aveV, _inputV);
-	movingAve(_movingAveR, _aveR, _inputR);
-	movingAve(_movingAveF, _aveF, _inputF);
-	if(abs(_verticalGoal - _aveV) <= _toleranceV && abs(_rotationGoal - _aveR) <= _toleranceR && abs(_flyWheelGoal - _aveF) <= _toleranceF){
-		return true;
-	} else {
-		return false;
-	}
+	MovingAv::Calc(_movingAveV, _aveV, _inputV);
+	MovingAv::Calc(_movingAveR, _aveR, _inputR);
+	MovingAv::Calc(_movingAveF, _aveF, _inputF);
+	return(abs(_verticalGoal - _aveV) <= _toleranceV && abs(_rotationGoal - _aveR) <= _toleranceR && abs(_flyWheelGoal - _aveF) <= _toleranceF);
 }
-void Turret::movingAve(std::array<double, ARRAYSIZE> &aveArray, double &ave, double current) {
-	ave -= aveArray[0]/aveArray.size();
-	ave += current/aveArray.size();
-	for(std::size_t i = 0; i < aveArray.size() - 1; i++) {
-		aveArray[i] = aveArray[i+1];
-	}
-	aveArray[aveArray.size() - 1] = current;
-}
-
-/*
-void Turret::shooter(double dt, double goal) {
-	goal = mathClamp(-1,1,goal);
-  double output = pid(_flyWheel.encoder->GetEncoderAngularVelocity(), goal, -12, 12, 0, 0, 0, _sumF, _previousErrorF, dt);
-  _flyWheel.transmission->SetVoltage(output);
-}
-
-void Turret::rotate(double dt, double goal) {
-	goal = mathClamp(-1,1,goal);
-  goal *= _gearRatio;
-	double rots = _rotationalAxis.encoder->GetEncoderRotations();
-  double output = pid(rots, goal, -12, 12, 0, 0, 0, _sumR, _previousErrorR, dt);
-	if (rots < 0 || rots > _gearRatio) {
-		_rotationalAxis.transmission->SetVoltage(0);
-	} else {
-		_rotationalAxis.transmission->SetVoltage(output);
-	}
-}
-
-void Turret::vertical(double dt, double goal) {
-	goal = mathClamp(-1,1,goal);
-	double rots = _verticalAxis.encoder->GetEncoderRotations();
-  double output = pid(rots, goal, -12, 12, 0, 0, 0, _sumV, _previousErrorV, dt);
-	if (rots < 0 || rots > 0 ) {
-		_verticalAxis.transmission->SetVoltage(0);
-	} else {
-		_verticalAxis.transmission->SetVoltage(output);
-	}
-}
-*/

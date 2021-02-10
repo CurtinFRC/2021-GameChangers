@@ -3,6 +3,10 @@
 #include <iostream>
 #include "RobotMap.h"
 #include "strategy/StrategySystem.h"
+#include "devices/StateDevice.h"
+#include "Gearbox.h"
+#include "PIDcont.h"
+#include "MovingAv.h"
 #include <array>
 #define ARRAYSIZE 4
 
@@ -20,7 +24,7 @@ enum class SubState {
 	IDLE
 };
 
-class Turret : public wml::StrategySystem : wml::StateDevice<TurretState> {
+class Turret : public wml::devices::StateDevice<TurretState>, public wml::StrategySystem {
 	public:
 	// Turret
 		Turret(wml::Gearbox &RotationalAxis, wml::Gearbox &VerticalAxis, wml::Gearbox &FlyWheel, 
@@ -35,10 +39,12 @@ class Turret : public wml::StrategySystem : wml::StateDevice<TurretState> {
 		void vertical(double goal);
 		void setShooting();
 		bool isReady();
+		virtual std::string GetStateString() final;
+
+	protected:
+	virtual void OnStatePeriodic(TurretState state, double dt) override;
 
 	private:
-	// Misc
-		double _gearRatio{ 196 };
 	// Vertical
 		double _sumV{ 0 };
 		double _aveV{ 0 };
@@ -73,9 +79,7 @@ class Turret : public wml::StrategySystem : wml::StateDevice<TurretState> {
 		SubState _rotationState{ SubState::ZEROING };
 		SubState _flyWheelState{ SubState::ZEROING };	
 	// Functions - Private
-		double pid(double input, double goal, double min, double max, double kP, double kI, double kD, double& sum, double& previousError, double dt);
 		double mathClamp(const double min, const double max, const double input);
 		bool allIdle();
 		bool isPidReady();
-		void movingAve(std::array<double, ARRAYSIZE> &aveArray, double &ave, double current);
 };

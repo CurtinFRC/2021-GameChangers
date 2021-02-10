@@ -38,6 +38,7 @@ struct ControlMap {
 	// Turret
 	static const int TurretRotPort, TurretVertPort, TurretFlyPort, RotLimitPort, VertLimitPort;
 	static const bool RotLimitInvert, VertLimitInvert;
+	static const double VerticalAxisMin, VerticalAxisMax, VerticalAxisP, VerticalAxisI, VerticalAxisD, RotationalAxisMin, RotationalAxisMax, RotationalAxisP, RotationalAxisI, RotationalAxisD, RotationalAxisDeg, FlywheelP, FlywheelI, FlywheelD, FlywheelMin, FlywheelMax, VoltageMin, VoltageMax;
 
 
 	// ------------------ Controls ------------------
