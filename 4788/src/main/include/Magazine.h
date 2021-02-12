@@ -8,7 +8,7 @@ enum MagazineState {
 
 class Magazine : public wml::StrategySystem {
  public:
-  Magazine(wml::Gearbox &magGearbox);
+  Magazine(wml::TalonSrx &magMotor1, wml::VictorSpx &magMotor2);
   void setMagazine(const MagazineState st, double magMotorPower1 = 0, double magMotorPower2 = 0);
   void updateMagazine(double dt);
   void update(double dt);
@@ -16,8 +16,9 @@ class Magazine : public wml::StrategySystem {
   // int magazineEncoderValue();
 
  private:
-  wml::Gearbox &_magGearbox;
-  //wml::Gearbox &_magRotationalAxis; 
+
+  wml::TalonSrx &_magMotor1;
+  wml::VictorSpx &_magMotor2;
   
   MagazineState _magazineState{ MagazineState::OFF };
 

@@ -38,7 +38,7 @@ struct ControlMap {
 	//Magazine 
     static const int MagMotorPort1;
   	static const int MagMotorPort2;
-  	static const double MagEncoderSafeZone;
+  	// static const double MagEncoderSafeZone;
 
 
 	// ------------------ Controls ------------------
