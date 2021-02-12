@@ -23,7 +23,7 @@ void Robot::RobotInit() {
 	// Create wml drivetrain
 	drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
 	// wayFinder = new WayFinder::WayFinder(robotMap.driveSystem.wfdConfig);
-	wayFinder = new WayFinder(&robotMap.driveSystem.wfdConfig);
+	// wayFinder = new WayFinder(&robotMap.driveSystem.wfdConfig);
 
 	// Zero Encoders
 	robotMap.driveSystem.drivetrain.GetConfig().leftDrive.encoder->ZeroEncoder();
