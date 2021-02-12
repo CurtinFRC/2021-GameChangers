@@ -92,7 +92,21 @@ struct RobotMap {
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 
+		wayfinder::RobotControl::Config wfdConfig {
+			&drivetrain,
+			true,
+			false, 
 
+			//make these all controlmap variables later
+			0.3, //P 
+			0.001, //I  
+			0.024, //D
+
+			8.24, //gearbox reduction, eg. 8.24 rotations = 1 wheel rotation
+			0.1524, //whel diameter in meters 
+			0.5, // max speed of the robot 
+			0.3, //max speed of the robot when turning 
+		};
 
 	}; DriveSystem driveSystem;
 

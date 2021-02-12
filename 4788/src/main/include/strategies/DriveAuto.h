@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "RobotMap.h"
-#include "Strategy/Strategy.h"
+#include "strategy/Strategy.h"
 #include "controllers/Controllers.h"
 // #include "DriveSystem.h"
 #include "strategies/DriveSystem.h"
