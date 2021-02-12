@@ -11,7 +11,10 @@
 #include "strategies/ClimberStrategy.h"
 #include "strategies/IntakeStrategy.h"
 #include "strategies/MagStrategy.h"
-#include "strategies/ShooterStrategy.h"
+#include "strategies/DriveAuto.h"
+
+// Temp
+#include "wfd_paths.h"
 
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
@@ -36,7 +39,7 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	RobotMap robotMap;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 	Mag *mag;
-	Shooter *shooter;
 	Climber *climber;
 	Intake *intake;
+	// WayFinder *wayFinder;
 };

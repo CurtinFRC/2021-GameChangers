@@ -63,6 +63,8 @@
 // Local Files
 #include "ControlMap.h"
 
+// #include "strategies/DriveSystem.h"
+
 struct RobotMap {
 
 	// Controllers
@@ -89,7 +91,15 @@ struct RobotMap {
 		wml::DrivetrainConfig drivetrainConfig{LGearbox, RGearbox, &gyro, ControlMap::TrackWidth, ControlMap::TrackDepth, ControlMap::WheelRadius, ControlMap::Mass};
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
+
+
+
 	}; DriveSystem driveSystem;
+
+	// struct DriveAutoSystem {
+
+
+	// }; DriveAutoSystem driveAutosystem;
 
 	struct IntakeSystem {
 		// Motors
