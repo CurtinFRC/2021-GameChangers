@@ -1,9 +1,6 @@
 #include "Vision.h"
 #include <iostream>
 
-CJ::Camera::Cam cam;
-CJ::Image inputImage;
-
 void Vision::Init() {
   // Logic here will run once (Initialization)
 	CJ::Core::init();
@@ -27,5 +24,4 @@ void Vision::Init() {
 
 void Vision::Periodic() {
   // Logic here will run periodicly (Looping)
-	CJ::Output::Display(&inputImage);
 }
