@@ -15,6 +15,10 @@ void Robot::RobotInit() {
 	climber = new Climber(robotMap.climberSystem.climberMotor);
 	climber->SetDefault(std::make_shared<ClimberStrategy>("Climber Manual", *climber, robotMap.contGroup));
 	StrategyController::Register(climber);
+
+	intake = new Intake(robotMap.intakeSystem.intakeMotor);
+	intake->SetDefault(std::make_shared<IntakeStrategy>("Intake manual", *intake, robotMap.contGroup));
+	StrategyController::Register(intake);
 }
 
 void Robot::RobotPeriodic() {
@@ -24,6 +28,7 @@ void Robot::RobotPeriodic() {
 	// Update our controllers and strategy
 	StrategyController::Update(dt);
 	climber->update(dt);
+	intake->update(dt);
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -40,6 +45,7 @@ void Robot::AutonomousPeriodic() {}
 // Manual Robot Logic
 void Robot::TeleopInit() {
 	Schedule(climber->GetDefaultStrategy(), true);
+	Schedule(intake->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 

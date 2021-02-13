@@ -23,21 +23,24 @@ const double ControlMap::TriggerDeadzone = 0.15;
 const int ControlMap::PCModule = 1;
 
 // Intake
-const int ControlMap::intakePort = 99;
-const int ControlMap::intakeSolenoidPort1 = 0;
-const int ControlMap::intakeSolenoidPort2 = 1;
-const int ControlMap::intakeEncoderTicks = 2048;
-const double ControlMap::IntakeAutoSpeed = 0.3;
+const int ControlMap::intakePort = 3;
 
 // Climber
 const int ControlMap::climberPort = 6;
+bool ControlMap::ClimberToggle = true;
 
 // Falcon
 const int ControlMap::falconPort = 99;
 
+
+
 // ------------------ Controls ------------------
 
 //climber
-const tAxis ControlMap::ClimberUp{ Driver, XboxController::kRightThrottle };
-const tAxis ControlMap::ClimberDown{ Driver, XboxController::kLeftThrottle };
-const tButton ControlMap::DeployClimber{ Driver, XboxController::kA};
+const tAxis ControlMap::ClimberUp{ CoDriver, XboxController::kRightThrottle };
+const tAxis ControlMap::ClimberDown{ CoDriver, XboxController::kLeftThrottle };
+const tButton ControlMap::DeployClimber{ CoDriver, XboxController::kA};
+
+//intake 
+const tAxis ControlMap::Intake{ CoDriver, XboxController::kLeftThrottle};
+const tButton ControlMap::Outake{ CoDriver, XboxController::kB};

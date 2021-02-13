@@ -31,14 +31,18 @@ struct ControlMap {
 	static const int PCModule;
 
 	// Intake System
-	static const int intakePort, intakeSolenoidPort1, intakeSolenoidPort2, intakeEncoderTicks;
-	static const double IntakeAutoSpeed;
+	// static const int intakePort, intakeSolenoidPort1, intakeSolenoidPort2, intakeEncoderTicks;
+	// static const double IntakeAutoSpeed;
 
 	// Falcon
 	static const int falconPort;
 
 	//climber
 	static const int climberPort;
+	static bool ClimberToggle;
+
+	//intake
+	static const int intakePort;
 
 	// ------------------ Controls ------------------
 
@@ -46,4 +50,8 @@ struct ControlMap {
 	static const wml::controllers::tAxis ClimberUp;
 	static const wml::controllers::tAxis ClimberDown;
 	static const wml::controllers::tButton DeployClimber;
+
+	//intake 
+	static const wml::controllers::tAxis Intake;
+	static const wml::controllers::tButton Outake;
 };

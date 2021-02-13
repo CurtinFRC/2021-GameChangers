@@ -73,4 +73,12 @@ struct RobotMap {
 	struct ClimberSystem {
 		wml::TalonSrx climberMotor{ ControlMap::climberPort, 2048 };
 	}; ClimberSystem climberSystem;
+
+	struct IntakeSystem {
+		wml::VictorSpx intakeMotor{ ControlMap::intakePort};
+	}; IntakeSystem intakeSystem;
+
+	struct ShooterSystem {
+
+	}; ShooterSystem shooterSystem;
 };
