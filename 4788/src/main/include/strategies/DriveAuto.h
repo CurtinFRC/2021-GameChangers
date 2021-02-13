@@ -1,19 +1,24 @@
 #pragma once 
 
 #include "RobotMap.h"
+// #include "Robot.h"
 #include "strategy/Strategy.h"
-#include "controllers/Controllers.h"
-// #include "DriveSystem.h"
+// #include "controllers/Controllers.h"
 #include "strategies/DriveSystem.h"
-// #include "wayfinder.h"
+// #include "Drivetrain.h"
+#include "wfd_paths.h"
 
-// class DrivetrainAuto : wml::StrategySystem {
-//  public:
-// 	DrivetrainAuto(std::string name, wml::Drivetrain &drivetrain, WayFinder &wayFinder);
+// using namespace wayfinder;
 
-// 	void OnUpdate(double dt) override;
+class DrivetrainAuto : public wml::Strategy {
+ public:
+	DrivetrainAuto(std::string name, wml::Drivetrain &drivetrain, wayfinder::WayFinder &wayFinder, wfd_paths &wp);
 
-//  private:
-// 	wml::Drivetrain &_drivetrain;
-// 	WayFinder &_wayFinder;
-// };
+	void OnUpdate(double dt) override;
+
+ private:
+	wml::Drivetrain &_drivetrain;
+	wayfinder::WayFinder &_wayFinder;
+	wfd_paths &_wp;
+
+};

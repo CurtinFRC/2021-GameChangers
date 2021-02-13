@@ -14,7 +14,7 @@
 #include "strategies/DriveAuto.h"
 
 // Temp
-#include "wfd_paths.h"
+// #include "wfd_paths.h"
 
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
@@ -43,4 +43,5 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	Intake *intake;
 	// WayFinder *wayFinder;
 	wayfinder::WayFinder *wayFinder;
+	wfd_paths *wp;
 };

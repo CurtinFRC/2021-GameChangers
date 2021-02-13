@@ -14,16 +14,13 @@ void Robot::RobotInit() {
 	// Init the controllers
 	ControlMap::InitsmartControllerGroup(robotMap.contGroup);
 
-
-
 	auto camera = CameraServer::GetInstance()->StartAutomaticCapture(0);
 	camera.SetFPS(30);
 	camera.SetResolution(160, 120);
 
 	// Create wml drivetrain
 	drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
-	// wayFinder = new WayFinder::WayFinder(robotMap.driveSystem.wfdConfig);
-	// wayFinder = new WayFinder(&robotMap.driveSystem.wfdConfig);
+	wayFinder = new WayFinder(&robotMap.driveSystem.wfdConfig);
 
 	// Zero Encoders
 	robotMap.driveSystem.drivetrain.GetConfig().leftDrive.encoder->ZeroEncoder();
@@ -53,10 +50,8 @@ void Robot::RobotInit() {
 	climber->SetDefault(std::make_shared<ClimberStrategy>("climber manual strategy", *climber, robotMap.contGroup));
 	StrategyController::Register(climber); 
 
-	// path = wayFinder->buildPath(spline1);
 
-	// Schedule(std::make_shared<DrivetrainAuto>("drive auto", *drivetrain, *wayFinder));
-
+	Schedule(std::make_shared<DrivetrainAuto>("drive auto", *drivetrain, *wayFinder, *wp));
 }
 
 void Robot::RobotPeriodic() {
@@ -80,7 +75,7 @@ void Robot::DisabledPeriodic() {}
 void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {
 	
-	// std::cout << wayfinder.getCurrentLocation(robotMap.driveAuto.wfdConfig, true);
+	std::cout << wayFinder->getCurrentLocation(&robotMap.driveSystem.wfdConfig, true);
 }
 
 // Manual Robot Logic
