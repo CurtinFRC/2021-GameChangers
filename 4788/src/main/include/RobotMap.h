@@ -95,7 +95,7 @@ struct RobotMap {
 
 	//Washing Machine Magazine
 	struct MagazineSystem {
-		wml::TalonSrx magMotor1{ ControlMap::MagMotorPort1, 2048 };
+		wml::TalonSrx magMotor1{ ControlMap::MagMotorPort1 };
 		wml::VictorSpx magMotor2{ ControlMap::MagMotorPort2 };
 
 		// wml::sensors::DigitalEncoder magEncoder{ 0, 1, 2048 };

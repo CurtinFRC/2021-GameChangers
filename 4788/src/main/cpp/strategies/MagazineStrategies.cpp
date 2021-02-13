@@ -10,16 +10,16 @@ void MagazineManualStrategy::OnUpdate(double dt) {
 	// _magTicks = _magazine.magazineEncoderValue();
 
 	// Controls power in power out
-	double powerIn = fabs(_contGroup.Get(ControlMap::Outake)) >= ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::Outake) : 0;
-	double powerOut = fabs(_contGroup.Get(ControlMap::Outake)) <= ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::Outake) : 0;
+	// double powerIn = fabs(_contGroup.Get(ControlMap::Outake)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::Outake) : 0;
+	double powerOut = fabs(_contGroup.Get(ControlMap::Outake)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::Outake) : 0;
 
 	if (_contGroup.Get(ControlMap::Outake) >= ControlMap::TriggerDeadzone) {
-		_magazine.setMagazine(MagazineState::ON, 1, 0.6);
-		_magazine.setMagazine(MagazineState::ON, powerIn - powerOut);
+		_magazine.setMagazine(MagazineState::ON);
+		// _magazine.setMagazine(MagazineState::ON, powerOut);
 		// if ((_magTicks - _magPreviouseTicks) >= ControlMap::MagEncoderSafeZone) {
 		// 	_magazine.setMagazine(MagazineState::OFF, 0);
 		// }
 	} else {
-		_magazine.setMagazine(MagazineState::OFF, 0);
+		_magazine.setMagazine(MagazineState::OFF);
 	}
 }

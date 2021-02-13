@@ -35,8 +35,8 @@ void Robot::RobotInit() {
 
 	//Register our systems to be called via strategy
 	// StrategyController::Register(drivetrain);
-	StrategyController::Register(*magazine);
-	NTProvider::Register(*magazine);
+	StrategyController::Register(magazine);
+	// NTProvider::Register(*magazine);
 }
 
 void Robot::RobotPeriodic() {
