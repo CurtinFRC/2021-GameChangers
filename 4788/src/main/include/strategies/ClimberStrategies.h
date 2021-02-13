@@ -5,11 +5,11 @@ using Controllers = wml::controllers::SmartControllerGroup;
 
 class ClimberStrategy : public wml::Strategy {
  public:
-  ClimberStrategy(std::string name, Climber &climber, Controllers &contGroup);
+	ClimberStrategy(std::string name, Climber &climber, Controllers &contGroup);
 
-  void OnUpdate(double dt) override;
+	void OnUpdate(double dt) override;
 
  private:
-  Climber &_climber;
-  Controllers &_contGroup;
+	Climber &_climber;
+	Controllers &_contGroup;
 };

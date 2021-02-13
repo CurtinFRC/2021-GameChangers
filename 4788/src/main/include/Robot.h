@@ -1,20 +1,12 @@
 #pragma once
 
-#include <cameraserver/CameraServer.h>
-#include <frc/DriverStation.h>
-
 /**
  * Local Files
  */
 #include "RobotMap.h"
-#include "strategies/DriveSystem.h"
-#include "strategies/ClimberStrategy.h"
-#include "strategies/IntakeStrategy.h"
-#include "strategies/MagStrategy.h"
-#include "strategies/DriveAuto.h"
 
-// Temp
-// #include "wfd_paths.h"
+// Subsystems
+#include "strategies/ClimberStrategies.h"
 
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
@@ -35,13 +27,7 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	void TestPeriodic() override;
 
  private:
-	// Istances
+	// Instances
 	RobotMap robotMap;
-	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
-	Mag *mag;
 	Climber *climber;
-	Intake *intake;
-	// WayFinder *wayFinder;
-	wayfinder::WayFinder *wayFinder;
-	wfd_paths *wp;
 };
