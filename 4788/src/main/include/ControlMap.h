@@ -31,7 +31,7 @@ struct ControlMap {
 	static const int PCModule;
 
 	// Drive System
-	static const int FLport, FRport, BLport, BRport;
+	static const int Lport, Rport;
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 

@@ -73,15 +73,15 @@ struct RobotMap {
 	struct DriveSystem {
 
 		// Drive motors {port, encoderTicks}
-		wml::TalonSrx FL{ControlMap::FLport, 2048}, FR{ControlMap::FRport, 2048}, BL{ControlMap::BLport}, BR{ControlMap::BRport};
+		wml::TalonFX RD{ControlMap::Lport, 2048}, LD{ControlMap::Rport, 2048}; //right drive and left drive 
 
 		// Motor Grouping
-		wml::actuators::MotorVoltageController leftMotors = wml::actuators::MotorVoltageController::Group(FL, BL);
-		wml::actuators::MotorVoltageController rightMotors = wml::actuators::MotorVoltageController::Group(FR, BR);
+		wml::actuators::MotorVoltageController leftMotors = wml::actuators::MotorVoltageController::Group(RD);
+		wml::actuators::MotorVoltageController rightMotors = wml::actuators::MotorVoltageController::Group(LD);
 
 		// Gearboxes
-		wml::Gearbox LGearbox{&leftMotors, &FL};
-		wml::Gearbox RGearbox{&rightMotors, &FR};
+		wml::Gearbox LGearbox{&leftMotors, &RD};
+		wml::Gearbox RGearbox{&rightMotors, &LD};
 
 		wml::sensors::NavX navx{};
 		wml::sensors::NavXGyro gyro{navx.Angular(wml::sensors::AngularAxis::YAW)};

@@ -23,12 +23,8 @@ const double ControlMap::TriggerDeadzone = 0.15;
 const int ControlMap::PCModule = 1;
 
 // Left Drive
-const int ControlMap::FLport = 1;
-const int ControlMap::BLport = 2;
-
-// Right Drive
-const int ControlMap::FRport = 3;
-const int ControlMap::BRport = 4;
+const int ControlMap::Lport = 2;
+const int ControlMap::Rport = 5;
 
 // Drivetrain speed
 const double ControlMap::MaxDrivetrainSpeed = 0.8;
