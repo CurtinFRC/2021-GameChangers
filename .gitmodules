@@ -1,7 +1,7 @@
 [submodule "WML"]
 	path = WML
 	url = https://github.com/wml-frc/WML.git
-	branch = master
+	branch = Falcon_Dev
 [submodule "CJ-Vision"]
 	path = CJ-Vision
 	url = https://github.com/wml-frc/CJ-Vision.git
