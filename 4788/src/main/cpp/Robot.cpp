@@ -46,6 +46,8 @@ void Robot::RobotPeriodic() {
   StrategyController::Update(dt);
   NTProvider::Update();
 
+  magazine->update(dt);
+
   lastTimeStamp = currentTimeStamp;
 }
 
@@ -62,7 +64,8 @@ void Robot::TeleopInit() {
   Schedule(magazine->GetDefaultStrategy(), true);
 	// Schedule(drivetrain->GetDefaultStrategy(), true);
 }
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+}
 
 // Test Logic
 void Robot::TestInit() {}
