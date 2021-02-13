@@ -1,6 +1,10 @@
 #include "strategies/ClimberStrategies.h"
 
-ClimberStrategy::ClimberStrategy(std::string name, Climber &climber, Controllers &contGroup) : Strategy(name), _climber(climber), _contGroup(contGroup) {}
+ClimberStrategy::ClimberStrategy(std::string name, Climber &climber, Controllers &contGroup) : Strategy(name), _climber(climber), _contGroup(contGroup) {
+	  Requires(&climber);
+  SetCanBeInterrupted(true);
+  SetCanBeReused(true);
+}
 
 void ClimberStrategy::OnUpdate(double dt) {
 	double powerIn = fabs(_contGroup.Get(ControlMap::ClimberUp)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::ClimberUp) : 0;

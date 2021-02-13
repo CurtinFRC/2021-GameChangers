@@ -30,7 +30,7 @@ const int ControlMap::intakeEncoderTicks = 2048;
 const double ControlMap::IntakeAutoSpeed = 0.3;
 
 // Climber
-const int ControlMap::climberPort = 99;
+const int ControlMap::climberPort = 6;
 
 // Falcon
 const int ControlMap::falconPort = 99;
