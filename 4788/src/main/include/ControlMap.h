@@ -47,6 +47,6 @@ struct ControlMap {
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
 
 	// Magazine
-	static const wml::controllers::tAxis Outake;
+	static const wml::controllers::tPOV Outake;
 
 };

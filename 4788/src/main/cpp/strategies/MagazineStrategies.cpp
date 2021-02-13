@@ -13,13 +13,30 @@ void MagazineManualStrategy::OnUpdate(double dt) {
 	// double powerIn = fabs(_contGroup.Get(ControlMap::Outake)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::Outake) : 0;
 	double powerOut = _contGroup.Get(ControlMap::Outake);
 
-	if (_contGroup.Get(ControlMap::Outake) >= ControlMap::TriggerDeadzone) {
-		_magazine.setMagazine(MagazineState::ON, powerOut, powerOut);
-		// _magazine.setMagazine(MagazineState::ON, powerOut);
-		// if ((_magTicks - _magPreviouseTicks) >= ControlMap::MagEncoderSafeZone) {
-		// 	_magazine.setMagazine(MagazineState::OFF, 0);
-		// }
-	} else {
-		_magazine.setMagazine(MagazineState::OFF);
-	}
+	// if (_contGroup.Get(ControlMap::Outake) >= ControlMap::TriggerDeadzone) {
+	// 	_magazine.setMagazine(MagazineState::ON, powerOut, powerOut);
+	// 	// _magazine.setMagazine(MagazineState::ON, powerOut);
+	// 	// if ((_magTicks - _magPreviouseTicks) >= ControlMap::MagEncoderSafeZone) {
+	// 	// 	_magazine.setMagazine(MagazineState::OFF, 0);
+	// 	// }
+	// } else {
+	// 	_magazine.setMagazine(MagazineState::OFF);
+	// }
+
+	// tPOV is not button. You have to make it into a pseudo button. Look at 2020 code controlmap
+	if(_contGroup.Get(ControlMap::Outake, wml::controllers::Controller::ButtonMode::ONRISE)) {
+    if(!MagazineToggle) {
+      MagazineToggle = true;
+    } else {
+      MagazineToggle = false;
+    }
+  }
+
+  if (!MagazineToggle) {
+    _magazine.setMagazine(MagazineState::ON, powerOut, powerOut);
+  } else {
+    _magazine.setMagazine(MagazineState::OFF);
+  }
 }
+
+ 

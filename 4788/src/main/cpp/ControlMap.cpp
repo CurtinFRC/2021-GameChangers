@@ -49,6 +49,6 @@ const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 
 // Washing Machine Magazine
-const tAxis ControlMap::Outake{ CoDriver, XboxController::kRightThrottle };
-
+// const tAxis ControlMap::Outake{ CoDriver, XboxController::kRightThrottle };
+const tPOV ControlMap::Outake{ CoDriver, XboxController::kLeft };
 

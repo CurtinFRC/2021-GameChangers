@@ -12,6 +12,7 @@ class MagazineManualStrategy : public wml::Strategy {
  private:
   Magazine &_magazine;
 	Controllers &_contGroup;
+  bool MagazineToggle = false;
   // int _magPreviouseTicks;
   // int _magTicks;
 };
