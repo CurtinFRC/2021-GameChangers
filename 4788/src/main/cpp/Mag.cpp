@@ -8,7 +8,9 @@ void Mag::setMag(const MagState st, double power) {
 }
 
 void Mag::updateMag(double dt) {
+	setPower = _power;
 
+	_magMotor.Set(setPower);
 }
 
 void Mag::update(double dt) {

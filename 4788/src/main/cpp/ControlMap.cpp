@@ -54,6 +54,8 @@ const double ControlMap::fireSpeed = 1;
 
 //mag 
 const int ControlMap::MagPort = 1;
+bool ControlMap::MagToggle = true;
+const double ControlMap::MagSpeed = 0.8;
 
 
 
@@ -78,3 +80,4 @@ const tAxis ControlMap::FlywheelSpinUp{ CoDriver, XboxController::kRightThrottle
 const tButton ControlMap::FireShooter{ CoDriver, XboxController::kY };
 
 //mag 
+const tButton ControlMap::MagSpin{ CoDriver, XboxController::kX};
