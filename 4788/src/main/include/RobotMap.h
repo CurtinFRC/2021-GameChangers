@@ -90,4 +90,17 @@ struct RobotMap {
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
+
+	struct ClimberSystem {
+		wml::TalonSrx climberMotor{ ControlMap::climberPort, 2048 };
+	}; ClimberSystem climberSystem;
+
+	struct IntakeSystem {
+		wml::VictorSpx intakeMotor{ ControlMap::intakePort};
+	}; IntakeSystem intakeSystem;
+
+	struct ShooterSystem {
+		wml::VictorSpx shooterMotor{ ControlMap::shooterPort};
+		wml::VictorSpx fireMotor{ ControlMap::firePort};
+	}; ShooterSystem shooterSystem;
 };
