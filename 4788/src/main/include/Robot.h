@@ -10,6 +10,7 @@
 #include "strategies/IntakeStrategies.h"
 #include "strategies/ShooterStategies.h"
 #include "strategies/DriveSystem.h"
+#include "strategies/MagStrategies.h"
 
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
@@ -36,4 +37,5 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	Climber *climber;
 	Intake *intake;
 	Shooter *shooter;
+	Mag *mag;
 };

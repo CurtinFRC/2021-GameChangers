@@ -46,6 +46,9 @@ struct ControlMap {
 	static const int shooterPort, firePort;
 	static const double fireSpeed;
 
+	//mag
+	static const int MagPort;
+
 	// ------------------ Controls ------------------
 
 	//climber 

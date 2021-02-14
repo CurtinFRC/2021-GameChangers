@@ -52,6 +52,9 @@ const int ControlMap::firePort = 8;
 const double ControlMap::fireSpeed = 1; 
 
 
+//mag 
+const int ControlMap::MagPort = 1;
+
 
 
 
@@ -73,3 +76,5 @@ const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 //shooter 
 const tAxis ControlMap::FlywheelSpinUp{ CoDriver, XboxController::kRightThrottle };
 const tButton ControlMap::FireShooter{ CoDriver, XboxController::kY };
+
+//mag 

@@ -41,6 +41,10 @@ void Robot::RobotInit() {
 	shooter = new Shooter(robotMap.shooterSystem.shooterMotor, robotMap.shooterSystem.fireMotor);
 	shooter->SetDefault(std::make_shared<ShooterStrategy>("shooter manual", *shooter, robotMap.contGroup));
 	StrategyController::Register(shooter);
+
+	mag = new Mag(robotMap.magSystem.magMotor);
+	mag->SetDefault(std::make_shared<MagStrategy>("mag manual", *mag, robotMap.contGroup));
+	StrategyController::Register(mag);
 }
 
 void Robot::RobotPeriodic() {
@@ -52,6 +56,7 @@ void Robot::RobotPeriodic() {
 	climber->update(dt);
 	intake->update(dt);
 	shooter->update(dt);
+	mag->update(dt);
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -71,6 +76,7 @@ void Robot::TeleopInit() {
 	Schedule(climber->GetDefaultStrategy(), true);
 	Schedule(intake->GetDefaultStrategy(), true);
 	Schedule(shooter->GetDefaultStrategy(), true);
+	Schedule(mag->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 
