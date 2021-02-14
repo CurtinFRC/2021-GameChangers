@@ -46,6 +46,11 @@ struct ControlMap {
 	static const int shooterPort, firePort;
 	static const double fireSpeed;
 
+	//mag
+	static const int MagPort;
+	static bool MagToggle;
+	static const double MagSpeed;
+
 	// ------------------ Controls ------------------
 
 	//climber 
@@ -63,4 +68,7 @@ struct ControlMap {
 	//shooter
 	static const wml::controllers::tAxis FlywheelSpinUp;
 	static const wml::controllers::tButton FireShooter;
+
+	//mag 
+	static const wml::controllers::tButton MagSpin;
 };
