@@ -70,6 +70,27 @@ struct RobotMap {
 	wml::controllers::XboxController xbox2{ ControlMap::Xbox2Port };
 	wml::controllers::SmartControllerGroup contGroup{ xbox1, xbox2};
 
+	struct DriveSystem {
+
+		// Drive motors {port, encoderTicks}
+		wml::TalonSrx FL{ControlMap::FLport, 2048}, FR{ControlMap::FRport, 2048}, BL{ControlMap::BLport}, BR{ControlMap::BRport};
+
+		// Motor Grouping
+		wml::actuators::MotorVoltageController leftMotors = wml::actuators::MotorVoltageController::Group(FL, BL);
+		wml::actuators::MotorVoltageController rightMotors = wml::actuators::MotorVoltageController::Group(FR, BR);
+
+		// Gearboxes
+		wml::Gearbox LGearbox{&leftMotors, &FL};
+		wml::Gearbox RGearbox{&rightMotors, &FR};
+
+		wml::sensors::NavX navx{};
+		wml::sensors::NavXGyro gyro{navx.Angular(wml::sensors::AngularAxis::YAW)};
+
+		wml::DrivetrainConfig drivetrainConfig{LGearbox, RGearbox, &gyro, ControlMap::TrackWidth, ControlMap::TrackDepth, ControlMap::WheelRadius, ControlMap::Mass};
+		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
+		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
+	}; DriveSystem driveSystem;
+
 	struct ClimberSystem {
 		wml::TalonSrx climberMotor{ ControlMap::climberPort, 2048 };
 	}; ClimberSystem climberSystem;
@@ -79,6 +100,7 @@ struct RobotMap {
 	}; IntakeSystem intakeSystem;
 
 	struct ShooterSystem {
-
+		wml::VictorSpx shooterMotor{ ControlMap::shooterPort};
+		wml::VictorSpx fireMotor{ ControlMap::firePort};
 	}; ShooterSystem shooterSystem;
 };

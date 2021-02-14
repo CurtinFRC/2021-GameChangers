@@ -30,12 +30,10 @@ struct ControlMap {
 	// PCM1
 	static const int PCModule;
 
-	// Intake System
-	// static const int intakePort, intakeSolenoidPort1, intakeSolenoidPort2, intakeEncoderTicks;
-	// static const double IntakeAutoSpeed;
-
-	// Falcon
-	static const int falconPort;
+	// Drive System
+	static const int FLport, FRport, BLport, BRport;
+	static const double MaxDrivetrainSpeed;
+	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
 	//climber
 	static const int climberPort;
@@ -43,6 +41,10 @@ struct ControlMap {
 
 	//intake
 	static const int intakePort;
+
+	//shooter 
+	static const int shooterPort, firePort;
+	static const double fireSpeed;
 
 	// ------------------ Controls ------------------
 
@@ -54,4 +56,11 @@ struct ControlMap {
 	//intake 
 	static const wml::controllers::tAxis Intake;
 	static const wml::controllers::tButton Outake;
+
+	// Drivetrain
+	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
+
+	//shooter
+	static const wml::controllers::tAxis FlywheelSpinUp;
+	static const wml::controllers::tButton FireShooter;
 };
