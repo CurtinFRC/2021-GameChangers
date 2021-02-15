@@ -24,10 +24,10 @@ const int ControlMap::PCModule = 1;
 
 // Left Drive
 const int ControlMap::Lport = 2;
-const int ControlMap::Rport = 5;
+const int ControlMap::Rport = 4;
 
 // Drivetrain speed
-const double ControlMap::MaxDrivetrainSpeed = 0.8;
+const double ControlMap::MaxDrivetrainSpeed = 1;
 
 // Robot Values
 const double ControlMap::TrackWidth = 0.56;

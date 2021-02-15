@@ -27,8 +27,8 @@ void Robot::RobotInit() {
 	drivetrain->StartLoop(100);
 
 	// Inverts one side of our drivetrain
-	drivetrain->GetConfig().rightDrive.transmission->SetInverted(true);
-	drivetrain->GetConfig().leftDrive.transmission->SetInverted(false);
+	drivetrain->GetConfig().rightDrive.transmission->SetInverted(false);
+	drivetrain->GetConfig().leftDrive.transmission->SetInverted(true);
 
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
