@@ -58,7 +58,7 @@ void Turret::verticalPeriodic(double dt) {
 			break;
 		case SubState::ZEROING:
 			if(_vertLimit.Get() == false) {
-				_verticalAxis.transmission->SetVoltage(2);
+				_verticalAxis.transmission->SetVoltage(ControlMap::ZeroValt);
 			} else {
 				_verticalAxis.transmission->SetVoltage(0);
 				_verticalAxis.encoder->ZeroEncoder();
@@ -68,7 +68,7 @@ void Turret::verticalPeriodic(double dt) {
 		case SubState::PID:
 			_inputV = _verticalAxis.encoder->GetEncoderRotations();
 			double output = PIDcont::Calc(_inputV, _verticalGoal, ControlMap::VoltageMin, ControlMap::VoltageMax, ControlMap::VerticalAxisP, ControlMap::VerticalAxisI, ControlMap::VerticalAxisD, _sumV, _previousErrorV, dt);
-			_verticalAxis.transmission->SetVoltage(output);
+			_verticalAxis.transmission->SetVoltage(output * 12);
 			break;
 	}
 }
@@ -80,7 +80,7 @@ void Turret::rotationPeriodic(double dt) {
 			break;
 		case SubState::ZEROING:
 			if(_rotLimit.Get() == false) {
-				_rotationalAxis.transmission->SetVoltage(2);
+				_rotationalAxis.transmission->SetVoltage(ControlMap::ZeroValt);
 			} else {
 				_rotationalAxis.transmission->SetVoltage(0);
 				_rotationalAxis.encoder->ZeroEncoder();
@@ -90,7 +90,7 @@ void Turret::rotationPeriodic(double dt) {
 		case SubState::PID:
 			_inputR = _rotationalAxis.encoder->GetEncoderRotations();
 			double output = PIDcont::Calc(_inputR, _rotationGoal, ControlMap::VoltageMin, ControlMap::VoltageMax, ControlMap::RotationalAxisP, ControlMap::RotationalAxisI, ControlMap::RotationalAxisD, _sumR, _previousErrorR, dt);
-			_rotationalAxis.transmission->SetVoltage(output);
+			_rotationalAxis.transmission->SetVoltage(output * 12);
 			break;
 	}
 }
@@ -106,7 +106,7 @@ void Turret::flywheelPeriodic(double dt) {
 		case SubState::PID:
 			_inputF = _flyWheel.encoder->GetEncoderAngularVelocity();
 			double output = PIDcont::Calc(_inputF, _flyWheelGoal, ControlMap::VoltageMin, ControlMap::VoltageMax, ControlMap::FlywheelP, ControlMap::FlywheelI, ControlMap::FlywheelD, _sumF, _previousErrorF, dt);
-			_flyWheel.transmission->SetVoltage(output);
+			_flyWheel.transmission->SetVoltage(output * 12);
 			break;
 	}
 }
@@ -136,6 +136,10 @@ void Turret::setShooting() {
 
 bool Turret::isReady() {
 	return GetState() == TurretState::READY;
+}
+
+void Turret::arm() {
+	SetState(TurretState::ARMING);
 }
 
 std::string Turret::GetStateString() {

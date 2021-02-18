@@ -42,7 +42,7 @@ const double ControlMap::Mass = 50; // KG's
 // Turret
 const int ControlMap::TurretRotPort = 99;
 const int ControlMap::TurretVertPort = 99;
-const int ControlMap::TurretFlyPort = 99;
+const int ControlMap::TurretFlyPort = 4;
 const int ControlMap::RotLimitPort = 99;
 const int ControlMap::VertLimitPort = 99;
 const bool ControlMap::RotLimitInvert = false;
@@ -59,13 +59,14 @@ const double ControlMap::RotationalAxisP = 0;
 const double ControlMap::RotationalAxisI = 0;
 const double ControlMap::RotationalAxisD = 0;
 const double ControlMap::RotationalAxisDeg = 300;
-const double ControlMap::FlywheelP = 0;
+const double ControlMap::FlywheelP = 0.1;
 const double ControlMap::FlywheelI = 0;
 const double ControlMap::FlywheelD = 0;
 const double ControlMap::FlywheelMin = -1;
 const double ControlMap::FlywheelMax = 1;
-const double ControlMap::VoltageMin = -12;
-const double ControlMap::VoltageMax = 12;
+const double ControlMap::VoltageMin = -1;
+const double ControlMap::VoltageMax = 1;
+const double ControlMap::ZeroValt = 2;
 
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
@@ -73,4 +74,4 @@ const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 
 const tAxis ControlMap::VertStick{ CoDriver, XboxController::kLeftYAxis };
 const tAxis ControlMap::RotStick{ CoDriver, XboxController::kRightXAxis };
-const tAxis ControlMap::ShootTrig{ CoDriver, XboxController::kRightThrottle };
+const tAxis ControlMap::ShootTrig{ CoDriver, XboxController::kLeftThrottle };

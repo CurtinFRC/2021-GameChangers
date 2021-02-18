@@ -30,7 +30,6 @@ class Turret : public wml::devices::StateDevice<TurretState>, public wml::Strate
 		Turret(wml::Gearbox &RotationalAxis, wml::Gearbox &VerticalAxis, wml::Gearbox &FlyWheel, 
 		wml::sensors::BinarySensor &RotLimit, wml::sensors::BinarySensor &VertLimit);
 	// Functions - Public
-		void onStatePeriodic(double dt);
 		void verticalPeriodic(double dt);
 		void rotationPeriodic(double dt);
 		void flywheelPeriodic(double dt);
@@ -39,6 +38,7 @@ class Turret : public wml::devices::StateDevice<TurretState>, public wml::Strate
 		void vertical(double goal);
 		void setShooting();
 		bool isReady();
+		void arm();
 		virtual std::string GetStateString() final;
 
 	protected:

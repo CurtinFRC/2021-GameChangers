@@ -110,9 +110,10 @@ struct RobotMap {
 		wml::Gearbox turretVert{ &vertMotors, &vert, 0 };
 
 		// Fly Wheel Axis
-		wml::TalonSrx flyWheel{ControlMap::TurretFlyPort, 2048};
+		wml::VictorSpx flyWheel{ControlMap::TurretFlyPort};
+		wml::sensors::DigitalEncoder flyWheelEncoder{0, 0, 2048};
 		wml::actuators::MotorVoltageController flyWheelMotors = wml::actuators::MotorVoltageController::Group(flyWheel);
-		wml::Gearbox turretWheel{ &flyWheelMotors, &flyWheel, 0 };
+		wml::Gearbox turretWheel{ &flyWheelMotors, &flyWheelEncoder, 0 };
 
 	}; TurretSystem turretSystem;
 };
