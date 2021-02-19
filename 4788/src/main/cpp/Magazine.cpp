@@ -27,6 +27,11 @@ void Magazine::updateMagazine(double dt) {
 			_magMotorPower1 = 1; // private class _power modified by strategies/MagazineStrategies
       _magMotorPower2 = 0.6;
 			break;
+
+    case MagazineState::REVERSE: // Stowed Control
+			_magMotorPower1 = -1;
+      _magMotorPower2 = -0.6;
+			break;
   }
 
   _magMotor1.Set(_magMotorPower1);

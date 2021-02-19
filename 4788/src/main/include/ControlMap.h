@@ -38,6 +38,8 @@ struct ControlMap {
 	//Magazine 
     static const int MagMotorPort1;
   	static const int MagMotorPort2;
+	  static const bool MagOutakeToggle;
+		static const bool MagReverseToggle;
   	// static const double MagEncoderSafeZone;
 
 
@@ -47,6 +49,10 @@ struct ControlMap {
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
 
 	// Magazine
-	static const wml::controllers::tPOV Outake;
+	// static const wml::controllers::tPOV MagReverse;
+	// static const wml::controllers::tPOV Outake;
+	static const wml::controllers::tPOV ShiftMagazinePOV;
+	static const wml::controllers::tButton MagLeft;
+	static const wml::controllers::tButton MagRight;
 
 };

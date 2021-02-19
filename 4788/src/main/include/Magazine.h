@@ -3,7 +3,8 @@
 
 enum MagazineState {
   ON,
-  OFF
+  OFF,
+  REVERSE
 };
 
 class Magazine : public wml::StrategySystem {

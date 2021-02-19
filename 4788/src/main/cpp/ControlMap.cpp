@@ -5,6 +5,12 @@ using namespace wml::controllers;
 
 void ControlMap::InitsmartControllerGroup(SmartControllerGroup &contGroup) {
 	// Remap Here (map POV buttons to names etc)
+  // contGroup.GetController(ControlMap::TurretAutoAimAxis.cont).Map(ControlMap::TurretAutoAimAxis, ControlMap::TurretAutoAim, ControlMap::triggerDeadzone);
+
+  contGroup.GetController(ControlMap::ShiftMagazinePOV.cont).Map(ControlMap::ShiftMagazinePOV, {
+    { Controller::POVPos::kLeft, ControlMap::MagLeft },
+    { Controller::POVPos::kRight, ControlMap::MagRight }
+  });
 }
 
 
@@ -29,6 +35,8 @@ const int ControlMap::BLport = 99; // not using
 // Magazine
 const int ControlMap::MagMotorPort1 = 1;
 const int ControlMap::MagMotorPort2 = 8;
+const bool ControlMap::MagOutakeToggle = false;
+const bool ControlMap::MagReverseToggle = false;
 // const double ControlMap::MagEncoderSafeZone = 5;
 
 // Right Drive
@@ -50,5 +58,9 @@ const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 
 // Washing Machine Magazine
 // const tAxis ControlMap::Outake{ CoDriver, XboxController::kRightThrottle };
-const tPOV ControlMap::Outake{ CoDriver, XboxController::kLeft };
+const tPOV ControlMap::ShiftMagazinePOV{ CoDriver, 0 };
+const tButton ControlMap::MagLeft{ CoDriver, __LINE__ + 30 };
+const tButton ControlMap::MagRight{ CoDriver, __LINE__ + 30 };
+// const tPOV ControlMap::MagReverse{ CoDriver, XboxController::kLeft };
+// const tPOV ControlMap::Outake{ CoDriver, XboxController::kRight };
 
