@@ -35,8 +35,6 @@ const int ControlMap::BLport = 99; // not using
 // Magazine
 const int ControlMap::MagMotorPort1 = 1;
 const int ControlMap::MagMotorPort2 = 8;
-const bool ControlMap::MagOutakeToggle = false;
-const bool ControlMap::MagReverseToggle = false;
 // const double ControlMap::MagEncoderSafeZone = 5;
 
 // Right Drive

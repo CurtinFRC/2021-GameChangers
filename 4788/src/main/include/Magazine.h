@@ -25,8 +25,6 @@ class Magazine : public wml::StrategySystem {
 
   double _magMotorPower1; // The washing machine piece
   double _magMotorPower2;
-  // bool _toggleEnabled = false;
-  // bool _toggleMagOn = false;
 
   frc::Timer _timer;
 };
