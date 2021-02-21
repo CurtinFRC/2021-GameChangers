@@ -62,3 +62,21 @@ const tButton ControlMap::MagRight{ CoDriver, __LINE__ + 30 };
 // const tPOV ControlMap::MagReverse{ CoDriver, XboxController::kLeft };
 // const tPOV ControlMap::Outake{ CoDriver, XboxController::kRight };
 
+// Climber System
+const int ControlMap::ClimberPort = 99;
+const int ControlMap::ClimberEncoderTicks = 2048;
+const double ControlMap::ClimberSpeed = 0.5;
+const double ControlMap::ClimberAdjustSpeed = 0.2;
+const int ControlMap::ClimberJamTolerance = 10;
+
+// ------------------ Controls ------------------
+// Drive train
+// const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
+// const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
+
+// Climber
+const tButton ControlMap::ClimberUp{ Driver, XboxController::kY };
+const tButton ControlMap::ClimberDown{ Driver, XboxController::kA };
+const tButton ControlMap::ClimberActivate{ CoDriver, XboxController::kB };
+const tButton ControlMap::ClimberDeactivate{ CoDriver, XboxController::kBottom };
+const tAxis ControlMap::ClimberAdjust{ CoDriver, XboxController::kLeftYAxis };

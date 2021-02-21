@@ -38,7 +38,13 @@ struct ControlMap {
 	//Magazine 
   static const int MagMotorPort1;
   static const int MagMotorPort2;
-  // static const double MagEncoderSafeZone;
+
+	// Climber System
+	static const int ClimberPort;
+	static const int ClimberEncoderTicks;
+	static const double ClimberSpeed;
+	static const double ClimberAdjustSpeed;
+	static const int ClimberJamTolerance;
 
 
 	// ------------------ Controls ------------------
@@ -53,4 +59,8 @@ struct ControlMap {
 	static const wml::controllers::tButton MagLeft;
 	static const wml::controllers::tButton MagRight;
 
+	// Climber
+	static const wml::controllers::tButton ClimberActivate, ClimberDeactivate;
+	static const wml::controllers::tAxis ClimberAdjust;
+	static const wml::controllers::tButton ClimberUp, ClimberDown;
 };

@@ -6,6 +6,10 @@
 #include "strategies/MagazineStrategies.h"
 #include "strategies/DriveSystem.h"
 
+// Subsystems
+#include "strategies/ClimberStrats.h"
+
+
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
  public:
 	void RobotInit() override;
@@ -28,4 +32,5 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	RobotMap robotMap;
 	Magazine *magazine;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
+	Climber *climber; // Climber
 };

@@ -36,15 +36,24 @@ void Robot::RobotInit() {
 	//Register our systems to be called via strategy
 	// StrategyController::Register(drivetrain);
 	StrategyController::Register(magazine);
-	// NTProvider::Register(*magazine);
+
+	// Climber
+	climber = new Climber(robotMap.climber.climberMotor);
+	climber->SetDefault(std::make_shared<ClimberManualStrategy>("Climber Manual", *climber, robotMap.contGroup));
+
+	// Register our systems to be called via strategy
+	// StrategyController::Register(drivetrain);
+	StrategyController::Register(climber);
+	// NTProvider::Register(drivetrain);
 }
 
 void Robot::RobotPeriodic() {
   currentTimeStamp = frc::Timer::GetFPGATimestamp();
   dt = currentTimeStamp - lastTimeStamp;
 
-  StrategyController::Update(dt);
-  NTProvider::Update();
+	StrategyController::Update(dt);
+	climber->update(dt);
+	NTProvider::Update();
 
   magazine->update(dt);
 
@@ -61,10 +70,15 @@ void Robot::AutonomousPeriodic() {}
 
 // Manual Robot Logic
 void Robot::TeleopInit() {
+<<<<<<< HEAD
   Schedule(magazine->GetDefaultStrategy(), true);
 	// Schedule(drivetrain->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {
+=======
+	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
+	Schedule(climber->GetDefaultStrategy(), true);
+>>>>>>> Connor/strats
 }
 
 // Test Logic

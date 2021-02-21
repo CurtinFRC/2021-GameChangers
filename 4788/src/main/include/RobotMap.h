@@ -97,9 +97,8 @@ struct RobotMap {
 		wml::TalonSrx magMotor1{ ControlMap::MagMotorPort1 };
 		wml::VictorSpx magMotor2{ ControlMap::MagMotorPort2 };
 
-		// wml::sensors::DigitalEncoder magEncoder{ 0, 1, 2048 };
-    //wml::actuators::MotorVoltageController magMotors = wml::actuators::MotorVoltageController::Group(magMotor1, magMotor2);
-
-		// wml::Gearbox magGearbox{ &magMotors, &magMotor1 };
 	}; MagazineSystem magazineSystem;
+	struct Climber {
+		wml::TalonSrx climberMotor{ControlMap::ClimberPort, ControlMap::ClimberEncoderTicks};
+	}; Climber climber;
 };
