@@ -9,4 +9,4 @@
 [submodule "4788/WayFinder"]
 	path = 4788/WayFinder
 	url = https://github.com/A-Loose-Screw/WayFinder.git
-	branch = WayFinder2
+	branch = master
