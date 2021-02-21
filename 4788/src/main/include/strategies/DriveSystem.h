@@ -2,6 +2,8 @@
 
 #include "RobotMap.h"
 
+using Controllers = wml::controllers::SmartControllerGroup;
+
 class DrivetrainManual : public wml::Strategy {
  public:
 	DrivetrainManual(std::string name, wml::Drivetrain &drivetrain, wml::controllers::SmartControllerGroup &contGroup);

@@ -5,6 +5,12 @@ using namespace wml::controllers;
 
 void ControlMap::InitsmartControllerGroup(SmartControllerGroup &contGroup) {
 	// Remap Here (map POV buttons to names etc)
+  // contGroup.GetController(ControlMap::TurretAutoAimAxis.cont).Map(ControlMap::TurretAutoAimAxis, ControlMap::TurretAutoAim, ControlMap::triggerDeadzone);
+
+  contGroup.GetController(ControlMap::ShiftMagazinePOV.cont).Map(ControlMap::ShiftMagazinePOV, {
+    { Controller::POVPos::kLeft, ControlMap::MagLeft },
+    { Controller::POVPos::kRight, ControlMap::MagRight }
+  });
 }
 
 
@@ -23,12 +29,17 @@ const double ControlMap::TriggerDeadzone = 0.15;
 const int ControlMap::PCModule = 1;
 
 // Left Drive
-const int ControlMap::FLport = 12;
-const int ControlMap::BLport = 13;
+const int ControlMap::FLport = 2;
+const int ControlMap::BLport = 99; // not using 
+
+// Magazine
+const int ControlMap::MagMotorPort1 = 1;
+const int ControlMap::MagMotorPort2 = 8;
+// const double ControlMap::MagEncoderSafeZone = 5;
 
 // Right Drive
-const int ControlMap::FRport = 10;
-const int ControlMap::BRport = 11;
+const int ControlMap::FRport = 6;
+const int ControlMap::BRport = 99; // not using
 
 // Drivetrain speed
 const double ControlMap::MaxDrivetrainSpeed = 0.8;
@@ -39,6 +50,67 @@ const double ControlMap::TrackDepth = 0.60;
 const double ControlMap::WheelRadius = 0.0762; // In meters
 const double ControlMap::Mass = 50; // KG's
 
-// ------------------ Values ------------------
+// ------------------ Control ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
+
+// Washing Machine Magazine
+// const tAxis ControlMap::Outake{ CoDriver, XboxController::kRightThrottle };
+const tPOV ControlMap::ShiftMagazinePOV{ CoDriver, 0 };
+const tButton ControlMap::MagLeft{ CoDriver, __LINE__ + 30 };
+const tButton ControlMap::MagRight{ CoDriver, __LINE__ + 30 };
+// const tPOV ControlMap::MagReverse{ CoDriver, XboxController::kLeft };
+// const tPOV ControlMap::Outake{ CoDriver, XboxController::kRight };
+
+// Climber System
+const int ControlMap::ClimberPort = 99;
+const int ControlMap::ClimberEncoderTicks = 2048;
+const double ControlMap::ClimberSpeed = 0.5;
+const double ControlMap::ClimberAdjustSpeed = 0.2;
+const int ControlMap::ClimberJamTolerance = 10;
+
+// ------------------ Controls ------------------
+// Drive train
+// const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
+// const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
+
+// Climber
+const tButton ControlMap::ClimberUp{ Driver, XboxController::kY };
+const tButton ControlMap::ClimberDown{ Driver, XboxController::kA };
+const tButton ControlMap::ClimberActivate{ CoDriver, XboxController::kB };
+const tButton ControlMap::ClimberDeactivate{ CoDriver, XboxController::kBottom };
+const tAxis ControlMap::ClimberAdjust{ CoDriver, XboxController::kLeftYAxis };
+// Turret
+const int ControlMap::TurretRotPort = 99;
+const int ControlMap::TurretVertPort = 99;
+const int ControlMap::TurretFlyPort = 4;
+const int ControlMap::RotLimitPort = 99;
+const int ControlMap::VertLimitPort = 99;
+const bool ControlMap::RotLimitInvert = false;
+const bool ControlMap::VertLimitInvert = false;
+
+const double ControlMap::VerticalAxisMin = 0;
+const double ControlMap::VerticalAxisMax = 1;
+const double ControlMap::VerticalAxisP = 0;
+const double ControlMap::VerticalAxisI = 0;
+const double ControlMap::VerticalAxisD = 0;
+const double ControlMap::RotationalAxisMin = 0;
+const double ControlMap::RotationalAxisMax = 300;
+const double ControlMap::RotationalAxisP = 0;
+const double ControlMap::RotationalAxisI = 0;
+const double ControlMap::RotationalAxisD = 0;
+const double ControlMap::RotationalAxisDeg = 300;
+const double ControlMap::FlywheelP = 0.1;
+const double ControlMap::FlywheelI = 0;
+const double ControlMap::FlywheelD = 0;
+const double ControlMap::FlywheelMin = -1;
+const double ControlMap::FlywheelMax = 1;
+const double ControlMap::VoltageMin = -1;
+const double ControlMap::VoltageMax = 1;
+const double ControlMap::ZeroValt = 2;
+
+// ------------------ Values ------------------
+
+const tAxis ControlMap::VertStick{ CoDriver, XboxController::kLeftYAxis };
+const tAxis ControlMap::RotStick{ CoDriver, XboxController::kRightXAxis };
+const tAxis ControlMap::ShootTrig{ CoDriver, XboxController::kLeftThrottle };
