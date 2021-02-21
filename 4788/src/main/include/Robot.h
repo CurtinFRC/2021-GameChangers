@@ -8,7 +8,7 @@
 
 // Subsystems
 #include "strategies/ClimberStrats.h"
-
+#include "strategies/TurretStrategies.h"
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
  public:
@@ -33,4 +33,5 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	Magazine *magazine;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 	Climber *climber; // Climber
+	Turret *turret;
 };

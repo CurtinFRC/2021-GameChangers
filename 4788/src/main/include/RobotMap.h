@@ -45,6 +45,7 @@
 #include "control/PIDController.h"
 #include "MotionProfiling.h"
 #include "Toggle.h"
+#include "devices/StateDevice.h"
 
 #include "devices/StateDevice.h"
 #include "strategy/StrategyController.h"
@@ -73,23 +74,22 @@ struct RobotMap {
 	struct DriveSystem {
 
 		// Drive motors {port, encoderTicks}
-		wml::TalonSrx FL{ControlMap::FLport, 2048}, FR{ControlMap::FRport, 2048}, BL{ControlMap::BLport}, BR{ControlMap::BRport};
+		wml::TalonSrx FL{ControlMap::FLport, 2048}, FR{ControlMap::FRport, 2048}, BL{ControlMap::BLport}, BR{ ControlMap::BRport};
 
 		// Motor Grouping
 		wml::actuators::MotorVoltageController leftMotors = wml::actuators::MotorVoltageController::Group(FL, BL);
 		wml::actuators::MotorVoltageController rightMotors = wml::actuators::MotorVoltageController::Group(FR, BR);
 
 		// Gearboxes
-		wml::Gearbox LGearbox{&leftMotors, &FL};
-		wml::Gearbox RGearbox{&rightMotors, &FR};
+		wml::Gearbox LGearbox{ &leftMotors, &FL };
+		wml::Gearbox RGearbox{ &rightMotors, &FR };
 
-		// wml::sensors::NavX navx{};
-		// wml::sensors::NavXGyro gyro{navx.Angular(wml::sensors::AngularAxis::YAW)};
+		wml::sensors::NavX navx{};
+		wml::sensors::NavXGyro gyro{ navx.Angular(wml::sensors::AngularAxis::YAW) };
 
-		wml::DrivetrainConfig drivetrainConfig{ LGearbox, RGearbox };
-		// wml::DrivetrainConfig drivetrainConfig{LGearbox, RGearbox, &gyro, ControlMap::TrackWidth, ControlMap::TrackDepth, ControlMap::WheelRadius, ControlMap::Mass};
-		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
-		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
+		wml::DrivetrainConfig drivetrainConfig{ LGearbox, RGearbox, &gyro, ControlMap::TrackWidth, ControlMap::TrackDepth, ControlMap::WheelRadius, ControlMap::Mass };
+		wml::control::PIDGains gainsVelocity{ "Drivetrain Velocity", 1 };
+		wml::Drivetrain drivetrain{ drivetrainConfig, gainsVelocity };
 	}; DriveSystem driveSystem;
 
 	//Washing Machine Magazine
@@ -98,7 +98,33 @@ struct RobotMap {
 		wml::VictorSpx magMotor2{ ControlMap::MagMotorPort2 };
 
 	}; MagazineSystem magazineSystem;
+
+
 	struct Climber {
 		wml::TalonSrx climberMotor{ControlMap::ClimberPort, ControlMap::ClimberEncoderTicks};
 	}; Climber climber;
+
+
+	struct TurretSystem {
+		// Limit Switches
+    	wml::sensors::LimitSwitch RotLimit{ ControlMap::RotLimitPort, ControlMap::RotLimitInvert };
+    	wml::sensors::LimitSwitch VertLimit{ ControlMap::VertLimitPort, ControlMap::VertLimitInvert };
+
+		// Rotational Axis
+		wml::TalonSrx rot{ ControlMap::TurretRotPort, 2048 };
+		wml::actuators::MotorVoltageController rotMotors = wml::actuators::MotorVoltageController::Group(rot);
+		wml::Gearbox turretRot{ &rotMotors, &rot, 196 };
+
+		// Vertical Axis
+		wml::TalonSrx vert{ControlMap::TurretVertPort, 2048};
+		wml::actuators::MotorVoltageController vertMotors = wml::actuators::MotorVoltageController::Group(vert);
+		wml::Gearbox turretVert{ &vertMotors, &vert, 0 };
+
+		// Fly Wheel Axis
+		wml::VictorSpx flyWheel{ControlMap::TurretFlyPort};
+		wml::sensors::DigitalEncoder flyWheelEncoder{0, 0, 2048};
+		wml::actuators::MotorVoltageController flyWheelMotors = wml::actuators::MotorVoltageController::Group(flyWheel);
+		wml::Gearbox turretWheel{ &flyWheelMotors, &flyWheelEncoder, 0 };
+
+	}; TurretSystem turretSystem;
 };

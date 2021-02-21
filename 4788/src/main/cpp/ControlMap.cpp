@@ -80,3 +80,37 @@ const tButton ControlMap::ClimberDown{ Driver, XboxController::kA };
 const tButton ControlMap::ClimberActivate{ CoDriver, XboxController::kB };
 const tButton ControlMap::ClimberDeactivate{ CoDriver, XboxController::kBottom };
 const tAxis ControlMap::ClimberAdjust{ CoDriver, XboxController::kLeftYAxis };
+// Turret
+const int ControlMap::TurretRotPort = 99;
+const int ControlMap::TurretVertPort = 99;
+const int ControlMap::TurretFlyPort = 4;
+const int ControlMap::RotLimitPort = 99;
+const int ControlMap::VertLimitPort = 99;
+const bool ControlMap::RotLimitInvert = false;
+const bool ControlMap::VertLimitInvert = false;
+
+const double ControlMap::VerticalAxisMin = 0;
+const double ControlMap::VerticalAxisMax = 1;
+const double ControlMap::VerticalAxisP = 0;
+const double ControlMap::VerticalAxisI = 0;
+const double ControlMap::VerticalAxisD = 0;
+const double ControlMap::RotationalAxisMin = 0;
+const double ControlMap::RotationalAxisMax = 300;
+const double ControlMap::RotationalAxisP = 0;
+const double ControlMap::RotationalAxisI = 0;
+const double ControlMap::RotationalAxisD = 0;
+const double ControlMap::RotationalAxisDeg = 300;
+const double ControlMap::FlywheelP = 0.1;
+const double ControlMap::FlywheelI = 0;
+const double ControlMap::FlywheelD = 0;
+const double ControlMap::FlywheelMin = -1;
+const double ControlMap::FlywheelMax = 1;
+const double ControlMap::VoltageMin = -1;
+const double ControlMap::VoltageMax = 1;
+const double ControlMap::ZeroValt = 2;
+
+// ------------------ Values ------------------
+
+const tAxis ControlMap::VertStick{ CoDriver, XboxController::kLeftYAxis };
+const tAxis ControlMap::RotStick{ CoDriver, XboxController::kRightXAxis };
+const tAxis ControlMap::ShootTrig{ CoDriver, XboxController::kLeftThrottle };

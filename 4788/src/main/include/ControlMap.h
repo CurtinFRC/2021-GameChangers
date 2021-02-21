@@ -45,6 +45,10 @@ struct ControlMap {
 	static const double ClimberSpeed;
 	static const double ClimberAdjustSpeed;
 	static const int ClimberJamTolerance;
+	// Turret
+	static const int TurretRotPort, TurretVertPort, TurretFlyPort, RotLimitPort, VertLimitPort;
+	static const bool RotLimitInvert, VertLimitInvert;
+	static const double VerticalAxisMin, VerticalAxisMax, VerticalAxisP, VerticalAxisI, VerticalAxisD, RotationalAxisMin, RotationalAxisMax, RotationalAxisP, RotationalAxisI, RotationalAxisD, RotationalAxisDeg, FlywheelP, FlywheelI, FlywheelD, FlywheelMin, FlywheelMax, VoltageMin, VoltageMax, ZeroValt;
 
 
 	// ------------------ Controls ------------------
@@ -63,4 +67,6 @@ struct ControlMap {
 	static const wml::controllers::tButton ClimberActivate, ClimberDeactivate;
 	static const wml::controllers::tAxis ClimberAdjust;
 	static const wml::controllers::tButton ClimberUp, ClimberDown;
+	// Turret
+	static const wml::controllers::tAxis VertStick, RotStick, ShootTrig;
 };

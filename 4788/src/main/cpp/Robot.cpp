@@ -46,6 +46,12 @@ void Robot::RobotInit() {
 
 	// Nt Provider register
 	NTProvider::Register(drivetrain);
+
+	//turret
+	turret = new Turret(robotMap.turretSystem.turretRot, robotMap.turretSystem.turretVert, robotMap.turretSystem.turretWheel, robotMap.turretSystem.RotLimit, robotMap.turretSystem.VertLimit);
+	turret->SetDefault(std::make_shared<TurretManualStrategy>("Turret Manual", *turret, robotMap.contGroup));
+		StrategyController::Register(turret);
+	turret->StartLoop(100);
 }
 
 
@@ -54,6 +60,7 @@ void Robot::RobotPeriodic() {
   dt = currentTimeStamp - lastTimeStamp;
 
 	StrategyController::Update(dt);
+	
 	NTProvider::Update();
 	
 	climber->update(dt);
@@ -75,6 +82,7 @@ void Robot::TeleopInit() {
   Schedule(magazine->GetDefaultStrategy(), true);
 	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
 	Schedule(climber->GetDefaultStrategy(), true);
+	Schedule(turret->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 
