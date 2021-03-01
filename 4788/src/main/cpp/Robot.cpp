@@ -15,8 +15,6 @@ void Robot::RobotInit() {
 
 	// Create wml drivetrain
 	drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
-
-	
 	
 	// Zero Encoders
 	robotMap.driveSystem.drivetrain.GetConfig().leftDrive.encoder->ZeroEncoder();
@@ -30,6 +28,14 @@ void Robot::RobotInit() {
 	drivetrain->GetConfig().rightDrive.transmission->SetInverted(false);
 	drivetrain->GetConfig().leftDrive.transmission->SetInverted(true);
 
+	intake = new Intake(robotMap.intakeSystem.intakeMotor, robotMap.intakeSystem.intakeDown);
+	intake->SetDefault(std::make_shared<IntakeManualStrategy>("Intake Manual strat", *intake, robotMap.contGroup));
+	StrategyController::Register(intake);
+
+	mag = new Mag(robotMap.magSystem.magMotor);
+	mag->SetDefault(std::make_shared<MagManualStrategy>("Mag Manual Strategy", *mag, robotMap.contGroup));
+	StrategyController::Register(mag);
+
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);
@@ -40,6 +46,8 @@ void Robot::RobotPeriodic() {
 	dt = currentTimeStamp - lastTimeStamp;
 
 	StrategyController::Update(dt);
+	intake->update(dt);
+	mag->update(dt);
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -56,6 +64,8 @@ void Robot::AutonomousPeriodic() {}
 // Manual Robot Logic
 void Robot::TeleopInit() {
 	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
+	Schedule(intake->GetDefaultStrategy(), true);
+	Schedule(mag->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 

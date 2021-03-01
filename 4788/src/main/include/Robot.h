@@ -5,6 +5,8 @@
  */
 #include "RobotMap.h"
 #include "strategies/DriveSystem.h"
+#include "strategies/IntakeStrategy.h"
+#include "strategies/MagStrategy.h"
 
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
@@ -28,4 +30,6 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	// Istances
 	RobotMap robotMap;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
+	Intake *intake;
+	Mag *mag;
 };

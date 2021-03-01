@@ -35,6 +35,31 @@ const double ControlMap::TrackDepth = 0.60;
 const double ControlMap::WheelRadius = 0.0762; // In meters
 const double ControlMap::Mass = 50; // KG's
 
+//intake 
+const int ControlMap::IntakePort = 99;
+const int ControlMap::IntakeSolenoidPort1 = 99;
+const int ControlMap::IntakeSolenoidPort2 = 99;
+
+//mag
+const int ControlMap::MagMotorPort = 99;
+bool ControlMap::MagToggle = false;
+
+const double ControlMap::MagSpeed = 1;
+const double ControlMap::ReverseMagSpeed = -0.5;
+
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
+
+//intake
+const tButton ControlMap::IntakeActuation{ CoDriver, XboxController::kY };
+const tAxis ControlMap::Intake{ CoDriver, XboxController::kLeftThrottle };
+const tPOV ControlMap::Outake{CoDriver, XboxController::kLeft};
+
+//Mag
+const tButton ControlMap::MagToggleButton{ CoDriver, XboxController::kA };
+const tPOV ControlMap::MagReverse{ CoDriver, XboxController::kBottom };
+
+//turret
+
+//shooter 
