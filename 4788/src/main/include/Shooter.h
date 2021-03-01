@@ -3,19 +3,8 @@
 #include "strategy/StrategySystem.h"
 #include "RobotMap.h"
 
-enum class FlyWheelState {
-	OFF,
-};
-
-enum class HoodState {
-	OFF,
-};
-
-enum class TurretState {
-	OFF,
-};
-
-enum class FireState {
+enum class ShooterState {
+	ON,
 	OFF,
 };
 
@@ -27,10 +16,10 @@ class Shooter : public wml::StrategySystem {
 	//fire motor - talon srx
 	Shooter(wml::TalonFX &flyWheelMotor, wml::TalonSrx &hoodMotor, wml::TalonSrx &turretMotor, wml::TalonSrx &fireMotor);
 
-	void setFlywheel(const FlyWheelState st);
-	void setHood(const HoodState st);
-	void setTurret(const TurretState st);
-	void setFire(const FireState st);
+	void setFlywheel();
+	void setHood();
+	void setTurret();
+	void setFire();
 
 	void updateShooter(double dt);
 	void update(double dt);
@@ -41,10 +30,11 @@ class Shooter : public wml::StrategySystem {
 	wml::TalonSrx &_turretMotor;
 	wml::TalonSrx &_fireMotor;
 
-	FlyWheelState _flyWheelState{FlyWheelState::OFF};
-	TurretState _turretState{TurretState::OFF};
-	HoodState _hoodState{HoodState::OFF};
-	FireState _fireState{FireState::OFF};
+	// // FlyWheelState _flyWheelState{FlyWheelState::OFF};
+	// // TurretState _turretState{TurretState::OFF};
+	// // HoodState _hoodState{HoodState::OFF};
+	// // FireState _fireState{FireState::OFF};
+	ShooterState _shooterState{ShooterState::OFF};
 
 	double _flywheelPower;
 	double _turretPower;
