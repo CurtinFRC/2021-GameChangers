@@ -7,6 +7,7 @@
 #include "strategies/DriveSystem.h"
 #include "strategies/IntakeStrategy.h"
 #include "strategies/MagStrategy.h"
+#include "strategies/ShooterStrategy.h"
 
 
 class Robot : public frc::TimedRobot, protected wml::StrategyController, protected wml::NTProvider {
@@ -32,4 +33,5 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 	Intake *intake;
 	Mag *mag;
+	Shooter *shooter;
 };

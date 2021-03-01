@@ -100,4 +100,11 @@ struct RobotMap {
 	struct MagSystem {
 		wml::TalonSrx magMotor{ControlMap::MagMotorPort, 2048};
 	}; MagSystem magSystem;
+
+	struct ShooterSystem {
+		wml::TalonFX flyWheelMotor{ControlMap::FWPort, 2048};
+		wml::TalonSrx turretMotor{ControlMap::TPort, 2048};
+		wml::TalonSrx fireMotor{ControlMap::FPort, 2048};
+		wml::TalonSrx hoodMotor{ControlMap::HPort, 2048};
+	}; ShooterSystem shooterSystem;
 };

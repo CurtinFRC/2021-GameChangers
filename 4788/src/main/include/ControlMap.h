@@ -44,6 +44,9 @@ struct ControlMap {
 	static bool MagToggle;
 	static const double MagSpeed, ReverseMagSpeed;
 
+	//shooter 
+	static const int FWPort, TPort, FPort, HPort;
+
 	// ------------------ Controls ------------------
 	
 	// Drivetrain

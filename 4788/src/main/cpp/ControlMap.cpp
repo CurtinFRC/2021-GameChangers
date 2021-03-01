@@ -47,6 +47,12 @@ bool ControlMap::MagToggle = false;
 const double ControlMap::MagSpeed = 1;
 const double ControlMap::ReverseMagSpeed = -0.5;
 
+//shooter
+const int ControlMap::FWPort = 99;
+const int ControlMap::TPort = 99;
+const int ControlMap::FPort = 99;
+const int ControlMap::HPort = 99;
+
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
@@ -59,7 +65,5 @@ const tPOV ControlMap::Outake{CoDriver, XboxController::kLeft};
 //Mag
 const tButton ControlMap::MagToggleButton{ CoDriver, XboxController::kA };
 const tPOV ControlMap::MagReverse{ CoDriver, XboxController::kBottom };
-
-//turret
 
 //shooter 

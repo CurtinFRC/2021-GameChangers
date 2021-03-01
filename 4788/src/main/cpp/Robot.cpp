@@ -36,6 +36,10 @@ void Robot::RobotInit() {
 	mag->SetDefault(std::make_shared<MagManualStrategy>("Mag Manual Strategy", *mag, robotMap.contGroup));
 	StrategyController::Register(mag);
 
+	shooter = new Shooter(robotMap.shooterSystem.flyWheelMotor, robotMap.shooterSystem.hoodMotor, robotMap.shooterSystem.turretMotor, robotMap.shooterSystem.fireMotor);
+	shooter->SetDefault(std::make_shared<ShooterManualStrategy>("Shooter Manual strat", *shooter, robotMap.contGroup));
+	StrategyController::Register(shooter);
+
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);
@@ -48,6 +52,7 @@ void Robot::RobotPeriodic() {
 	StrategyController::Update(dt);
 	intake->update(dt);
 	mag->update(dt);
+	shooter->update(dt);
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -66,6 +71,7 @@ void Robot::TeleopInit() {
 	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
 	Schedule(intake->GetDefaultStrategy(), true);
 	Schedule(mag->GetDefaultStrategy(), true);
+	Schedule(shooter->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 

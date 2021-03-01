@@ -7,7 +7,7 @@ MagManualStrategy::MagManualStrategy(std::string name, Mag &mag, Controllers &co
 }
 
 void MagManualStrategy::OnUpdate(double dt) {
-	if (_contGroup.Get(ControlMap::MagToggleButton, wml::controllers::ONRISE)) {
+	if (_contGroup.Get(ControlMap::MagToggleButton, wml::controllers::Controller::ButtonMode::ONRISE)) {
 		if (!(ControlMap::MagToggle)) {
 			ControlMap::MagToggle = true;
 		} else {
