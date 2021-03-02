@@ -40,6 +40,9 @@ void Robot::RobotInit() {
 	shooter->SetDefault(std::make_shared<ShooterManualStrategy>("Shooter Manual strat", *shooter, robotMap.contGroup));
 	StrategyController::Register(shooter);
 
+	robotMap.controlSystem.compressor.SetTarget(wml::actuators::BinaryActuatorState::kForward);
+	robotMap.controlSystem.compressor.Update(dt);
+
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);

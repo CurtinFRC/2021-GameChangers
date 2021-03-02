@@ -21,6 +21,8 @@ const double ControlMap::TriggerDeadzone = 0.15;
 
 // PCMs
 const int ControlMap::PCModule = 1;
+const int ControlMap::PressureSensorPort = 99;
+const int ControlMap::CompressorPort = 99;
 
 // Left Drive
 const int ControlMap::Lport = 2;
@@ -53,6 +55,11 @@ const int ControlMap::TPort = 99;
 const int ControlMap::FPort = 99;
 const int ControlMap::HPort = 99;
 
+const double ControlMap::TurretMaxSpeed = 0.2;
+const double ControlMap::HoodMaxSpeed = 0.2;
+const double ControlMap::FlyWheelMaxSpeed = 0.2;  //remember this is a falcon
+const double ControlMap::FireSpeed = 0.5;
+
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
@@ -67,3 +74,7 @@ const tButton ControlMap::MagToggleButton{ CoDriver, XboxController::kA };
 const tPOV ControlMap::MagReverse{ CoDriver, XboxController::kBottom };
 
 //shooter 
+const tButton ControlMap::FireButton{ CoDriver, XboxController::kX };
+const tAxis ControlMap::HoodLM{ CoDriver, XboxController::kRightYAxis }; //stands for hood linear motion 
+const tAxis ControlMap::TurretTurn{ CoDriver, XboxController::kLeftXAxis };
+const tAxis ControlMap::SpinUp{ CoDriver, XboxController::kRightThrottle }; //flywheel spinup

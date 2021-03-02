@@ -91,6 +91,12 @@ struct RobotMap {
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
 
+	struct ControlSystem {
+		wml::sensors::PressureSensor pressureSensor{ ControlMap::PressureSensorPort };
+		wml::actuators::Compressor compressor{ ControlMap::CompressorPort }; 
+
+	}; ControlSystem controlSystem;
+
 	struct IntakeSystem {
 		wml::TalonSrx intakeMotor{ControlMap::IntakePort, 2048};
 

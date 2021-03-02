@@ -16,10 +16,10 @@ class Shooter : public wml::StrategySystem {
 	//fire motor - talon srx
 	Shooter(wml::TalonFX &flyWheelMotor, wml::TalonSrx &hoodMotor, wml::TalonSrx &turretMotor, wml::TalonSrx &fireMotor);
 
-	void setFlywheel();
-	void setHood();
-	void setTurret();
-	void setFire();
+	void setFlywheel(double power);
+	void setHood(double power );
+	void setTurret(double power );
+	void setFire(double power);
 
 	void updateShooter(double dt);
 	void update(double dt);

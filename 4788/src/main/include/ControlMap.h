@@ -29,6 +29,7 @@ struct ControlMap {
 
 	// PCM1
 	static const int PCModule;
+	static const int PressureSensorPort, CompressorPort;
 
 	// Drive System
 	static const int Lport, Rport;
@@ -46,6 +47,7 @@ struct ControlMap {
 
 	//shooter 
 	static const int FWPort, TPort, FPort, HPort;
+	static const double TurretMaxSpeed, HoodMaxSpeed, FlyWheelMaxSpeed, FireSpeed;
 
 	// ------------------ Controls ------------------
 	
@@ -60,5 +62,9 @@ struct ControlMap {
 	//Mag 
 	static const wml::controllers::tButton MagToggleButton;
 	static const wml::controllers::tPOV MagReverse;
+
+	//shooter
+	static const wml::controllers::tButton FireButton;
+	static const wml::controllers::tAxis HoodLM, TurretTurn, SpinUp;
 
 };

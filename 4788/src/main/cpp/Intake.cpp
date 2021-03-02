@@ -16,9 +16,11 @@ void Intake::updateIntake(double dt) {
 			break;
 		case IntakeStates::DEPLOYED:
 			_intakeSolenoid.SetTarget(wml::actuators::BinaryActuatorState::kForward);
-			_intakeMotor.Set(_power);
+			setPower = _power;
 			break;
 	}
+	
+	_intakeMotor.Set(setPower);
 	_intakeSolenoid.Update(dt);
 }
 
