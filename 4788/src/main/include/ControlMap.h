@@ -29,15 +29,43 @@ struct ControlMap {
 
 	// PCM1
 	static const int PCModule;
+	static const int PressureSensorPort, CompressorPort;
 
 	// Drive System
-	static const int FLport, FRport, BLport, BRport;
+	static const int Lport, Rport;
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
+	//Intake
+	static const int IntakePort;
+	static const int IntakeSolenoidPort1, IntakeSolenoidPort2;
+	static bool IntakeToggle;
+
+	//Mag
+	static const int MagMotorPort;
+	static bool MagToggle;
+	static const double MagSpeed, ReverseMagSpeed;
+
+	//shooter 
+	static const int FWPort, TPort, FPort, HPort;
+	static const double TurretMaxSpeed, HoodMaxSpeed, FlyWheelMaxSpeed, FireSpeed;
 
 	// ------------------ Controls ------------------
 	
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
+
+	//Intake 
+	static const wml::controllers::tAxis Intake;
+	static const wml::controllers::tButton IntakeActuation;
+	static const wml::controllers::tPOV Outake;
+
+	//Mag 
+	static const wml::controllers::tButton MagToggleButton;
+	static const wml::controllers::tPOV MagReverse;
+
+	//shooter
+	static const wml::controllers::tButton FireButton;
+	static const wml::controllers::tAxis HoodLM, TurretTurn, SpinUp;
+
 };
