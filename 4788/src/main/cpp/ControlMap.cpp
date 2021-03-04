@@ -25,8 +25,8 @@ const int ControlMap::PressureSensorPort = 99;
 const int ControlMap::CompressorPort = 99;
 
 // Left Drive
-const int ControlMap::Lport = 2;
-const int ControlMap::Rport = 4;
+const int ControlMap::Lport = 1;
+const int ControlMap::Rport = 2;
 
 // Drivetrain speed
 const double ControlMap::MaxDrivetrainSpeed = 1;
@@ -38,22 +38,22 @@ const double ControlMap::WheelRadius = 0.0762; // In meters
 const double ControlMap::Mass = 50; // KG's
 
 //intake 
-const int ControlMap::IntakePort = 99;
+const int ControlMap::IntakePort = 5;
 const int ControlMap::IntakeSolenoidPort1 = 99;
 const int ControlMap::IntakeSolenoidPort2 = 99;
 
 //mag
-const int ControlMap::MagMotorPort = 99;
+const int ControlMap::MagMotorPort = 4;
 bool ControlMap::MagToggle = false;
 
 const double ControlMap::MagSpeed = 1;
 const double ControlMap::ReverseMagSpeed = -0.5;
 
 //shooter
-const int ControlMap::FWPort = 99;
-const int ControlMap::TPort = 99;
-const int ControlMap::FPort = 99;
-const int ControlMap::HPort = 99;
+const int ControlMap::FWPort = 8;
+const int ControlMap::TPort = 6;
+const int ControlMap::FPort = 3;
+const int ControlMap::HPort = 7;
 
 const double ControlMap::TurretMaxSpeed = 0.2;
 const double ControlMap::HoodMaxSpeed = 0.2;

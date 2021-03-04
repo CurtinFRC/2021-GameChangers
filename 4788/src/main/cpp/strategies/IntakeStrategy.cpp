@@ -13,7 +13,7 @@ void IntakeManualStrategy::OnUpdate(double dt) {
 		if (_contGroup.Get(ControlMap::Outake)) {
 			IntakePower = -0.5;
 		} else {
-			_intake.setIntake(IntakeStates::DEPLOYED, IntakePower);
+			_intake.setIntake(IntakeStates::DEPLOYED, -IntakePower);
 		}
 	} else {
 		_intake.setIntake(IntakeStates::STOWED, 0);
