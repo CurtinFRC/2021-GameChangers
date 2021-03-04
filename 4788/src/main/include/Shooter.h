@@ -34,7 +34,7 @@ class Shooter : public wml::StrategySystem {
 	// // TurretState _turretState{TurretState::OFF};
 	// // HoodState _hoodState{HoodState::OFF};
 	// // FireState _fireState{FireState::OFF};
-	ShooterState _shooterState{ShooterState::OFF};
+	ShooterState _shooterState{ShooterState::ON};
 
 	double _flywheelPower;
 	double _turretPower;

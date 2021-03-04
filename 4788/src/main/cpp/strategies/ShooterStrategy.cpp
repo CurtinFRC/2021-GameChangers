@@ -8,9 +8,9 @@ ShooterManualStrategy::ShooterManualStrategy(std::string name, Shooter &shooter,
 }
 
 void ShooterManualStrategy::OnUpdate(double dt) {
-	double turretPower = _contGroup.Get(ControlMap::TurretTurn) > fabs(ControlMap::XboxDeadzone) ? _contGroup.Get(ControlMap::TurretTurn) : 0;
+	double turretPower = fabs(_contGroup.Get(ControlMap::TurretTurn)) > fabs(ControlMap::XboxDeadzone) ? _contGroup.Get(ControlMap::TurretTurn) : 0;
 	double flyWheelPower = fabs(_contGroup.Get(ControlMap::SpinUp)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::SpinUp) : 0;
-	double hoodPower = _contGroup.Get(ControlMap::HoodLM) > fabs(ControlMap::XboxDeadzone) ? _contGroup.Get(ControlMap::HoodLM) : 0;
+	double hoodPower = fabs(_contGroup.Get(ControlMap::HoodLM)) > fabs(ControlMap::XboxDeadzone) ? _contGroup.Get(ControlMap::HoodLM) : 0;
 
 	if (_contGroup.Get(ControlMap::FireButton)) {
 		_shooter.setFire(ControlMap::FireSpeed);
@@ -22,7 +22,7 @@ void ShooterManualStrategy::OnUpdate(double dt) {
 	hoodPower *= ControlMap::HoodMaxSpeed;
 	flyWheelPower *= ControlMap::FlyWheelMaxSpeed;
 
-	_shooter.setFlywheel(flyWheelPower);
+	_shooter.setFlywheel(-flyWheelPower);
 	_shooter.setHood(hoodPower);
 	_shooter.setTurret(turretPower);
 }

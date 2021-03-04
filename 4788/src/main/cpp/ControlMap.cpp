@@ -44,9 +44,9 @@ const int ControlMap::IntakeSolenoidPort2 = 99;
 
 //mag
 const int ControlMap::MagMotorPort = 4;
-bool ControlMap::MagToggle = false;
+bool ControlMap::MagToggle = true;
 
-const double ControlMap::MagSpeed = 1;
+const double ControlMap::MagSpeed = 0.2;
 const double ControlMap::ReverseMagSpeed = -0.5;
 
 //shooter
@@ -56,8 +56,8 @@ const int ControlMap::FPort = 3;
 const int ControlMap::HPort = 7;
 
 const double ControlMap::TurretMaxSpeed = 0.2;
-const double ControlMap::HoodMaxSpeed = 0.2;
-const double ControlMap::FlyWheelMaxSpeed = 0.2;  //remember this is a falcon
+const double ControlMap::HoodMaxSpeed = 1;
+const double ControlMap::FlyWheelMaxSpeed = 1;  //remember this is a falcon
 const double ControlMap::FireSpeed = 0.5;
 
 // ------------------ Values ------------------

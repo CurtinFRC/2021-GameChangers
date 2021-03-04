@@ -9,6 +9,8 @@ IntakeManualStrategy::IntakeManualStrategy(std::string name, Intake &intake, Con
 void IntakeManualStrategy::OnUpdate(double dt) {
 	double IntakePower = fabs(_contGroup.Get(ControlMap::Intake)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::Intake) : 0;
 
+	// _intake.setIntake(IntakeStates::DEPLOYED, -IntakePower);
+
 	if (_contGroup.Get(ControlMap::IntakeActuation, wml::controllers::Controller::ONFALL)) {
 		if (_contGroup.Get(ControlMap::Outake)) {
 			IntakePower = -0.5;
