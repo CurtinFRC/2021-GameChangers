@@ -40,8 +40,8 @@ void Robot::RobotInit() {
 	shooter->SetDefault(std::make_shared<ShooterManualStrategy>("Shooter Manual strat", *shooter, robotMap.contGroup));
 	StrategyController::Register(shooter);
 
-	robotMap.controlSystem.compressor.SetTarget(wml::actuators::BinaryActuatorState::kForward);
-	robotMap.controlSystem.compressor.Update(dt);
+
+
 
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
@@ -76,7 +76,10 @@ void Robot::TeleopInit() {
 	Schedule(mag->GetDefaultStrategy(), true);
 	Schedule(shooter->GetDefaultStrategy(), true);
 }
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+	robotMap.controlSystem.compressor.SetTarget(wml::actuators::BinaryActuatorState::kForward);
+	robotMap.controlSystem.compressor.Update(dt);
+}
 
 // Test Logic4
 void Robot::TestInit() {}

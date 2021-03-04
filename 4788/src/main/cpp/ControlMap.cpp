@@ -20,9 +20,9 @@ const double ControlMap::XboxDeadzone = 0.1;
 const double ControlMap::TriggerDeadzone = 0.15;
 
 // PCMs
-const int ControlMap::PCModule = 1;
-const int ControlMap::PressureSensorPort = 99;
-const int ControlMap::CompressorPort = 99;
+const int ControlMap::PCModule = 9;
+const int ControlMap::PressureSensorPort = 0;
+const int ControlMap::CompressorPort = 0;
 
 // Left Drive
 const int ControlMap::Lport = 1;
@@ -39,8 +39,9 @@ const double ControlMap::Mass = 50; // KG's
 
 //intake 
 const int ControlMap::IntakePort = 5;
-const int ControlMap::IntakeSolenoidPort1 = 99;
-const int ControlMap::IntakeSolenoidPort2 = 99;
+const int ControlMap::IntakeSolenoidPort1 = 1;
+const int ControlMap::IntakeSolenoidPort2 = 0;
+bool ControlMap::IntakeToggle = true;
 
 //mag
 const int ControlMap::MagMotorPort = 4;

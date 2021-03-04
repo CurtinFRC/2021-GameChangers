@@ -39,6 +39,7 @@ struct ControlMap {
 	//Intake
 	static const int IntakePort;
 	static const int IntakeSolenoidPort1, IntakeSolenoidPort2;
+	static bool IntakeToggle;
 
 	//Mag
 	static const int MagMotorPort;

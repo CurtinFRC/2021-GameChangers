@@ -11,12 +11,26 @@ void IntakeManualStrategy::OnUpdate(double dt) {
 
 	// _intake.setIntake(IntakeStates::DEPLOYED, -IntakePower);
 
-	if (_contGroup.Get(ControlMap::IntakeActuation, wml::controllers::Controller::ONFALL)) {
-		if (_contGroup.Get(ControlMap::Outake)) {
-			IntakePower = -0.5;
+	// if (_contGroup.Get(ControlMap::IntakeActuation, wml::controllers::Controller::ONFALL)) {
+	// 	if (_contGroup.Get(ControlMap::Outake)) {
+	// 		IntakePower = -0.5;
+	// 	} else {
+	// 		_intake.setIntake(IntakeStates::DEPLOYED, -IntakePower);
+	// 	}
+	// } else {
+	// 	_intake.setIntake(IntakeStates::STOWED, 0);
+	// }
+
+	if (_contGroup.Get(ControlMap::IntakeActuation, wml::controllers::Controller::ButtonMode::ONRISE)) {
+		if (!(ControlMap::IntakeToggle)) {
+			ControlMap::IntakeToggle = true;
 		} else {
-			_intake.setIntake(IntakeStates::DEPLOYED, -IntakePower);
+			ControlMap::IntakeToggle = false;
 		}
+	}
+
+	if (!(ControlMap::IntakeToggle)) {
+		_intake.setIntake(IntakeStates::DEPLOYED, IntakePower);
 	} else {
 		_intake.setIntake(IntakeStates::STOWED, 0);
 	}
