@@ -30,8 +30,8 @@ void IntakeManualStrategy::OnUpdate(double dt) {
 	}
 
 	if (!(ControlMap::IntakeToggle)) {
-		_intake.setIntake(IntakeStates::DEPLOYED, IntakePower);
+		_intake.setIntake(IntakeStates::DEPLOYED, 0);
 	} else {
-		_intake.setIntake(IntakeStates::STOWED, 0);
+		_intake.setIntake(IntakeStates::STOWED, -IntakePower);
 	}
 }

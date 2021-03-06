@@ -18,6 +18,18 @@ void MagManualStrategy::OnUpdate(double dt) {
 	if (!(ControlMap::MagToggle)) {
 		_mag.setMag(MagStates::ON);
 	} else {
-		_mag.setMag(MagStates::OFF);
+		if (_contGroup.Get(ControlMap::MagReverse, wml::controllers::Controller::ButtonMode::ONRISE)) {
+			if (!(ControlMap::ReverseMagToggle)) {
+				ControlMap::ReverseMagToggle = true;
+			} else {
+				ControlMap::ReverseMagToggle = false;
+			}
+		}
+
+		if (!(ControlMap::ReverseMagToggle)) {
+			_mag.setMag(MagStates::REVERSE);
+		} else {
+			_mag.setMag(MagStates::OFF);
+		}
 	}
 }

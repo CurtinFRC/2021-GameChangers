@@ -43,12 +43,12 @@ struct ControlMap {
 
 	//Mag
 	static const int MagMotorPort;
-	static bool MagToggle;
+	static bool MagToggle, ReverseMagToggle;
 	static const double MagSpeed, ReverseMagSpeed;
 
 	//shooter 
 	static const int FWPort, TPort, FPort, HPort;
-	static const double TurretMaxSpeed, HoodMaxSpeed, FlyWheelMaxSpeed, FireSpeed;
+	static const double TurretMaxSpeed, HoodMaxSpeed, FlyWheelMaxSpeed, FireSpeed, ReverseFireSpeed;
 
 	// ------------------ Controls ------------------
 	
@@ -62,10 +62,10 @@ struct ControlMap {
 
 	//Mag 
 	static const wml::controllers::tButton MagToggleButton;
-	static const wml::controllers::tPOV MagReverse;
+	static const wml::controllers::tButton MagReverse;
 
 	//shooter
-	static const wml::controllers::tButton FireButton;
+	static const wml::controllers::tButton FireButton, ReverseFire;
 	static const wml::controllers::tAxis HoodLM, TurretTurn, SpinUp;
 
 };

@@ -39,16 +39,17 @@ const double ControlMap::Mass = 50; // KG's
 
 //intake 
 const int ControlMap::IntakePort = 5;
-const int ControlMap::IntakeSolenoidPort1 = 1;
-const int ControlMap::IntakeSolenoidPort2 = 0;
-bool ControlMap::IntakeToggle = true;
+const int ControlMap::IntakeSolenoidPort1 = 0;
+const int ControlMap::IntakeSolenoidPort2 = 1;
+bool ControlMap::IntakeToggle = false;
 
 //mag
 const int ControlMap::MagMotorPort = 4;
 bool ControlMap::MagToggle = true;
+bool ControlMap::ReverseMagToggle = true;
 
 const double ControlMap::MagSpeed = 0.2;
-const double ControlMap::ReverseMagSpeed = -0.5;
+const double ControlMap::ReverseMagSpeed = -0.2;
 
 //shooter
 const int ControlMap::FWPort = 8;
@@ -60,6 +61,7 @@ const double ControlMap::TurretMaxSpeed = 0.2;
 const double ControlMap::HoodMaxSpeed = 1;
 const double ControlMap::FlyWheelMaxSpeed = 1;  //remember this is a falcon
 const double ControlMap::FireSpeed = 0.5;
+const double ControlMap::ReverseFireSpeed = -0.5;
 
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
@@ -72,10 +74,11 @@ const tPOV ControlMap::Outake{CoDriver, XboxController::kLeft};
 
 //Mag
 const tButton ControlMap::MagToggleButton{ CoDriver, XboxController::kA };
-const tPOV ControlMap::MagReverse{ CoDriver, XboxController::kBottom };
+const tButton ControlMap::MagReverse{ CoDriver, XboxController::kB };
 
 //shooter 
 const tButton ControlMap::FireButton{ CoDriver, XboxController::kX };
+const tButton ControlMap::ReverseFire{ CoDriver, XboxController::kBumperRight };
 const tAxis ControlMap::HoodLM{ CoDriver, XboxController::kRightYAxis }; //stands for hood linear motion 
 const tAxis ControlMap::TurretTurn{ CoDriver, XboxController::kLeftXAxis };
 const tAxis ControlMap::SpinUp{ CoDriver, XboxController::kRightThrottle }; //flywheel spinup

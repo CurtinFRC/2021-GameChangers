@@ -14,6 +14,8 @@ void ShooterManualStrategy::OnUpdate(double dt) {
 
 	if (_contGroup.Get(ControlMap::FireButton)) {
 		_shooter.setFire(ControlMap::FireSpeed);
+	} else if (_contGroup.Get(ControlMap::ReverseFire)) {
+		_shooter.setFire(ControlMap::ReverseFireSpeed);
 	} else {
 		_shooter.setFire(0);
 	}
