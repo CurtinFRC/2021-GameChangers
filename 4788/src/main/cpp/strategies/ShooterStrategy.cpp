@@ -14,8 +14,6 @@ void ShooterManualStrategy::OnUpdate(double dt) {
 
 	if (_contGroup.Get(ControlMap::FireButton)) {
 		_shooter.setFire(ControlMap::FireSpeed);
-	} else if (_contGroup.Get(ControlMap::ReverseFire)) {
-		_shooter.setFire(ControlMap::ReverseFireSpeed);
 	} else {
 		_shooter.setFire(0);
 	}
@@ -33,3 +31,8 @@ void ShooterManualStrategy::OnUpdate(double dt) {
 //left joystick is turret - turret turn 
 //right trigger
 //hood in right joystick 
+
+
+//  else if (_contGroup.Get(ControlMap::ReverseFire)) {
+// 		_shooter.setFire(ControlMap::ReverseFireSpeed);
+// 	}

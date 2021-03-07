@@ -39,7 +39,7 @@ struct ControlMap {
 	//Intake
 	static const int IntakePort;
 	static const int IntakeSolenoidPort1, IntakeSolenoidPort2;
-	static bool IntakeToggle;
+	static bool IntakeToggle, ReverseIntakeToggle;
 
 	//Mag
 	static const int MagMotorPort;
@@ -58,14 +58,15 @@ struct ControlMap {
 	//Intake 
 	static const wml::controllers::tAxis Intake;
 	static const wml::controllers::tButton IntakeActuation;
-	static const wml::controllers::tPOV Outake;
+	static const wml::controllers::tButton Outake;
 
 	//Mag 
 	static const wml::controllers::tButton MagToggleButton;
 	static const wml::controllers::tButton MagReverse;
 
 	//shooter
-	static const wml::controllers::tButton FireButton, ReverseFire;
+	static const wml::controllers::tButton FireButton;
+	static const wml::controllers::tPOV ReverseFire;
 	static const wml::controllers::tAxis HoodLM, TurretTurn, SpinUp;
 
 };

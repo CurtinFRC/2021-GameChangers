@@ -42,6 +42,7 @@ const int ControlMap::IntakePort = 5;
 const int ControlMap::IntakeSolenoidPort1 = 0;
 const int ControlMap::IntakeSolenoidPort2 = 1;
 bool ControlMap::IntakeToggle = false;
+bool ControlMap::ReverseIntakeToggle = false;
 
 //mag
 const int ControlMap::MagMotorPort = 4;
@@ -70,15 +71,15 @@ const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 //intake
 const tButton ControlMap::IntakeActuation{ CoDriver, XboxController::kY };
 const tAxis ControlMap::Intake{ CoDriver, XboxController::kLeftThrottle };
-const tPOV ControlMap::Outake{CoDriver, XboxController::kLeft};
+const tButton ControlMap::Outake{CoDriver, XboxController::kBumperLeft };
 
 //Mag
 const tButton ControlMap::MagToggleButton{ CoDriver, XboxController::kA };
 const tButton ControlMap::MagReverse{ CoDriver, XboxController::kB };
 
 //shooter 
-const tButton ControlMap::FireButton{ CoDriver, XboxController::kX };
-const tButton ControlMap::ReverseFire{ CoDriver, XboxController::kBumperRight };
+const tButton ControlMap::FireButton{ CoDriver, XboxController::kBumperRight };
+const tPOV ControlMap::ReverseFire{ CoDriver, XboxController::kBottom };
 const tAxis ControlMap::HoodLM{ CoDriver, XboxController::kRightYAxis }; //stands for hood linear motion 
 const tAxis ControlMap::TurretTurn{ CoDriver, XboxController::kLeftXAxis };
 const tAxis ControlMap::SpinUp{ CoDriver, XboxController::kRightThrottle }; //flywheel spinup
