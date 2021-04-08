@@ -60,7 +60,7 @@ const int ControlMap::HPort = 7;
 
 const double ControlMap::TurretMaxSpeed = 0.2;
 const double ControlMap::HoodMaxSpeed = 1;
-const double ControlMap::FlyWheelMaxSpeed = 1;  //remember this is a falcon
+double ControlMap::FlyWheelMaxSpeed = 0.8;  //remember this is a falcon
 const double ControlMap::FireSpeed = 0.5;
 const double ControlMap::ReverseFireSpeed = -0.5;
 
@@ -83,3 +83,4 @@ const tPOV ControlMap::ReverseFire{ CoDriver, XboxController::kBottom };
 const tAxis ControlMap::HoodLM{ CoDriver, XboxController::kRightYAxis }; //stands for hood linear motion 
 const tAxis ControlMap::TurretTurn{ CoDriver, XboxController::kLeftXAxis };
 const tAxis ControlMap::SpinUp{ CoDriver, XboxController::kRightThrottle }; //flywheel spinup
+const tButton ControlMap::Speed{ Driver, XboxController::kX };

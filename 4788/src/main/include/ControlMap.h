@@ -48,7 +48,8 @@ struct ControlMap {
 
 	//shooter 
 	static const int FWPort, TPort, FPort, HPort;
-	static const double TurretMaxSpeed, HoodMaxSpeed, FlyWheelMaxSpeed, FireSpeed, ReverseFireSpeed;
+	static const double TurretMaxSpeed, HoodMaxSpeed, FireSpeed, ReverseFireSpeed;
+	static double FlyWheelMaxSpeed;
 
 	// ------------------ Controls ------------------
 	
@@ -68,5 +69,5 @@ struct ControlMap {
 	static const wml::controllers::tButton FireButton;
 	static const wml::controllers::tPOV ReverseFire;
 	static const wml::controllers::tAxis HoodLM, TurretTurn, SpinUp;
-
+	static const wml::controllers::tButton Speed;
 };

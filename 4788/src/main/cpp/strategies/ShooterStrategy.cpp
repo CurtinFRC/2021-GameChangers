@@ -19,6 +19,11 @@ void ShooterManualStrategy::OnUpdate(double dt) {
 		_shooter.setFire(0);
 	}
 
+	if (_contGroup.Get(ControlMap::Speed)) {
+		ControlMap::FlyWheelMaxSpeed = 0.9;
+		std::cout << "max speed" << ControlMap::FlyWheelMaxSpeed << std::endl;
+	} 
+
 	turretPower *= ControlMap::TurretMaxSpeed;
 	hoodPower *= ControlMap::HoodMaxSpeed;
 	flyWheelPower *= ControlMap::FlyWheelMaxSpeed;
