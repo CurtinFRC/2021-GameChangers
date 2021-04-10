@@ -60,7 +60,7 @@ const int ControlMap::HPort = 7;
 
 const double ControlMap::TurretMaxSpeed = 0.2;
 const double ControlMap::HoodMaxSpeed = 1;
-double ControlMap::FlyWheelMaxSpeed = 0.8;  //remember this is a falcon
+double ControlMap::FlyWheelMaxSpeed = 1;  //remember this is a falcon
 const double ControlMap::FireSpeed = 0.5;
 const double ControlMap::ReverseFireSpeed = -0.5;
 
