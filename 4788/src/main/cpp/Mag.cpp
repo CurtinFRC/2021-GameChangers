@@ -2,8 +2,9 @@
 
 Mag::Mag(wml::TalonSrx &magMotor) : _magMotor(magMotor) {}
 
-void Mag::setMag(const MagStates st) {
+void Mag::setMag(const MagStates st, double power) {
 	_magState = st;
+	_power = power;
 }
 
 void Mag::updateMag(double dt) {
@@ -14,10 +15,11 @@ void Mag::updateMag(double dt) {
 			setPower = 0;
 			break;
 		case MagStates::ON:
-			setPower = ControlMap::MagSpeed;
+			_power *= ControlMap::MagMaxSpeed;
+			setPower = _power;
 			break;
 		case MagStates::REVERSE:
-			setPower = ControlMap::ReverseMagSpeed;
+			setPower = 0;
 			break;
 	}
 

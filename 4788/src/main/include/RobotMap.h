@@ -73,15 +73,15 @@ struct RobotMap {
 	struct DriveSystem {
 
 		// Drive motors {port, encoderTicks}
-		wml::TalonFX RD{ControlMap::Lport, 2048}, LD{ControlMap::Rport, 2048}; //right drive and left drive 
+		wml::TalonSrx FL{ControlMap::FLport, 2048}, BL{ControlMap::BLport, 2048}, FR{ControlMap::FRport, 2048}, BR{ControlMap::BRport, 2048}; //right drive and left drive 
 
 		// Motor Grouping
-		wml::actuators::MotorVoltageController leftMotors = wml::actuators::MotorVoltageController::Group(RD);
-		wml::actuators::MotorVoltageController rightMotors = wml::actuators::MotorVoltageController::Group(LD);
+		wml::actuators::MotorVoltageController leftMotors = wml::actuators::MotorVoltageController::Group(FL, BL);
+		wml::actuators::MotorVoltageController rightMotors = wml::actuators::MotorVoltageController::Group(FR, BR);
 
 		// Gearboxes
-		wml::Gearbox LGearbox{&leftMotors, &RD};
-		wml::Gearbox RGearbox{&rightMotors, &LD};
+		wml::Gearbox LGearbox{&leftMotors, &FL};
+		wml::Gearbox RGearbox{&rightMotors, &FR};
 
 		wml::sensors::NavX navx{};
 		wml::sensors::NavXGyro gyro{navx.Angular(wml::sensors::AngularAxis::YAW)};
@@ -92,25 +92,24 @@ struct RobotMap {
 	}; DriveSystem driveSystem;
 
 	struct ControlSystem {
-		wml::sensors::PressureSensor pressureSensor{ ControlMap::PressureSensorPort };
-		wml::actuators::Compressor compressor{ ControlMap::CompressorPort }; 
 
 	}; ControlSystem controlSystem;
 
 	struct IntakeSystem {
-		wml::TalonSrx intakeMotor{ControlMap::IntakePort, 2048};
-
-		wml::actuators::DoubleSolenoid intakeDown{ControlMap::PCModule, ControlMap::IntakeSolenoidPort1, ControlMap::IntakeSolenoidPort2, 0.1};
+		wml::VictorSpx intakeMotor{ControlMap::IntakePort};
 	}; IntakeSystem intakeSystem;
 
 	struct MagSystem {
-		wml::TalonSrx magMotor{ControlMap::MagMotorPort, 2048};
+		wml::TalonSrx magMotor{ControlMap::MagMotorPort};
 	}; MagSystem magSystem;
 
 	struct ShooterSystem {
-		wml::TalonFX flyWheelMotor{ControlMap::FWPort, 2048};
-		wml::TalonSrx turretMotor{ControlMap::TPort, 2048};
-		wml::TalonSrx fireMotor{ControlMap::FPort, 2048};
-		wml::TalonSrx hoodMotor{ControlMap::HPort, 2048};
+		wml::VictorSpx flyWheelMotor{ControlMap::FWPort};
+		wml::VictorSpx fireMotor{ControlMap::FPort};
 	}; ShooterSystem shooterSystem;
+
+	struct ClimberSystem {
+		wml::VictorSpx climberMotor{ ControlMap::ClimberPort};
+	}; ClimberSystem climberSystem;
+	
 };

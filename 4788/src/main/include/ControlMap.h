@@ -28,28 +28,36 @@ struct ControlMap {
 	static const double TriggerDeadzone;
 
 	// PCM1
-	static const int PCModule;
-	static const int PressureSensorPort, CompressorPort;
+	// static const int PCModule;
+	// static const int PressureSensorPort, CompressorPort;
 
 	// Drive System
-	static const int Lport, Rport;
+	static const int FLport, FRport, BLport, BRport;
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
 	//Intake
 	static const int IntakePort;
-	static const int IntakeSolenoidPort1, IntakeSolenoidPort2;
-	static bool IntakeToggle, ReverseIntakeToggle;
+	// static const int IntakeSolenoidPort1, IntakeSolenoidPort2;
+	// static bool IntakeToggle, ReverseIntakeToggle;
 
 	//Mag
 	static const int MagMotorPort;
-	static bool MagToggle, ReverseMagToggle;
-	static const double MagSpeed, ReverseMagSpeed;
+	// static bool MagToggle, ReverseMagToggle;
+	// static const double MagSpeed, ReverseMagSpeed;
+	static const double MagMaxSpeed;
+
 
 	//shooter 
-	static const int FWPort, TPort, FPort, HPort;
-	static const double TurretMaxSpeed, HoodMaxSpeed, FireSpeed, ReverseFireSpeed;
+	static const int FWPort, FPort;
+	// static const int TPort, HPort;
+	// static const double TurretMaxSpeed, HoodMaxSpeed;
+	static const double FireSpeed, ReverseFireSpeed;
 	static double FlyWheelMaxSpeed;
+
+	//climber 
+	// static bool ClimberToggle;
+	static const int ClimberPort;
 
 	// ------------------ Controls ------------------
 	
@@ -58,16 +66,23 @@ struct ControlMap {
 
 	//Intake 
 	static const wml::controllers::tAxis Intake;
-	static const wml::controllers::tButton IntakeActuation;
+	// static const wml::controllers::tButton IntakeActuation;
 	static const wml::controllers::tButton Outake;
 
 	//Mag 
-	static const wml::controllers::tButton MagToggleButton;
-	static const wml::controllers::tButton MagReverse;
+	// static const wml::controllers::tButton MagToggleButton;
+	// static const wml::controllers::tButton MagReverse;
+	static const wml::controllers::tAxis MagTurn;
+	
 
 	//shooter
 	static const wml::controllers::tButton FireButton;
-	static const wml::controllers::tPOV ReverseFire;
-	static const wml::controllers::tAxis HoodLM, TurretTurn, SpinUp;
-	static const wml::controllers::tButton Speed;
+	static const wml::controllers::tButton ReverseFire;
+	// static const wml::controllers::tAxis HoodLM, TurretTurn, 
+	static const wml::controllers::tAxis SpinUp;
+	// static const wml::controllers::tButton Speed;
+
+	//climber 
+	static const wml::controllers::tButton ClimberActuation;
+	static const wml::controllers::tAxis ClimberPower;
 };

@@ -7,29 +7,11 @@ MagManualStrategy::MagManualStrategy(std::string name, Mag &mag, Controllers &co
 }
 
 void MagManualStrategy::OnUpdate(double dt) {
-	if (_contGroup.Get(ControlMap::MagToggleButton, wml::controllers::Controller::ButtonMode::ONRISE)) {
-		if (!(ControlMap::MagToggle)) {
-			ControlMap::MagToggle = true;
-		} else {
-			ControlMap::MagToggle = false;
-		}
-	}
+	double MagPower = fabs(_contGroup.Get(ControlMap::MagTurn)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::MagTurn) : 0;
 
-	if (!(ControlMap::MagToggle)) {
-		_mag.setMag(MagStates::ON);
+	if (fabs(MagPower) > 0) {
+		_mag.setMag(MagStates::ON, MagPower);
 	} else {
-		if (_contGroup.Get(ControlMap::MagReverse, wml::controllers::Controller::ButtonMode::ONRISE)) {
-			if (!(ControlMap::ReverseMagToggle)) {
-				ControlMap::ReverseMagToggle = true;
-			} else {
-				ControlMap::ReverseMagToggle = false;
-			}
-		}
-
-		if (!(ControlMap::ReverseMagToggle)) {
-			_mag.setMag(MagStates::REVERSE);
-		} else {
-			_mag.setMag(MagStates::OFF);
-		}
+		_mag.setMag(MagStates::OFF, 0);
 	}
 }

@@ -10,15 +10,14 @@ enum class IntakeStates {
 
 class Intake : public wml::StrategySystem {
  public:
-	Intake(wml::TalonSrx &intakeMotor, wml::actuators::DoubleSolenoid &intakeSolenoid);
+	Intake(wml::VictorSpx &intakeMotor);
 
 	void setIntake(const IntakeStates st, double power = 0);
 
 	void updateIntake(double dt);
 	void update(double dt);
  private:
-	wml::TalonSrx &_intakeMotor;
-	wml::actuators::DoubleSolenoid &_intakeSolenoid;
+	wml::VictorSpx &_intakeMotor;
 
 	IntakeStates _intakeState{ IntakeStates::STOWED};
 

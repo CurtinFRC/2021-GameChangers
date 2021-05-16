@@ -13,7 +13,7 @@ class Mag : public wml::StrategySystem {
  public:
 	Mag(wml::TalonSrx &magMotor);
 
-	void setMag(const MagStates st);
+	void setMag(const MagStates st, double power);
 
 	void updateMag(double dt);
 	void update(double dt);

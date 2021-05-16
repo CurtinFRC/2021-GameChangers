@@ -7,7 +7,6 @@ void ControlMap::InitsmartControllerGroup(SmartControllerGroup &contGroup) {
 	// Remap Here (map POV buttons to names etc)
 }
 
-
 // ------------------ Values ------------------
 
 
@@ -19,17 +18,16 @@ const int ControlMap::Xbox2Port = 1;
 const double ControlMap::XboxDeadzone = 0.1;
 const double ControlMap::TriggerDeadzone = 0.15;
 
-// PCMs
-const int ControlMap::PCModule = 9;
-const int ControlMap::PressureSensorPort = 0;
-const int ControlMap::CompressorPort = 0;
-
 // Left Drive
-const int ControlMap::Lport = 1;
-const int ControlMap::Rport = 2;
+const int ControlMap::FLport = 1;
+const int ControlMap::BLport = 2;
+
+//Right drive 
+const int ControlMap::FRport = 3;
+const int ControlMap::BRport = 4;
 
 // Drivetrain speed
-const double ControlMap::MaxDrivetrainSpeed = 0.8;
+const double ControlMap::MaxDrivetrainSpeed = 1;
 
 // Robot Values
 const double ControlMap::TrackWidth = 0.56;
@@ -39,48 +37,41 @@ const double ControlMap::Mass = 50; // KG's
 
 //intake 
 const int ControlMap::IntakePort = 5;
-const int ControlMap::IntakeSolenoidPort1 = 0;
-const int ControlMap::IntakeSolenoidPort2 = 1;
-bool ControlMap::IntakeToggle = false;
-bool ControlMap::ReverseIntakeToggle = false;
 
 //mag
-const int ControlMap::MagMotorPort = 4;
-bool ControlMap::MagToggle = true;
-bool ControlMap::ReverseMagToggle = true;
+const int ControlMap::MagMotorPort = 6;
 
-const double ControlMap::MagSpeed = 0.2;
-const double ControlMap::ReverseMagSpeed = -0.2;
+const double ControlMap::MagMaxSpeed = 0.7;
 
 //shooter
-const int ControlMap::FWPort = 8;
-const int ControlMap::TPort = 6;
-const int ControlMap::FPort = 3;
-const int ControlMap::HPort = 7;
+const int ControlMap::FWPort = 8; //flywheel
+const int ControlMap::FPort = 7; //fire 
 
-const double ControlMap::TurretMaxSpeed = 0.2;
-const double ControlMap::HoodMaxSpeed = 1;
-double ControlMap::FlyWheelMaxSpeed = 1;  //remember this is a falcon
+double ControlMap::FlyWheelMaxSpeed = 1;
 const double ControlMap::FireSpeed = 0.5;
 const double ControlMap::ReverseFireSpeed = -0.5;
+
+const int ControlMap::ClimberPort = 9;
+
+
 
 // ------------------ Values ------------------
 const tAxis ControlMap::DrivetrainLeft{ Driver, XboxController::kLeftYAxis };
 const tAxis ControlMap::DrivetrainRight{ Driver, XboxController::kRightYAxis };
 
 //intake
-const tButton ControlMap::IntakeActuation{ CoDriver, XboxController::kY };
 const tAxis ControlMap::Intake{ CoDriver, XboxController::kLeftThrottle };
-const tButton ControlMap::Outake{CoDriver, XboxController::kBumperLeft };
+const tButton ControlMap::Outake{CoDriver, XboxController::kX };
 
 //Mag
-const tButton ControlMap::MagToggleButton{ CoDriver, XboxController::kA };
-const tButton ControlMap::MagReverse{ CoDriver, XboxController::kB };
+const tAxis ControlMap::MagTurn{ CoDriver, XboxController::kRightXAxis};
 
 //shooter 
 const tButton ControlMap::FireButton{ CoDriver, XboxController::kBumperRight };
-const tPOV ControlMap::ReverseFire{ CoDriver, XboxController::kBottom };
-const tAxis ControlMap::HoodLM{ CoDriver, XboxController::kRightYAxis }; //stands for hood linear motion 
-const tAxis ControlMap::TurretTurn{ CoDriver, XboxController::kLeftXAxis };
+const tButton ControlMap::ReverseFire{ CoDriver, XboxController::kY };
+
 const tAxis ControlMap::SpinUp{ CoDriver, XboxController::kRightThrottle }; //flywheel spinup
-const tButton ControlMap::Speed{ Driver, XboxController::kX };
+
+//climber
+const tAxis ControlMap::ClimberPower{ CoDriver, XboxController::kLeftYAxis};
+const tButton ControlMap::ClimberActuation{ CoDriver, XboxController::kB};
