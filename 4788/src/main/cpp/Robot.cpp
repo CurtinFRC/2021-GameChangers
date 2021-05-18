@@ -25,6 +25,23 @@ void Robot::RobotInit() {
 	// Inverts one side of our drivetrain
 	drivetrain->GetConfig().rightDrive.transmission->SetInverted(false);
 	drivetrain->GetConfig().leftDrive.transmission->SetInverted(true);
+	robotMap.driveSystem.FR.SetInverted(true);
+
+	intake = new Intake(robotMap.intakeSystem.intakeMotor);
+	intake->SetDefault(std::make_shared<IntakeManualStrategy>("Intake Manual strat", *intake, robotMap.contGroup));
+	StrategyController::Register(intake);
+
+	mag = new Mag(robotMap.magSystem.magMotor);
+	mag->SetDefault(std::make_shared<MagManualStrategy>("Mag Manual Strategy", *mag, robotMap.contGroup));
+	StrategyController::Register(mag);
+
+	shooter = new Shooter(robotMap.shooterSystem.flyWheelMotor, robotMap.shooterSystem.fireMotor);
+	shooter->SetDefault(std::make_shared<ShooterManualStrategy>("Shooter Manual strat", *shooter, robotMap.contGroup));
+	StrategyController::Register(shooter);
+
+	climber = new Climber(robotMap.climberSystem.climberMotor);
+	climber->SetDefault(std::make_shared<ClimberManualStrategy>("Climber Manual Strategy", *climber, robotMap.contGroup));
+	StrategyController::Register(climber);
 
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
@@ -49,9 +66,10 @@ void Robot::RobotPeriodic() {
 
 	// Update our controllers and strategy
 	StrategyController::Update(dt);
-	climber->update(dt);
 	intake->update(dt);
+	mag->update(dt);
 	shooter->update(dt);
+	climber->update(dt);
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -67,10 +85,11 @@ void Robot::AutonomousPeriodic() {}
 
 // Manual Robot Logic
 void Robot::TeleopInit() {
-	Schedule(drivetrain->GetDefaultStrategy(), true);
-	Schedule(climber->GetDefaultStrategy(), true);
+	Schedule(drivetrain->GetDefaultStrategy(), true); // Use manual strategy
 	Schedule(intake->GetDefaultStrategy(), true);
+	Schedule(mag->GetDefaultStrategy(), true);
 	Schedule(shooter->GetDefaultStrategy(), true);
+	Schedule(climber->GetDefaultStrategy(), true);
 }
 void Robot::TeleopPeriodic() {}
 

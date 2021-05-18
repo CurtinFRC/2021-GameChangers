@@ -3,22 +3,23 @@
 #include "strategy/StrategySystem.h"
 #include "RobotMap.h"
 
-enum class ClimberState {
-	MANUAL
+enum class ClimberStates {
+	UP, 
+	DOWN
 };
 
 class Climber : public wml::StrategySystem {
- public:
-	Climber(wml::TalonSrx &climberMotor);
+	public: 
+		Climber(wml::VictorSpx &climberMotor);
 
-	void setClimber(const ClimberState st, double power = 0);
+		void setClimber(const ClimberStates cs, double power = 0);
 
-	void updateClimber(double dt);
-	void update(double dt);
- private:
-	wml::TalonSrx &_climberMotor;
+		void updateClimber(double dt);
+		void update(double dt);
+	private: 
+		wml::VictorSpx &_climberMotor;
+		
+		ClimberStates _climberStates{ ClimberStates::DOWN };
 
-	ClimberState _climberState{ ClimberState::MANUAL };
-	double setPower = 0;
-	double _power;
+		double _power;
 };

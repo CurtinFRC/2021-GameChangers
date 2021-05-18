@@ -1,22 +1,32 @@
 #include "Shooter.h"
 
-Shooter::Shooter(wml::VictorSpx &shooterMotor, wml::VictorSpx &fireMotor) : _shooterMotor(shooterMotor), _fireMotor(fireMotor) {}
+Shooter::Shooter(wml::VictorSpx &flyWheelMotor, wml::VictorSpx &fireMotor) : _flyWheelMotor(flyWheelMotor), _fireMotor(fireMotor) {}
 
-void Shooter::setShooter(const ShooterState st, double power) {
-	_shooterState = st;
-	_power = power;
+void Shooter::setFlywheel(double power) {
+	_flywheelPower = power;
 }
 
-void Shooter::setFire(const ShooterState st, double power) {
+void Shooter::setFire(double power) {
 	_firePower = power;
 }
 
 void Shooter::updateShooter(double dt) {
-	setPower = _power;
-	firePower = _firePower;
+	double setFlyPower = 0;
+	double setFirePower = 0;
 
-	_fireMotor.Set(firePower);
-	_shooterMotor.Set(setPower);
+	switch (_shooterState) {
+		case ShooterState::ON:
+			setFlyPower = _flywheelPower;
+			setFirePower = _firePower;
+			break;
+		case ShooterState::OFF:
+			setFlyPower = 0;
+			setFirePower = 0;
+			break;
+	}
+
+	_flyWheelMotor.Set(setFlyPower);
+	_fireMotor.Set(setFirePower);
 }
 
 void Shooter::update(double dt) {
