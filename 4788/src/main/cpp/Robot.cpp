@@ -13,7 +13,6 @@ void Robot::RobotInit() {
 	// Init the controllers
 	ControlMap::InitsmartControllerGroup(robotMap.contGroup);
 
-	// Create wml drivetrain
 	drivetrain = new Drivetrain(robotMap.driveSystem.drivetrainConfig, robotMap.driveSystem.gainsVelocity);
 	
 	// Zero Encoders
@@ -27,6 +26,7 @@ void Robot::RobotInit() {
 	// Inverts one side of our drivetrain
 	drivetrain->GetConfig().rightDrive.transmission->SetInverted(false);
 	drivetrain->GetConfig().leftDrive.transmission->SetInverted(true);
+
 	robotMap.driveSystem.FR.SetInverted(true);
 
 	intake = new Intake(robotMap.intakeSystem.intakeMotor);
@@ -48,12 +48,29 @@ void Robot::RobotInit() {
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);
+
+	climber = new Climber(robotMap.climberSystem.climberMotor);
+	climber->SetDefault(std::make_shared<ClimberStrategy>("Climber Manual", *climber, robotMap.contGroup));
+	StrategyController::Register(climber);
+
+	intake = new Intake(robotMap.intakeSystem.intakeMotor);
+	intake->SetDefault(std::make_shared<IntakeStrategy>("Intake manual", *intake, robotMap.contGroup));
+	StrategyController::Register(intake);
+
+	shooter = new Shooter(robotMap.shooterSystem.shooterMotor, robotMap.shooterSystem.fireMotor);
+	shooter->SetDefault(std::make_shared<ShooterStrategy>("shooter manual", *shooter, robotMap.contGroup));
+	StrategyController::Register(shooter);
+
+	mag = new Mag(robotMap.magSystem.magMotor);
+	mag->SetDefault(std::make_shared<MagStrategy>("mag manual", *mag, robotMap.contGroup));
+	StrategyController::Register(mag);
 }
 
 void Robot::RobotPeriodic() {
 	currentTimeStamp = Timer::GetFPGATimestamp();
 	dt = currentTimeStamp - lastTimeStamp;
 
+	// Update our controllers and strategy
 	StrategyController::Update(dt);
 	intake->update(dt);
 	mag->update(dt);
@@ -82,6 +99,6 @@ void Robot::TeleopInit() {
 }
 void Robot::TeleopPeriodic() {}
 
-// Test Logic4
+// Test Logic
 void Robot::TestInit() {}
 void Robot::TestPeriodic() {}

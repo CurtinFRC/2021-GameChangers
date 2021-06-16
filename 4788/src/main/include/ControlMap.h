@@ -60,7 +60,16 @@ struct ControlMap {
 	static const int ClimberPort;
 
 	// ------------------ Controls ------------------
-	
+
+	//climber 
+	static const wml::controllers::tAxis ClimberUp;
+	static const wml::controllers::tAxis ClimberDown;
+	static const wml::controllers::tButton DeployClimber;
+
+	//intake 
+	static const wml::controllers::tAxis Intake;
+	static const wml::controllers::tButton Outake;
+
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
 

@@ -4,6 +4,11 @@
  * Local Files
  */
 #include "RobotMap.h"
+
+// Subsystems
+#include "strategies/ClimberStrategies.h"
+#include "strategies/IntakeStrategies.h"
+#include "strategies/ShooterStategies.h"
 #include "strategies/DriveSystem.h"
 #include "strategies/IntakeStrategy.h"
 #include "strategies/MagStrategy.h"
@@ -29,7 +34,7 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
 	void TestPeriodic() override;
 
  private:
-	// Istances
+	// Instances
 	RobotMap robotMap;
 	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 	Intake *intake;

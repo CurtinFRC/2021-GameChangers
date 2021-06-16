@@ -8,6 +8,7 @@ void Climber::setClimber(const ClimberStates cs, double power) {
 }
 
 void Climber::updateClimber(double dt) {
+
 	double setPower = 0;
 
 	switch (_climberStates) {
@@ -18,6 +19,7 @@ void Climber::updateClimber(double dt) {
 				setPower = _power;
 				break;
 	}
+
 	_climberMotor.Set(setPower);
 }
 
