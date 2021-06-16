@@ -73,7 +73,7 @@ struct RobotMap {
 	struct DriveSystem {
 
 		// Drive motors {port, encoderTicks}
-		wml::TalonSrx FL{ControlMap::FLport, 2048}, FR{ControlMap::FRport, 2048}, BL{ControlMap::BLport}, BR{ControlMap::BRport};
+		wml::TalonSrx FL{ControlMap::FLport, 2048}, BL{ControlMap::BLport, 2048}, FR{ControlMap::FRport, 2048}, BR{ControlMap::BRport, 2048}; //right drive and left drive 
 
 		// Motor Grouping
 		wml::actuators::MotorVoltageController leftMotors = wml::actuators::MotorVoltageController::Group(FL, BL);
@@ -90,21 +90,25 @@ struct RobotMap {
 		wml::control::PIDGains gainsVelocity{"Drivetrain Velocity", 1};
 		wml::Drivetrain drivetrain{drivetrainConfig, gainsVelocity};
 	}; DriveSystem driveSystem;
+  
+	struct ControlSystem {
 
-	struct ClimberSystem {
-		wml::TalonSrx climberMotor{ ControlMap::climberPort, 2048 };
-	}; ClimberSystem climberSystem;
+	}; ControlSystem controlSystem;
 
 	struct IntakeSystem {
-		wml::VictorSpx intakeMotor{ ControlMap::intakePort};
+		wml::VictorSpx intakeMotor{ControlMap::IntakePort};
 	}; IntakeSystem intakeSystem;
 
+	struct MagSystem {
+		wml::TalonSrx magMotor{ControlMap::MagMotorPort};
+	}; MagSystem magSystem;
+
 	struct ShooterSystem {
-		wml::VictorSpx shooterMotor{ ControlMap::shooterPort};
-		wml::VictorSpx fireMotor{ ControlMap::firePort};
+		wml::VictorSpx flyWheelMotor{ControlMap::FWPort};
+		wml::VictorSpx fireMotor{ControlMap::FPort};
 	}; ShooterSystem shooterSystem;
 
-	struct MagSystem {
-		wml::TalonSrx magMotor{ ControlMap::MagPort, 2048};
-	}; MagSystem magSystem;
+	struct ClimberSystem {
+		wml::VictorSpx climberMotor{ ControlMap::ClimberPort};
+	}; ClimberSystem climberSystem;
 };
