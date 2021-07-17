@@ -79,7 +79,7 @@ const tButton ControlMap::MagReverse{ CoDriver, XboxController::kB };
 
 //shooter 
 const tButton ControlMap::FireButton{ CoDriver, XboxController::kBumperRight };
-const tPOV ControlMap::ReverseFire{ CoDriver, XboxController::kBottom };
+const tButton ControlMap::ReverseFire{ CoDriver, XboxController::kBumperLeft };
 const tAxis ControlMap::HoodLM{ CoDriver, XboxController::kRightYAxis }; //stands for hood linear motion 
 const tAxis ControlMap::TurretTurn{ CoDriver, XboxController::kLeftXAxis };
 const tAxis ControlMap::SpinUp{ CoDriver, XboxController::kRightThrottle }; //flywheel spinup

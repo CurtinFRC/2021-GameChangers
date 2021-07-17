@@ -11,12 +11,15 @@ void Mag::updateMag(double dt) {
 
 	switch (_magState) {
 		case MagStates::OFF:
+			nt::NetworkTableInstance::GetDefault().GetTable("RobotValue")->GetSubTable("Mag")->GetEntry("MagForwards").SetString("STATIONARY"); //yes i am aware my spelling is wrong
 			setPower = 0;
 			break;
 		case MagStates::ON:
+			nt::NetworkTableInstance::GetDefault().GetTable("RobotValue")->GetSubTable("Mag")->GetEntry("MagForwards").SetString("FORWARDS");
 			setPower = ControlMap::MagSpeed;
 			break;
 		case MagStates::REVERSE:
+			nt::NetworkTableInstance::GetDefault().GetTable("RobotValue")->GetSubTable("Mag")->GetEntry("MagForwards").SetString("REVERSE");
 			setPower = ControlMap::ReverseMagSpeed;
 			break;
 	}

@@ -56,6 +56,7 @@ struct ControlMap {
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
 
+
 	//Intake 
 	static const wml::controllers::tAxis Intake;
 	static const wml::controllers::tButton IntakeActuation;
@@ -67,7 +68,7 @@ struct ControlMap {
 
 	//shooter
 	static const wml::controllers::tButton FireButton;
-	static const wml::controllers::tPOV ReverseFire;
+	static const wml::controllers::tButton ReverseFire;
 	static const wml::controllers::tAxis HoodLM, TurretTurn, SpinUp;
 	static const wml::controllers::tButton Speed;
 };

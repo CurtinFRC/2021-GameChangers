@@ -24,6 +24,11 @@ void ShooterManualStrategy::OnUpdate(double dt) {
 		std::cout << "max speed" << ControlMap::FlyWheelMaxSpeed << std::endl;
 	} 
 
+	if (_contGroup.Get(ControlMap::ReverseFire)) {
+		_shooter.setFire(-ControlMap::FireSpeed);
+		std::cout << "reverse fire" << std::endl;
+	}
+
 	turretPower *= ControlMap::TurretMaxSpeed;
 	hoodPower *= ControlMap::HoodMaxSpeed;
 	flyWheelPower *= ControlMap::FlyWheelMaxSpeed;
