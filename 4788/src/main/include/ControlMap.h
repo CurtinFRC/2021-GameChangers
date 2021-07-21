@@ -62,6 +62,9 @@ struct ControlMap {
 	static const wml::controllers::tButton IntakeActuation;
 	static const wml::controllers::tButton Outake;
 
+	static const wml::controllers::tButton IntakeDownDriver;
+	static const wml::controllers::tAxis DriverIntake;
+
 	//Mag 
 	static const wml::controllers::tButton MagToggleButton;
 	static const wml::controllers::tButton MagReverse;

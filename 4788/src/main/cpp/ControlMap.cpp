@@ -73,6 +73,9 @@ const tButton ControlMap::IntakeActuation{ CoDriver, XboxController::kY };
 const tAxis ControlMap::Intake{ CoDriver, XboxController::kLeftThrottle };
 const tButton ControlMap::Outake{CoDriver, XboxController::kBumperLeft };
 
+const tAxis ControlMap::DriverIntake { Driver, XboxController::kBumperLeft };
+const tButton ControlMap::IntakeDownDriver { Driver, XboxController::kY};
+
 //Mag
 const tButton ControlMap::MagToggleButton{ CoDriver, XboxController::kA };
 const tButton ControlMap::MagReverse{ CoDriver, XboxController::kB };
