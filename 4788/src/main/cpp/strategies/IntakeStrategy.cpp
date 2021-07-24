@@ -8,7 +8,7 @@ IntakeManualStrategy::IntakeManualStrategy(std::string name, Intake &intake, Con
 
 void IntakeManualStrategy::OnUpdate(double dt) {
 	double IntakePower = fabs(_contGroup.Get(ControlMap::Intake)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::Intake) : 0;
-	IntakePower = fabs(_contGroup.Get(ControlMap::DriverIntake)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::DriverIntake) : 0;
+	// IntakePower = fabs(_contGroup.Get(ControlMap::DriverIntake)) > ControlMap::TriggerDeadzone ? _contGroup.Get(ControlMap::DriverIntake) : 0;
 
 	if (_contGroup.Get(ControlMap::IntakeActuation), wml::controllers::Controller::ButtonMode::ONRISE) {
 		if (!(ControlMap::IntakeToggle)) {
@@ -18,13 +18,13 @@ void IntakeManualStrategy::OnUpdate(double dt) {
 		}
 	}
 
-	if (_contGroup.Get(ControlMap::IntakeDownDriver, wml::controllers::Controller::ButtonMode::ONRISE)) {
-		if (!(ControlMap::IntakeToggle)) {
-			ControlMap::IntakeToggle = true;
-		} else {
-			ControlMap::IntakeToggle = false;
-		}
-	}
+	// if (_contGroup.Get(ControlMap::IntakeDownDriver, wml::controllers::Controller::ButtonMode::ONRISE)) {
+	// 	if (!(ControlMap::IntakeToggle)) {
+	// 		ControlMap::IntakeToggle = true;
+	// 	} else {
+	// 		ControlMap::IntakeToggle = false;
+	// 	}
+	// }
 
 	if (!(ControlMap::IntakeToggle)) {
 		if (_contGroup.Get(ControlMap::Outake)) {
