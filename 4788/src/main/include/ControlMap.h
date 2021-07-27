@@ -29,15 +29,49 @@ struct ControlMap {
 
 	// PCM1
 	static const int PCModule;
+	static const int PressureSensorPort, CompressorPort;
 
 	// Drive System
-	static const int FLport, FRport, BLport, BRport;
+	static const int Lport, Rport;
 	static const double MaxDrivetrainSpeed;
 	static const double TrackWidth, TrackDepth, WheelRadius, Mass;
 
+	//Intake
+	static const int IntakePort;
+	static const int IntakeSolenoidPort1, IntakeSolenoidPort2;
+	static bool IntakeToggle, ReverseIntakeToggle;
+
+	//Mag
+	static const int MagMotorPort;
+	static bool MagToggle, ReverseMagToggle;
+	static const double MagSpeed, ReverseMagSpeed;
+
+	//shooter 
+	static const int FWPort, TPort, FPort, HPort;
+	static const double TurretMaxSpeed, HoodMaxSpeed, FireSpeed, ReverseFireSpeed;
+	static double FlyWheelMaxSpeed;
 
 	// ------------------ Controls ------------------
 	
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
+
+
+	//Intake 
+	static const wml::controllers::tAxis Intake;
+	static const wml::controllers::tButton IntakeActuation;
+	static const wml::controllers::tButton Outake;
+
+	static const wml::controllers::tButton IntakeDownDriver;
+	static const wml::controllers::tAxis DriverIntake;
+
+	//Mag 
+	static const wml::controllers::tButton MagToggleButton;
+	static const wml::controllers::tButton MagReverse;
+
+	//shooter
+	static const wml::controllers::tButton FireButton;
+	static const wml::controllers::tButton ReverseFire;
+	static const wml::controllers::tAxis HoodLM, TurretTurn, SpinUp;
+	static const wml::controllers::tButton Speed;
 };
