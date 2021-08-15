@@ -43,9 +43,17 @@ const int ControlMap::MagMotorPort = 6;
 
 const double ControlMap::MagMaxSpeed = 0.7;
 
+<<<<<<< HEAD
 //shooter
 const int ControlMap::FWPort = 8; //flywheel
 const int ControlMap::FPort = 7; //fire 
+=======
+//mag 
+const int ControlMap::MagPort = 1;
+bool ControlMap::MagToggle = true;
+const double ControlMap::MagSpeed = 0.8;
+
+>>>>>>> 7a319f36c2adba576e52e65f7b02fbb0931601ba
 
 double ControlMap::FlyWheelMaxSpeed = 1;
 const double ControlMap::FireSpeed = 0.5;
@@ -67,6 +75,7 @@ const tButton ControlMap::Outake{CoDriver, XboxController::kX };
 const tAxis ControlMap::MagTurn{ CoDriver, XboxController::kRightXAxis};
 
 //shooter 
+<<<<<<< HEAD
 const tButton ControlMap::FireButton{ CoDriver, XboxController::kBumperRight };
 const tButton ControlMap::ReverseFire{ CoDriver, XboxController::kY };
 
@@ -75,3 +84,10 @@ const tAxis ControlMap::SpinUp{ CoDriver, XboxController::kRightThrottle }; //fl
 //climber
 const tAxis ControlMap::ClimberPower{ CoDriver, XboxController::kLeftYAxis};
 const tButton ControlMap::ClimberActuation{ CoDriver, XboxController::kB};
+=======
+const tAxis ControlMap::FlywheelSpinUp{ CoDriver, XboxController::kRightThrottle };
+const tButton ControlMap::FireShooter{ CoDriver, XboxController::kY };
+
+//mag 
+const tButton ControlMap::MagSpin{ CoDriver, XboxController::kX};
+>>>>>>> 7a319f36c2adba576e52e65f7b02fbb0931601ba
