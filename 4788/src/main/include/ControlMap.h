@@ -64,16 +64,14 @@ struct ControlMap {
 	static bool MagToggle;
 	static const double MagSpeed;
 
+	static double ClimberToggle;
+
 	// ------------------ Controls ------------------
 
 	//climber 
 	static const wml::controllers::tAxis ClimberUp;
 	static const wml::controllers::tAxis ClimberDown;
 	static const wml::controllers::tButton DeployClimber;
-
-	//intake 
-	static const wml::controllers::tAxis Intake;
-	static const wml::controllers::tButton Outake;
 
 	// Drivetrain
 	static const wml::controllers::tAxis DrivetrainLeft, DrivetrainRight;
@@ -86,11 +84,10 @@ struct ControlMap {
 	//Mag 
 	// static const wml::controllers::tButton MagToggleButton;
 	// static const wml::controllers::tButton MagReverse;
-	static const wml::controllers::tAxis MagTurn;
+	// static const wml::controllers::tAxis MagTurn;
 	
 
 	//shooter
-<<<<<<< HEAD
 	static const wml::controllers::tButton FireButton;
 	static const wml::controllers::tButton ReverseFire;
 	// static const wml::controllers::tAxis HoodLM, TurretTurn, 
@@ -100,11 +97,10 @@ struct ControlMap {
 	//climber 
 	static const wml::controllers::tButton ClimberActuation;
 	static const wml::controllers::tAxis ClimberPower;
-=======
+
 	static const wml::controllers::tAxis FlywheelSpinUp;
 	static const wml::controllers::tButton FireShooter;
 
 	//mag 
 	static const wml::controllers::tButton MagSpin;
->>>>>>> 7a319f36c2adba576e52e65f7b02fbb0931601ba
 };

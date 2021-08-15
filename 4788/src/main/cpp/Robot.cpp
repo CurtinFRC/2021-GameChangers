@@ -39,29 +39,9 @@ void Robot::RobotInit() {
 	shooter->SetDefault(std::make_shared<ShooterManualStrategy>("Shooter Manual strat", *shooter, robotMap.contGroup));
 	StrategyController::Register(shooter);
 
-	climber = new Climber(robotMap.climberSystem.climberMotor);
-	climber->SetDefault(std::make_shared<ClimberManualStrategy>("Climber Manual Strategy", *climber, robotMap.contGroup));
-	StrategyController::Register(climber);
-
 	// Register our systems to be called via strategy
 	StrategyController::Register(drivetrain);
 	NTProvider::Register(drivetrain);
-
-	climber = new Climber(robotMap.climberSystem.climberMotor);
-	climber->SetDefault(std::make_shared<ClimberStrategy>("Climber Manual", *climber, robotMap.contGroup));
-	StrategyController::Register(climber);
-
-	intake = new Intake(robotMap.intakeSystem.intakeMotor);
-	intake->SetDefault(std::make_shared<IntakeStrategy>("Intake manual", *intake, robotMap.contGroup));
-	StrategyController::Register(intake);
-
-	shooter = new Shooter(robotMap.shooterSystem.shooterMotor, robotMap.shooterSystem.fireMotor);
-	shooter->SetDefault(std::make_shared<ShooterStrategy>("shooter manual", *shooter, robotMap.contGroup));
-	StrategyController::Register(shooter);
-
-	mag = new Mag(robotMap.magSystem.magMotor);
-	mag->SetDefault(std::make_shared<MagStrategy>("mag manual", *mag, robotMap.contGroup));
-	StrategyController::Register(mag);
 }
 
 void Robot::RobotPeriodic() {
@@ -73,11 +53,6 @@ void Robot::RobotPeriodic() {
 	intake->update(dt);
 	mag->update(dt);
 	shooter->update(dt);
-<<<<<<< HEAD
-	climber->update(dt);
-=======
-	mag->update(dt);
->>>>>>> 7a319f36c2adba576e52e65f7b02fbb0931601ba
 	NTProvider::Update();
 
 	lastTimeStamp = currentTimeStamp;
@@ -97,11 +72,6 @@ void Robot::TeleopInit() {
 	Schedule(intake->GetDefaultStrategy(), true);
 	Schedule(mag->GetDefaultStrategy(), true);
 	Schedule(shooter->GetDefaultStrategy(), true);
-<<<<<<< HEAD
-	Schedule(climber->GetDefaultStrategy(), true);
-=======
-	Schedule(mag->GetDefaultStrategy(), true);
->>>>>>> 7a319f36c2adba576e52e65f7b02fbb0931601ba
 }
 void Robot::TeleopPeriodic() {}
 

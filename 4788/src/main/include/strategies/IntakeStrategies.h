@@ -3,9 +3,9 @@
 
 using Controllers = wml::controllers::SmartControllerGroup;
 
-class IntakeStrategy : public wml::Strategy {
+class IntakeManualStrategy : public wml::Strategy {
  public:
-	IntakeStrategy(std::string name, Intake &intake, Controllers &contGroup);
+	IntakeManualStrategy(std::string name, Intake &intake, Controllers &contGroup);
 
 	void OnUpdate(double dt) override;
 	
