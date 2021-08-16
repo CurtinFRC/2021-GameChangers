@@ -3,22 +3,25 @@
 #include "strategy/StrategySystem.h"
 #include "RobotMap.h"
 
-enum class MagState {
-	MANUAL,
+
+enum class MagStates {
+	ON,
+	OFF
 };
 
 class Mag : public wml::StrategySystem {
  public:
 	Mag(wml::TalonSrx &magMotor);
 
-	void setMag(const MagState st, double power = 0);
+	void setMag(const MagStates st, double power);
 
 	void updateMag(double dt);
 	void update(double dt);
+
  private:
 	wml::TalonSrx &_magMotor;
 
-	MagState _magState{ MagState::MANUAL };
+	MagStates _magState{MagStates::OFF};
 	double _power;
 	double setPower = 0;
 };

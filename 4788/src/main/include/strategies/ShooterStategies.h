@@ -3,9 +3,9 @@
 
 using Controllers = wml::controllers::SmartControllerGroup;
 
-class ShooterStrategy : public wml::Strategy {
+class ShooterManualStrategy : public wml::Strategy {
  public:
-	ShooterStrategy(std::string name, Shooter &shooter, Controllers &contGroup);
+	ShooterManualStrategy(std::string name, Shooter &shooter, Controllers &contGroup);
 
 	void OnUpdate(double dt) override;
  private:

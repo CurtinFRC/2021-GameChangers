@@ -8,7 +8,7 @@ apply plugin: 'edu.wpi.first.GradleRIO'
 deploy {
 	targets {
 		roboRIO("roborio") {
-			team = frc.getTeamNumber()
+			team = 9788
 		}
 	}
 	artifacts {

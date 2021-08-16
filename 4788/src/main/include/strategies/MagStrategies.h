@@ -3,9 +3,9 @@
 
 using Controllers = wml::controllers::SmartControllerGroup;
 
-class MagStrategy : public wml::Strategy {
+class MagManualStrategy : public wml::Strategy {
  public:
-	MagStrategy(std::string name, Mag &mag, Controllers &contGroup);
+	MagManualStrategy(std::string name, Mag &mag, Controllers &contGroup);
 
 	void OnUpdate(double dt) override;
  private:

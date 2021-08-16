@@ -6,7 +6,6 @@
 #include "RobotMap.h"
 
 // Subsystems
-#include "strategies/ClimberStrategies.h"
 #include "strategies/IntakeStrategies.h"
 #include "strategies/ShooterStategies.h"
 #include "strategies/DriveSystem.h"
@@ -33,9 +32,8 @@ class Robot : public frc::TimedRobot, protected wml::StrategyController, protect
  private:
 	// Instances
 	RobotMap robotMap;
-	wml::Drivetrain *drivetrain;
-	Climber *climber;
+	wml::Drivetrain *drivetrain; // WML drivetrain (Not local)
 	Intake *intake;
-	Shooter *shooter;
 	Mag *mag;
+	Shooter *shooter;
 };
