@@ -11,12 +11,12 @@ void Intake::updateIntake(double dt) {
 	double setPower = 0;
 
 	switch (_intakeState) {
-		case IntakeStates::STOWED:
+		case IntakeStates::ON:
 			setPower = _power;
 			break;
-		case IntakeStates::DEPLOYED:
-			setPower = _power;
-			break;
+		case IntakeStates::OFF:
+			setPower = 0;
+		break;
 	}
 
 	_intakeMotor.Set(setPower);

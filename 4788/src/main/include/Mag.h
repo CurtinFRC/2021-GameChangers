@@ -6,8 +6,7 @@
 
 enum class MagStates {
 	ON,
-	OFF,
-	REVERSE
+	OFF
 };
 
 class Mag : public wml::StrategySystem {

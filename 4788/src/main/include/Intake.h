@@ -4,8 +4,8 @@
 #include "RobotMap.h"
 
 enum class IntakeStates {
-	STOWED,
-	DEPLOYED
+	ON,
+	OFF
 };
 
 class Intake : public wml::StrategySystem {
@@ -19,7 +19,7 @@ class Intake : public wml::StrategySystem {
  private:
 	wml::VictorSpx &_intakeMotor;
 
-	IntakeStates _intakeState{ IntakeStates::STOWED};
+	IntakeStates _intakeState{ IntakeStates::OFF};
 
 	double _power;
 };

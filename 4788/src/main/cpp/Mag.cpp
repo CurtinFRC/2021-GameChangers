@@ -18,9 +18,6 @@ void Mag::updateMag(double dt) {
 			_power *= ControlMap::MagMaxSpeed;
 			setPower = _power;
 			break;
-		case MagStates::REVERSE:
-			setPower = 0;
-			break;
 	}
 	_magMotor.Set(setPower);
 }
